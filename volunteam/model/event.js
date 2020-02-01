@@ -3,6 +3,15 @@ var mongoose = require("mongoose");
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
+
+// Picture
+// Address,
+// Date
+// Time
+// Description
+// Attendee List
+// Organizer
+
 var EventSchema = new Schema({
   
   
