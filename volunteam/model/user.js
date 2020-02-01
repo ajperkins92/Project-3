@@ -4,8 +4,38 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  
-  
+
+    username: {
+        type: String,
+        required: true
+    },
+
+    firstname: {
+        type: String,
+        required: true,
+    },
+
+    lastname: {
+        type: String,
+        required: true,
+    },
+
+    password: {
+        type: String,
+        required: true
+    },
+
+    email: {
+        type: String,
+        required: true
+    },
+
+    image: {
+        type: String,
+        required: false,
+        default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+    }
+
 });
 
 // This creates our model from the above schema, using mongoose's model method
