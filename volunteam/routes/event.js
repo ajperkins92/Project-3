@@ -19,6 +19,7 @@ router.get("/event/:id", function (req, res) {
     let id = req.params.id
     db.Events.findById(id).then((response) => {
         response.timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
+        console.log(response.timeToEvent)
         // the response should now have timeToEvent, which we can display as how long until this event
         res.json(response);
     });
@@ -74,5 +75,17 @@ router.delete("/event/:id", function (req, res) {
     .then(res.json(`${id} has been deleted`))
     .catch(err => res.status(422).json(err));
 })
+
+// adding a user to an existing event via Attendees array field in Mongodb
+router.put("/signup/:id", function (req, res) {
+    let id = req.params.id;
+    // ** NEED TO SEND USERID FOR THIS ROUTE
+    db.Events.findByIdAndUpdate(id, 
+        { 
+            $push : {attendees: req.body.userID}
+        }).then( (response) => {
+        res.json(response);
+    }).catch(err => res.status(422).json(err));
+});
 
 module.exports = router
