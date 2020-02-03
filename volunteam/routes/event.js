@@ -5,7 +5,7 @@ const Moment = require("moment");
 
 // home page route showing the last 5 events (as the last 5 events to be entered into the db)
 router.get("/event", function (req, res) {
-    db.Events.find({}).then( (response) => {
+    db.Events.find({}).then((response) => {
         // response is an array, so I'm slicing off the last 5 items (slice takes a start and end, here' we are just finding the 
         // "start", which is to be the array length minus 5.  
         // and with the slice method, if there is no end given, it defaults "end" to be the end of the array")
@@ -17,8 +17,8 @@ router.get("/event", function (req, res) {
 // route for getting event information to display on event page
 router.get("/event/:id", function (req, res) {
     let id = req.params.id
-    db.Events.findById(id).then( (response) => {
-        response.timeToEvent = Moment(`${newEvent.date} ${newEvent.time}`).fromNow();
+    db.Events.findById(id).then((response) => {
+        response.timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
         // the response should now have timeToEvent, which we can display as how long until this event
         res.json(response);
     });
@@ -40,27 +40,39 @@ router.post("/event", function (req, res) {
     newEvent.image = req.body.image;
 
     db.Events.create(newEvent)
-    .then( (response) => {
-        
-        res.json(response);
-    })
-    .catch(err => res.status(422).json(err));
+        .then((response) => {
+            res.json(response);
+        })
+        .catch(err => res.status(422).json(err));
 })
 
+// updating an existing event
 router.put("/event/:id", function (req, res) {
     let id = req.params.id;
-    // we assume that all the fields can be updated, so we need the req.body to contain all of those fields.
+    // we assume that all the fields can be updated EXCEPT organizer, so we need the req.body to contain all of those fields.
     // We should prepopulate the fields with the information already relevant to the event, so that if a field is not updated,
     // it stays as the old value
-    db.Events.findByIdAndUpdate(id, 
-        {name: req.body.name,
-        address: req.body.address,
-        date: req.body.date,
-        time: req.body.time,
-        description: req.body.description,
-        image: req.body.image
-        // NOT ALLOWING ORGANIZER TO BE CHANGED
-        })
+    db.Events.findByIdAndUpdate(id,
+        {$set: {
+            name: req.body.name,
+            address: req.body.address,
+            date: req.body.date,
+            time: req.body.time,
+            description: req.body.description,
+            image: req.body.image
+            // NOT ALLOWING ORGANIZER TO BE CHANGED
+        }}
+        ).then((response) => {
+            res.json(response);
+        }).catch(err => res.status(422).json(err));
 });
+
+// deleting an existing event
+router.delete("/event/:id", function (req, res) {
+    let id = req.params.id;
+    db.Events.findByIdAndDelete(id)
+    .then(res.json(`${id} has been deleted`))
+    .catch(err => res.status(422).json(err));
+})
 
 module.exports = router
