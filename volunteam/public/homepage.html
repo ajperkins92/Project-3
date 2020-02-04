@@ -36,28 +36,92 @@
   <!-- Materialize JavaScript Addons -->
   <script src="./javascript/materialize.js"></script>
 
+  <!-- Local CSS -->
+<link rel="stylesheet" href="./styles/style.css">
 
   <!-- Title -->
-  <title>Volunteam</title>
+  <title>VolunTeam!</title>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
 
 
   <!-- <div id="root"></div> -->
 
   <!-- Navbar -->
   <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Logo</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+    <div class="nav-wrapper indigo">
+      <a href="#" class="brand-logo left">VolunTeam!</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="logInPage.html">Log In</a></li>
+        <li><a href="signInPage.html">Sign Up!</a></li>
+        <li><a href="collapsible.html">My Events</a></li>
+        <li><a href="collapsible.html">My Account</a></li>
       </ul>
     </div>
   </nav>
+
+  <!-- Intro Statement Section and Search Bar (ZIP Code) -->
+  <div class="container">
+    <!-- Statement -->
+    <div class="row">
+      <div class="col">
+        <h3>The purpose of VolunTeam! is to create an exchange for people to discover opportunities for volunteering in
+          their community.</h3>
+      </div>
+    </div>
+    <!-- Search Bar -->
+    <div class="row">
+      <div class="input-field col s6">
+        <input placeholder="ZIP Code" id="zipCodeSearch" type="text" class="validate">
+        <label for="zipCodeSearch">Search For Events In Your Area!</label>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Event Cards -->
+    <div class="row">
+      <div class="col">
+        <!-- Create Event Card -->
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="/volunteam/public/images/Plus-Sign-in-Circle.png">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Create Event<i
+                class="material-icons right">more_vert</i></span>
+            <p><a href="/volunteam/public/createEventPage.html">Create an Event</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- First Displayed Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="images/office.jpg">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Card Title<i
+                class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Carousel / does not have an href link to make it easier to navigate-->
   <div class="carousel carousel-slider">
