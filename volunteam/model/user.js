@@ -36,15 +36,15 @@ var UsersSchema = new Schema({
         default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
     },
 
-    events: {
+    events: [{
         type: Schema.Types.ObjectId,
         ref: "Events"
-    }
+    }]
 
 });
 
 // This creates our model from the above schema, using mongoose's model method
-//  this article is a Collection called "Books", defined by BookSchema
+//  this article is a Collection called "Users", defined by UsersSchema
 var Users = mongoose.model("Users", UsersSchema);
 
 module.exports = Users;
