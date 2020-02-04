@@ -2,6 +2,32 @@ const path = require("path");
 const router = require("express").Router();
 const db = require("../model/index");
 const Moment = require("moment");
+var nodemailer = require('nodemailer');
+
+let emailer = (recipient, subject, message) => {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'volunteamsters@gmail.com',
+            pass: ''
+        }
+    });
+
+    var mailOptions = {
+        from: 'volunteamsters@gmail.com',
+        to: recipient,
+        subject: subject,
+        text: message
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+}
 
 // home page route showing the last 5 events (as the last 5 events to be entered into the db)
 router.get("/event", function (req, res) {
@@ -54,38 +80,73 @@ router.put("/event/:id", function (req, res) {
     // We should prepopulate the fields with the information already relevant to the event, so that if a field is not updated,
     // it stays as the old value
     db.Events.findByIdAndUpdate(id,
-        {$set: {
-            name: req.body.name,
-            address: req.body.address,
-            date: req.body.date,
-            time: req.body.time,
-            description: req.body.description,
-            image: req.body.image
-            // NOT ALLOWING ORGANIZER TO BE CHANGED
-        }}
-        ).then((response) => {
-            res.json(response);
-        }).catch(err => res.status(422).json(err));
+        {
+            $set: {
+                name: req.body.name,
+                address: req.body.address,
+                date: req.body.date,
+                time: req.body.time,
+                description: req.body.description,
+                image: req.body.image
+                // NOT ALLOWING ORGANIZER TO BE CHANGED
+            }
+        }
+    ).then((response) => {
+        res.json(response);
+        db.Events.findById(id).select("attendees")
+            .then((response) => {
+                console.log("this should show all attendees")
+                console.log(response);
+                // expect an array, this should contain an array with user's ID.  THEN NEED ANOTHER QUERY TO FIND EMAIL
+                // then initiate for loop on all registered attendees based on response.length
+
+                // when ready to use, input is an array of emails, need to push the emails from these, so do a query
+                // on every attendee's email via their userID, once got email, push that to an array
+                // then do array operations to give the emailer the string it needs, with CSV for emails
+                // ** 2/3/2020 NEED TO TEST THAT emailsList.toString is a valid input ,but honestly it should be
+
+                let emailBot = (input) => {
+
+                    let emailList = [];
+                    for (i = 0; i < input.length; i++) {
+                        db.Users.findById(input.attendees[i]).select("email").then( (response ) => {
+                        emailList.push(response);
+                        }) 
+                    }
+                    emailer(emailList.toString, "Test!",
+                            `Your event has been changed!  Here are the details \n
+                            `, () => {
+                        });
+                }
+                emailBot(response);
+                // emailer("volunteamsters@gmail.com", "Test!",
+                //     `Your event has been changed!  Here are the details \n
+                // Your event's attendees are now ${response}`, () => {
+                // });
+            })
+
+    }).catch(err => res.status(422).json(err));
 });
 
 // deleting an existing event
 router.delete("/event/:id", function (req, res) {
     let id = req.params.id;
     db.Events.findByIdAndDelete(id)
-    .then(res.json(`${id} has been deleted`))
-    .catch(err => res.status(422).json(err));
+        .then(res.json(`${id} has been deleted`))
+        .catch(err => res.status(422).json(err));
 })
 
 // adding a user to an existing event via Attendees array field in Mongodb
 router.put("/signup/:id", function (req, res) {
     let id = req.params.id;
     // ** NEED TO SEND USERID FOR THIS ROUTE
-    db.Events.findByIdAndUpdate(id, 
-        { 
-            $push : {attendees: req.body.userID}
-        }).then( (response) => {
-        res.json(response);
-    }).catch(err => res.status(422).json(err));
+    db.Events.findByIdAndUpdate(id,
+        {
+            $push: { attendees: req.body.userID }
+        }).then((response) => {
+            res.json(response);
+        }).catch(err => res.status(422).json(err));
 });
+
 
 module.exports = router
