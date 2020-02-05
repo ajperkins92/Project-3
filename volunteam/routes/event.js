@@ -149,7 +149,7 @@ router.put("/signup/:id", function (req, res) {
         {
             $push: { attendees: req.body.userID }
         }).then(dbEvent => {
-            return db.Users.findByIdAndUpdate(req.body.user,
+            return db.Users.findByIdAndUpdate(req.body.userID,
                 { $push: { events: id } })
         })
         .then((response) => {
