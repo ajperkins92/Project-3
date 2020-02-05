@@ -34,7 +34,7 @@ router.get("/user/:id", (req, res) => {
 
 // put route to update user information
 router.put("/user/:id", (req, res) => {
-    db.Users.findByIdAndUpdate(id,
+    db.Users.findByIdAndUpdate(req.params.id,
         {
             // users not allowed to change their username
             // so update all fields except username

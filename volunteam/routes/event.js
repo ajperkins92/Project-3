@@ -63,13 +63,17 @@ router.post("/event", function (req, res) {
     // ** NEED TO MAKE SURE TIME IS ENTERED AS "14:00"
     newEvent.time = req.body.time;
     newEvent.description = req.body.description
+    // event organizer must be an mongodb id
     newEvent.organizer = req.body.organizer;
     newEvent.image = req.body.image;
 
     db.Events.create(newEvent)
-        .then((response) => {
-            res.json(response);
+        .then((dbEvent) => {
+            return db.Users.findByIdAndUpdate(newEvent.organizer,
+                { $push: { events: dbEvent._id } }
+            )
         })
+        .then(response => res.json(response))
         .catch(err => res.status(422).json(err));
 })
 
@@ -109,14 +113,14 @@ router.put("/event/:id", function (req, res) {
 
                     let emailList = [];
                     for (i = 0; i < input.length; i++) {
-                        db.Users.findById(input.attendees[i]).select("email").then( (response ) => {
-                        emailList.push(response);
-                        }) 
+                        db.Users.findById(input.attendees[i]).select("email").then((response) => {
+                            emailList.push(response);
+                        })
                     }
                     emailer(emailList.toString, "Test!",
-                            `Your event has been changed!  Here are the details \n
+                        `Your event has been changed!  Here are the details \n
                             `, () => {
-                        });
+                    });
                 }
                 emailBot(response);
                 // emailer("volunteamsters@gmail.com", "Test!",
@@ -140,10 +144,15 @@ router.delete("/event/:id", function (req, res) {
 router.put("/signup/:id", function (req, res) {
     let id = req.params.id;
     // ** NEED TO SEND USERID FOR THIS ROUTE
+    // User ID needs to be supplied from client side
     db.Events.findByIdAndUpdate(id,
         {
             $push: { attendees: req.body.userID }
-        }).then((response) => {
+        }).then(dbEvent => {
+            return db.Users.findByIdAndUpdate(req.body.user,
+                { $push: { events: id } })
+        })
+        .then((response) => {
             res.json(response);
         }).catch(err => res.status(422).json(err));
 });
