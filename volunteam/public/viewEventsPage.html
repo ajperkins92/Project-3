@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Materialize JavaScript CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Materialize JavaScript Addons -->
+    <script src="./javascript/materialize.js"></script>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- Title -->
+    <title>VolunTeam!</title>
+</head>
+
+<body>
+    <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
+
+
+    <!-- <div id="root"></div> -->
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper indigo">
+            <a href="#" class="brand-logo left">VolunTeam!</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="logInPage.html">Log In</a></li>
+                <li><a href="signInPage.html">Sign Up!</a></li>
+                <li><a href="viewEventsPage.html">My Events</a></li>
+                <li><a href="collapsible.html">My Account</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Intro Statement Section and Search Bar (ZIP Code) -->
+    <!-- <div class="container"> -->
+
+        <!-- Intro Card -->
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">My Events</span>
+                        <p>This card serves as a display for the subsequent cards that will be displayed for the events
+                            the logged in user is attending</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+
+
+    <!-- Event Cards -->
+    <div class="row">
+        <div class="col">
+            <!-- Create Event Card -->
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://via.placeholder.com/300">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Create Event<i
+                            class="material-icons right">more_vert</i></span>
+                    <p><a href="/volunteam/public/createEventPage.html">Create an Event</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i
+                            class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- First Displayed Card -->
+        <div class="col">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://via.placeholder.com/300">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i
+                            class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i
+                            class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Second Card -->
+
+        <!-- First Displayed Card -->
+        <div class="col">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://via.placeholder.com/300">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i
+                            class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i
+                            class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Third Card -->
+        <!-- First Displayed Card -->
+        <div class="col">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://via.placeholder.com/300">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i
+                            class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i
+                            class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel / does not have an href link to make it easier to navigate-->
+    <div class="carousel carousel-slider">
+        <a class="carousel-item"><img src="./images/Volunteers1.jpg"></a>
+        <a class="carousel-item"><img src="./images/Volunteers2.jpg"></a>
+        <a class="carousel-item"><img src="./images/Volunteers3.jpg"></a>
+        <a class="carousel-item"><img src="./images/Volunteers4.jpg"></a>
+    </div>
+
+
+</body>
+
+</html>
