@@ -15,11 +15,11 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
+    "postinstall": "cd client && npm install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "cd client && npm install"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
