@@ -1,6 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
 const db = require("../model");
+const passport = require("../config/passport");
 
 // get route for all users
 router.get("/user", function (req, res) {
@@ -58,6 +59,13 @@ router.get("/user/:id/myevents", (req, res) => {
         .catch(err => res.json(err))
 });
 
+router.post('/login',
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })
+);
 
 module.exports = router
 
