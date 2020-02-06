@@ -147,10 +147,10 @@ router.put("/signup/:id", function (req, res) {
     // User ID needs to be supplied from client side
     db.Events.findByIdAndUpdate(id,
         {
-            $push: { attendees: req.body.userID }
+            $addToSet: { attendees: req.body.userID }
         }).then(dbEvent => {
             return db.Users.findByIdAndUpdate(req.body.userID,
-                { $push: { events: id } })
+                { $addToSet: { events: id } })
         })
         .then((response) => {
             res.json(response);

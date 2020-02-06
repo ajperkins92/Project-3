@@ -7,7 +7,8 @@ var UsersSchema = new Schema({
 
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     firstname: {
@@ -27,7 +28,8 @@ var UsersSchema = new Schema({
 
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
 
     image: {
