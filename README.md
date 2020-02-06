@@ -12,6 +12,8 @@ This is our third Group Project for the UW Coding Bootcamp
 - MongoDB
 - Materialize
 - Google Maps API
+- Moment
+- Nodemailer
 
 ## Team:
 - Alex Perkins
