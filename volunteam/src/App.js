@@ -1,29 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Main from "./pages/main";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Logo</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
-          </ul>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            {/* <Route exact path="/saved" component={SavedPage} />
+            <Route component={PageNotFound} /> */}
+          </Switch>
         </div>
-      </nav>
-
-      
+      </Router>
     </div>
-
-
-
-
   );
 }
-
 export default App;
