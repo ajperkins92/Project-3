@@ -135,10 +135,19 @@ router.put("/event/:id", function (req, res) {
 // deleting an existing event
 router.delete("/event/:id", function (req, res) {
     let id = req.params.id;
+    // ** NEED TO SEND USERID FOR THIS ROUTE
+    // User ID needs to be supplied from client side
     db.Events.findByIdAndDelete(id)
-        .then(res.json(`${id} has been deleted`))
+        .then(response => {
+            db.Users.findByIdAndUpdate(req.body.userID,
+                { $pullAll: { events: [id] } })
+                .then(response => {
+                    res.json(`${id} has been deleted`)
+                })
+        })
         .catch(err => res.status(422).json(err));
 })
+
 
 // adding a user to an existing event via Attendees array field in Mongodb
 router.put("/signup/:id", function (req, res) {
