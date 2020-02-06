@@ -31,8 +31,28 @@ class Main extends React.Component {
         ]
     }
 
-    searchEvents = (zip) => {
+    //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
+
+    // componentDidMount() {
+    //     this.getRandomEvents();
+    // }
+
+    //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
+
+    getRandomEvents = () => {
+        axios.get("/event")
+            .then((response) => {
+                this.setState({ eventResults: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    searchEventsByZIP = (zip) => {
         console.log(`Under Construction, but zip being searched is ${zip}`);
+        console.log(`Need a new route that gets events by ZIP- may need to change schema to include ZIP, then write an algo for 
+        determining which ZIP's are closest to yours`);
     }
 
     handleInputChange = event => {
@@ -47,7 +67,7 @@ class Main extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEvents(this.state.searchZIP);
+        this.searchEventsByZIP(this.state.searchZIP);
     };
 
     manageLogin = () => {
