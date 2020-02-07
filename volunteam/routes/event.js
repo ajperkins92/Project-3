@@ -69,7 +69,7 @@ router.post("/event", function (req, res) {
 
     db.Events.create(newEvent)
         .then((dbEvent) => {
-            return db.Users.findByIdAndUpdate(newEvent.organizer,
+            return db.Users.findOneAndUpdate({username: newEvent.organizer},
                 { $push: { events: dbEvent._id } }
             )
         })
