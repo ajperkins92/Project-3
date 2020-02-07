@@ -67,17 +67,24 @@ router.post("/event", function (req, res) {
     newEvent.organizer = req.body.organizer;
     newEvent.image = req.body.image;
 
-    db.Events.create(newEvent)
-        .then((dbEvent) => {
-            return db.Users.findByIdAndUpdate(
-                newEvent.organizer,
-                { $push: { events: dbEvent._id } },
-                { new: true }
-            )
+    db.Users.findOne({ username: newEvent.organizer })
+        .then(response => newEvent.organizer = response._id)
+        .then(response => {
+            db.Events.create(newEvent)
+            .then((dbEvent) => {
+                console.log(dbEvent)
+                return db.Users.findByIdAndUpdate(
+                    newEvent.organizer,
+                    { $push: { events: dbEvent._id } },
+                    { new: true }
+                )
+            })
+            .then(response => res.json(response))
+            .catch(err => res.status(422).json(err))
         })
-        .then(response => res.json(response))
-        .catch(err => res.status(422).json(err));
-})
+        .catch(err => console.log(err))
+
+});
 
 // updating an existing event
 router.put("/event/:id", function (req, res) {
