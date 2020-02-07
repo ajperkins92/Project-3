@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+const crypto = require('crypto');
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -43,7 +44,22 @@ var UsersSchema = new Schema({
         ref: "Events"
     }]
 
+
 });
+
+UsersSchema.pre('save', function (next) {
+    if (this.password) {
+        this.salt = new Buffer(
+            crypto.randomBytes(16).toString('base64'),
+            'base64'
+        );
+        this.password = crypto.pbkdf2Sync(
+            password, this.salt, 10000, 64).toString('base64');
+    };
+    next();
+});
+
+
 
 // This creates our model from the above schema, using mongoose's model method
 //  this article is a Collection called "Users", defined by UsersSchema
