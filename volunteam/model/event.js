@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 
 var EventSchema = new Schema({
-  
+
     name: {
         type: String,
         required: true
@@ -39,15 +39,14 @@ var EventSchema = new Schema({
 
     organizer: {
         type: String,
-       required: true,
+        required: true,
     },
 
-    attendees: {
-        // type: Schema.Types.ObjectId,
-        type: Array,
-        ref: "Users"
-    }
-  
+    attendees: [{
+        type: Schema.Types.ObjectId,
+        ref: "Users",
+    }]
+
 });
 
 // This creates our model from the above schema, using mongoose's model method
