@@ -69,8 +69,10 @@ router.post("/event", function (req, res) {
 
     db.Events.create(newEvent)
         .then((dbEvent) => {
-            return db.Users.findByIdAndUpdate(newEvent.organizer,
-                { $push: { events: dbEvent._id } }
+            return db.Users.findByIdAndUpdate(
+                newEvent.organizer,
+                { $push: { events: dbEvent._id } },
+                { new: true }
             )
         })
         .then(response => res.json(response))
@@ -159,7 +161,8 @@ router.put("/signup/:id", function (req, res) {
             $addToSet: { attendees: req.body.userID }
         }).then(dbEvent => {
             return db.Users.findByIdAndUpdate(req.body.userID,
-                { $addToSet: { events: id } })
+                { $addToSet: { events: id } },
+                { new: true })
         })
         .then((response) => {
             res.json(response);

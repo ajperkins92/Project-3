@@ -53,7 +53,7 @@ router.put("/user/:id", (req, res) => {
 // get route to get all events a user is attending or organizing
 router.get("/user/:id/myevents", (req, res) => {
     db.Users.find({ _id: req.params.id })
-        .populate("Events")
+        .populate("events")
         .then(user => res.json(user))
         .catch(err => res.json(err))
 });
