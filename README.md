@@ -3,7 +3,7 @@ This is our third Group Project for the UW Coding Bootcamp
 
 ## VolunTeam! exists to create an exchange for people to discover opportunities for volunteering in their community
 
-## Visit the VolunTeam! website: [link to Heroku deployment here]
+## Visit the VolunTeam! website: https://boiling-temple-20778.herokuapp.com/
 
 ## Technologies used
 - Node.js
@@ -12,6 +12,8 @@ This is our third Group Project for the UW Coding Bootcamp
 - MongoDB
 - Materialize
 - Google Maps API
+- Moment
+- Nodemailer
 
 ## Team:
 - Alex Perkins
