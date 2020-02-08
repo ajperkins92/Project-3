@@ -3,7 +3,6 @@ import Nav from "../components/mainpage/nav"
 import MyAccountComponent from "../components/MyAccount/myAccount";
 
 class MyAccount extends React.Component {
-
     state = {
         loggedIn: true,
     }
