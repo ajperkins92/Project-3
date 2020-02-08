@@ -3,7 +3,46 @@ import "./createeventform.css";
 
 function CreateEventForm(props) {
     return (
-        <div className="row">
+        <div className="row SubContainer">
+            {/* <form class="col s12">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <span class="card-title">Create Event</span>
+                            <div class="card-image">
+                                <img src="../public/images/seattlePark3.jpg" style="width:90%;"></img>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="eventName" type="text" class="validate"></input>
+                                        <label for="eventName">Event Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="address" type="text" class="validate"></input>
+                                        <label for="address">Address</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="date" type="date" class="validate"></input>
+                                        <label for="date">Date</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="description" type="text" class="validate"></input>
+                                        <label for="description">Description</label>
+                                    </div>
+                                </div>
+                                <a class="waves-effect waves-light btn purple pulse" id="createEvent">Create Event</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form> */}
             <form className="col s6">
                 <div className="row">
 
@@ -62,8 +101,8 @@ function CreateEventForm(props) {
                 >Submit<i className="material-icons right"></i>
                 </button>
             </form>
-        </div>
-    );
+        </div>               
+            );
 }
 
 export default CreateEventForm;

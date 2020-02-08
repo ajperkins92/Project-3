@@ -2,9 +2,14 @@
   "name": "project-3",
   "version": "1.0.0",
   "description": "This is our third Group Project for the UW Coding Bootcamp",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd server && nodemon server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
