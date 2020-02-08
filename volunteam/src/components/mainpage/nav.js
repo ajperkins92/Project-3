@@ -7,7 +7,7 @@ function Nav(props) {
     return (
         <nav>
             <div className="nav-wrapper indigo">
-                <a href="#" className="brand-logo left">VolunTeam!</a>
+                <a href="/" className="brand-logo left">VolunTeam!</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {/* Logging out sets state to Logged Out, and also refreshes the page so you need to log in again.  
                     If you login, the page does NOT refresh.  That's the difference between "/" and "#", where # says literally don't do anything" */}

@@ -19,6 +19,7 @@ class ViewEvent extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 
+
             </div>
         )
     }
