@@ -1,9 +1,8 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
-
+import LogInPageComponent from "../components/LogInPage/logInPage";
 
 class Login extends React.Component {
-
     state = {
         loggedIn: true,
     }
@@ -23,7 +22,6 @@ class Login extends React.Component {
         this.searchEventsByZIP(this.state.searchZIP);
     };
 
-
     render() {
         return (
             <div>
@@ -31,7 +29,7 @@ class Login extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-                
+                <LogInPageComponent />
             </div>
         )
     }

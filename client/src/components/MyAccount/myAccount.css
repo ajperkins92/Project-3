@@ -1,0 +1,22 @@
+.container {
+  text-align: center;
+  margin-top: 10px;
+  max-width: 50%;
+}
+img {
+  margin: 0 auto;
+}
+.badge {
+  margin: 0 auto;
+  max-width: 50%;
+  border-radius: 1.5rem;
+}
+.file-path {
+  max-width: 50%;
+}
+#upload {
+  color: white;
+}
+.btn {
+  border-radius: 1.5rem;
+}
