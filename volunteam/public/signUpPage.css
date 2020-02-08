@@ -9,11 +9,14 @@ img {
 .badge {
   margin: 0 auto;
   max-width: 50%;
-  border-radius: 4px;
+  border-radius: 1.5rem;
 }
 .file-path {
   max-width: 50%;
 }
 #upload {
   color: white;
+}
+.btn {
+  border-radius: 1.5rem;
 }
