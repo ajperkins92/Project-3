@@ -7,6 +7,11 @@ class CreateEvent extends React.Component {
 
     state = {
         loggedIn: true,
+        eventName: "",
+        address: "",
+        date: "",
+        time: "",
+        description: "",
     }
 
     handleInputChange = event => {
@@ -32,7 +37,13 @@ class CreateEvent extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 <CreateEventForm
-                >
+                onChange={this.handleInputChange}
+                valueName={this.state.eventName}
+                valueAddress={this.state.address}
+                valueDate={this.state.date}
+                valueTime={this.state.time}
+                valueDescription={this.state.description}
+                onClick={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>
         )
