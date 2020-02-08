@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "http-proxy-middleware": "^0.20.0",
     "moment": "^2.24.0",
     "mongoose": "^5.8.11",
     "nodemailer": "^6.4.2",
