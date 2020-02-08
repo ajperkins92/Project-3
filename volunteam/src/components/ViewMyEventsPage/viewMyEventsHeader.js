@@ -1,11 +1,10 @@
 import React from "react";
-import "./viewmyeventspage.css";
+import "./viewMyEventsHeader.css";
 
-function CreateEventForm(props) {
+function viewMyEventsHeader(props) {
     return (
         // Arbitrary parent div
         <div>
-
             <div class="row">
                 <div class="col s12 m6">
                     <div class="card blue-grey darken-1">
@@ -16,18 +15,8 @@ function CreateEventForm(props) {
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <form class="col s6">
-                
-        
-
-                </form>
-            </div>
-
-
         </div>
     );
 }
 
-export default ViewMyEventsPage;
+export default viewMyEventsHeader;
