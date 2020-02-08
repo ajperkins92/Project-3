@@ -39,15 +39,15 @@ class Main extends React.Component {
 
     //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
 
-    getRandomEvents = () => {
-        axios.get("/event")
-            .then((response) => {
-                this.setState({ eventResults: response.data });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    // getRandomEvents = () => {
+    //     axios.get("/event")
+    //         .then((response) => {
+    //             this.setState({ eventResults: response.data });
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
     searchEventsByZIP = (zip) => {
         console.log(`Under Construction, but zip being searched is ${zip}`);
