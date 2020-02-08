@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from "../components/mainpage/nav"
 import ViewMyEventsHeader from "../components/ViewMyEventsPage/ViewMyEventsHeader"
 
+// Adds a change to log to myevents.js
 
 class MyEvents extends React.Component {
 
