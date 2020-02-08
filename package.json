@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd volunteam && npm install --only=dev && npm install && npm run build && echo 'Both Servers uploaded!'"
+    "heroku-postbuild": "cd volunteam && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
