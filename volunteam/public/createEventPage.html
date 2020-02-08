@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign In Page</title>
+    <title>Create Event Page</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" type="text/css" href="./createEventPage.css">
     <style>
     </style>
 </head>
@@ -16,41 +16,56 @@
 <body>
     <nav>
         <div class="nav-wrapper indigo">
-            <a href="" class="brand-logo">VolunTeam</a>
+            <a href="" class="brand-logo center">VolunTeam!</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./createEventPage.html">Create Event</a></li>
                 <li><a href="./logInPage.html">Log In</a></li>
-                <li><a href="./signInPage.html">Sign In</a></li>
-
+                <li><a href="./signUpPage.html">Sign Up</a></li>
+                <li><a href="./myAccountPage.html">My Account</a></li>
             </ul>
         </div>
     </nav>
-    <div class="row">
-        <form class="col s6">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="event_name" type="text" class="validate">
-                    <label for="event_name">Event Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="address" type="text" class="validate">
-                    <label for="address">Address</label>
-                </div>
-            </div>
-            <div class="input-field col s12">
-                <input id="date" type="text" class="validate">
-                <label for="date">Date</label>
-            </div>
-            <div class="input-field col s12">
-                <input id="description" type="text" class="validate">
-                <label for="description">Description</label>
-            </div>
-            
-            <a class="waves-effect waves-light btn blue">Create Event</a>
-        </form>
+    <div class="container">
+        <div class="row subContainer">
+            <form class="col s12">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <span class="card-title">Create Event</span>
+                            <div class="card-image">
+                                <img src="../public/images/seattlePark3.jpg" style="width:90%;">
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="eventName" type="text" class="validate">
+                                        <label for="eventName">Event Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="address" type="text" class="validate">
+                                        <label for="address">Address</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="date" type="date" class="validate">
+                                        <label for="date">Date</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="description" type="text" class="validate">
+                                        <label for="description">Description</label>
+                                    </div>
+                                </div>
+                                <a class="waves-effect waves-light btn purple pulse" id="createEvent">Create Event</a>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
     </div>
-    <script>
-    </script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
