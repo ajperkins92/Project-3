@@ -9,9 +9,6 @@ class MyEvents extends React.Component {
         loggedIn: true,
     }
 
-
-
-
     render() {
         return (
             <div>
