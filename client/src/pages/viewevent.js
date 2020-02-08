@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from "../components/mainpage/nav"
+import Nav from "../components/mainpage/nav";
 
 
 class ViewEvent extends React.Component {
@@ -7,9 +7,6 @@ class ViewEvent extends React.Component {
     state = {
         loggedIn: true,
     }
-
-
-
 
     render() {
         return (

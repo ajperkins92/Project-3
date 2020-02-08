@@ -1,11 +1,21 @@
 import React from 'react';
-import Nav from "../components/mainpage/nav"
-
+import Nav from "../components/mainpage/nav";
+import SignUpPage from "../components/SignUpPage/signUpPage";
 
 class SignUp extends React.Component {
 
     state = {
         loggedIn: true,
+        username: "",
+        firstname: "",
+        lastname: "",
+        password: "",
+        email: "",
+        image: "",
+    }
+
+    signUp = (details) => {
+
     }
    
     handleInputChange = event => {
@@ -20,9 +30,20 @@ class SignUp extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEventsByZIP(this.state.searchZIP);
-    };
+        let newUser = {}
+        newUser.username = this.state.username;
+        newUser.firstname = this.state.firstname;
+        newUser.lastname = this.state.lastname;
 
+        // NOT DONE
+        newUser.date = this.state.date;
+        newUser.time = this.state.time;
+        newUser.description = this.state.description;
+        // FOR TESTING ONLY
+        newUser.organizer = "kensen";
+        // FOR TESTING ONLY
+        this.signUp();
+    };
 
     render() {
         return (
@@ -31,7 +52,11 @@ class SignUp extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-                
+                <SignUpPage
+                handleInputChange={this.handleInputChange}
+                value={this.state.searchZIP}
+                handleFormSubmit={this.handleFormSubmit}>
+                </SignUpPage>
             </div>
         )
     }
