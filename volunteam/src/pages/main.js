@@ -33,9 +33,9 @@ class Main extends React.Component {
 
     //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
 
-    componentDidMount() {
-        this.getRandomEvents();
-    }
+    // componentDidMount() {
+    //     this.getRandomEvents();
+    // }
 
     //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
 

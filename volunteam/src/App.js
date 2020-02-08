@@ -2,11 +2,7 @@ import React from 'react';
 import './App.css';
 import Main from "./pages/main";
 import CreateEvent from "./pages/createevent";
-import Main from "./pages/main";
-import Main from "./pages/main";
-import Main from "./pages/main";
-import Main from "./pages/main";
-import Main from "./pages/main";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -16,6 +12,7 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/" component={Main} />
+            <Route exact path="/createevent" component={CreateEvent} />
             {/* <Route exact path="/createevent" component={CreateEvent} />
 <Route exact path="/login" component={Login}
 <Route exact path="/logout" component={Logout}

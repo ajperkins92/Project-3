@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
+import CreateEventForm from "../components/CreateEventPage/createeventform"
 
 
 class CreateEvent extends React.Component {
@@ -30,7 +31,9 @@ class CreateEvent extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-                
+                <CreateEventForm
+                >
+                </CreateEventForm>
             </div>
         )
     }
