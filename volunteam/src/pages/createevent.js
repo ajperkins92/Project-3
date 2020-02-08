@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
 import CreateEventForm from "../components/CreateEventPage/createeventform"
+import axios from "axios";
 
 
 class CreateEvent extends React.Component {
@@ -16,6 +17,13 @@ class CreateEvent extends React.Component {
 
     createEvent = (newEvent) => {
         console.log(JSON.stringify(newEvent));
+        axios.post("/event", newEvent)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     handleInputChange = event => {
@@ -40,7 +48,7 @@ class CreateEvent extends React.Component {
         eventDetails.date = this.state.date;
         eventDetails.time = this.state.time;
         eventDetails.description = this.state.description;
-        
+
         this.createEvent(eventDetails);
     };
 
@@ -52,9 +60,9 @@ class CreateEvent extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 <CreateEventForm
-                handleInputChange={this.handleInputChange}
-                value={this.state.value}
-                handleFormSubmit={this.handleFormSubmit}>
+                    handleInputChange={this.handleInputChange}
+                    value={this.state.value}
+                    handleFormSubmit={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>
         )
