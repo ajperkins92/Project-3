@@ -14,9 +14,17 @@ class CreateEvent extends React.Component {
         description: "",
     }
 
+    createEvent = () => {
+
+    }
+
     handleInputChange = event => {
+
         const name = event.target.name;
-        const value = event.target.value;
+
+        // for multiple fields, value will be the field you want, because it's using target 
+        let value = event.target.value;
+
         console.log(`thing being changed is ${name}`)
         console.log(`and it's being changed to ${value}`)
         this.setState({
@@ -26,7 +34,14 @@ class CreateEvent extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEventsByZIP(this.state.searchZIP);
+        let eventDetails = {}
+        eventDetails.name = this.state.eventName;
+        eventDetails.address = this.state.address;
+        eventDetails.date = this.state.date;
+        eventDetails.time = this.state.time;
+        eventDetails.description = this.state.description;
+        console.log(`here's the event you're creating ${eventDetails}`)
+        // this.createEvent(eventDetails);
     };
 
     render() {
@@ -37,13 +52,13 @@ class CreateEvent extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 <CreateEventForm
-                onChange={this.handleInputChange}
+                handleInputChange={this.handleInputChange}
                 valueName={this.state.eventName}
                 valueAddress={this.state.address}
                 valueDate={this.state.date}
                 valueTime={this.state.time}
                 valueDescription={this.state.description}
-                onClick={this.handleFormSubmit}>
+                handleFormSubmit={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>
         )

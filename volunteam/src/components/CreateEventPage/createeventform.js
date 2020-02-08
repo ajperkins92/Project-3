@@ -3,56 +3,56 @@ import "./createeventform.css";
 
 function CreateEventForm(props) {
     return (
-        <div class="row">
-            <form class="col s6">
-                <div class="row">
+        <div className="row">
+            <form className="col s6">
+                <div className="row">
 
-                    <div class="input-field col s12">
-                        <input id="event_name" type="text" class="validate" name="eventName"
+                    <div className="input-field col s12">
+                        <input id="event_name" type="text" className="validate" name="eventName"
 
                             onChange={props.handleInputChange}
-                            value={props.valueName}></input>
+                            value={props.value}></input>
 
-                        <label for="event_name">Event Name</label>
+                        <label htmlFor="event_name">Event Name</label>
                     </div>
 
-                    <div class="input-field col s12">
-                        <input id="address" type="text" class="validate" name="address"
+                    <div className="input-field col s12">
+                        <input id="address" type="text" className="validate" name="address"
 
                             onChange={props.handleInputChange}
-                            value={props.valueAddress}
+                            value={props.value}
 
                         ></input>
-                        <label for="address">Address</label>
+                        <label htmlFor="address">Address</label>
                     </div>
 
-                    <div class="input-field col s12">
-                        <input id="date" type="date" class="validate" name="date"
+                    <div className="input-field col s12">
+                        <input id="date" type="date" className="validate" name="date"
 
                             onChange={props.handleInputChange}
-                            value={props.valueDate}
+                            value={props.value}
 
                         ></input>
-                        <label for="date">Date</label>
+                        <label htmlFor="date">Date</label>
                     </div>
 
-                    <div class="input-field col s12">
-                        <input id="time" type="time" class="validate" name="time"
+                    <div className="input-field col s12">
+                        <input id="time" type="time" className="validate" name="time"
 
                             onChange={props.handleInputChange}
-                            value={props.valueTime}
+                            value={props.value}
 
                         ></input>
-                        <label for="time">Time</label>
+                        <label htmlFor="time">Time</label>
                     </div>
 
-                    <div class="input-field col s12">
-                        <input id="description" type="text" class="validate" name="description"
+                    <div className="input-field col s12">
+                        <input id="description" type="text" className="validate" name="description"
 
                             onChange={props.handleInputChange}
-                            value={props.valueDescription}
+                            value={props.value}
                         ></input>
-                        <label for="description">Description</label>
+                        <label htmlFor="description">Description</label>
                     </div>
                 </div>
                 <button className="btn waves-effect waves-light" type="submit" name="action"
