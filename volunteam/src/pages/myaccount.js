@@ -1,16 +1,11 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
-import ViewMyEventsHeader from "../components/ViewMyEventsPage/ViewMyEventsHeader"
 
-
-class MyEvents extends React.Component {
+class MyAccount extends React.Component {
 
     state = {
         loggedIn: true,
     }
-
-
-
 
     render() {
         return (
@@ -19,13 +14,10 @@ class MyEvents extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-
-                <ViewMyEventsHeader></ViewMyEventsHeader>
-
                 
             </div>
         )
     }
 }
 
-export default MyEvents;
+export default MyAccount;
