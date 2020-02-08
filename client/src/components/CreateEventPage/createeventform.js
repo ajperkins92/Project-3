@@ -4,7 +4,7 @@ import "./createeventform.css";
 function CreateEventForm(props) {
     return (
         <div className="row SubContainer">
-            <form class="col s12">
+            {/* <form class="col s12">
                 <div class="row">
                     <div class="col s12">
                         <div class="card">
@@ -42,8 +42,8 @@ function CreateEventForm(props) {
                         </div>
                     </div>
                 </div>
-            </form>
-            {/* <form className="col s6">
+            </form> */}
+            <form className="col s6">
                 <div className="row">
 
                     <div className="input-field col s12">
@@ -100,7 +100,7 @@ function CreateEventForm(props) {
 
                 >Submit<i className="material-icons right"></i>
                 </button>
-            </form> */}
+            </form>
         </div>               
             );
 }
