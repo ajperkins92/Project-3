@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
+import MyAccountComponent from "../components/MyAccount/myAccount";
 
 class MyAccount extends React.Component {
 
@@ -14,7 +15,7 @@ class MyAccount extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-                
+                <MyAccountComponent />
             </div>
         )
     }

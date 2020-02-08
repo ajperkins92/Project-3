@@ -3,7 +3,7 @@ import "./logInPage.css";
 
 function LogInPage() {
     return (
-        <div></div>
+        <div>Log in Page</div>
     );
 }
 
