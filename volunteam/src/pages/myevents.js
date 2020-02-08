@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from "../components/mainpage/nav"
 import ViewMyEventsHeader from "../components/ViewMyEventsPage/ViewMyEventsHeader"
 
-// This lives here for committing purposes"
+// Adds comment to log a change to this file
 
 class MyEvents extends React.Component {
 
