@@ -14,8 +14,8 @@ class CreateEvent extends React.Component {
         description: "",
     }
 
-    createEvent = () => {
-
+    createEvent = (newEvent) => {
+        console.log(JSON.stringify(newEvent));
     }
 
     handleInputChange = event => {
@@ -40,8 +40,8 @@ class CreateEvent extends React.Component {
         eventDetails.date = this.state.date;
         eventDetails.time = this.state.time;
         eventDetails.description = this.state.description;
-        console.log(`here's the event you're creating ${eventDetails}`)
-        // this.createEvent(eventDetails);
+        
+        this.createEvent(eventDetails);
     };
 
     render() {
@@ -53,11 +53,7 @@ class CreateEvent extends React.Component {
                 </Nav>
                 <CreateEventForm
                 handleInputChange={this.handleInputChange}
-                valueName={this.state.eventName}
-                valueAddress={this.state.address}
-                valueDate={this.state.date}
-                valueTime={this.state.time}
-                valueDescription={this.state.description}
+                value={this.state.value}
                 handleFormSubmit={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>
