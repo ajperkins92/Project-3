@@ -13,21 +13,21 @@ class Main extends React.Component {
         searchZIP: "",
         // we should probably limit this to like 5-10 elements
         eventResults: [
-            // {
-            //     name: "Event #1",
-            //     image: "https://res.cloudinary.com/nrpadev/image/upload/c_fill,f_auto,q_70/2018-November-Feature-Seattle-Innovation-Lab-410.jpg",
-            //     id: "ID from Mongo."
-            // },
-            // {
-            //     name: "Event #2",
-            //     image: "https://www.washingtonpost.com/resizer/Va-uo43mkf0HpH9NiTqn_G_WDEU=/480x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/D6USWTUFUII6THLT4K5GXPY3TM.jpg",
-            //     id: "ID from Mongo.."
-            // },
-            // {
-            //     name: "Event #3",
-            //     image: "https://cms.capitoltechsolutions.com/ClientData/EffieYeaw/uploads/morning.jpg",
-            //     id: "ID from Mongo..."
-            // },
+            {
+                name: "Event #1",
+                image: "https://res.cloudinary.com/nrpadev/image/upload/c_fill,f_auto,q_70/2018-November-Feature-Seattle-Innovation-Lab-410.jpg",
+                id: "ID from Mongo."
+            },
+            {
+                name: "Event #2",
+                image: "https://www.washingtonpost.com/resizer/Va-uo43mkf0HpH9NiTqn_G_WDEU=/480x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/D6USWTUFUII6THLT4K5GXPY3TM.jpg",
+                id: "ID from Mongo.."
+            },
+            {
+                name: "Event #3",
+                image: "https://cms.capitoltechsolutions.com/ClientData/EffieYeaw/uploads/morning.jpg",
+                id: "ID from Mongo..."
+            },
         ]
     }
 
