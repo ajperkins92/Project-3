@@ -1,12 +1,12 @@
 import React from "react";
 //import "./logInPage.css";
 
-function LogInPageComponent() {
+function LogInPageComponent(props) {
     return (
         <div className="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card-panel">
+            <div className="row">
+                <div className="col s12">
+                    <div className="card-panel">
                         <div className="row subContainer">
                             <form className="col s12">
                                 <div className="row">
@@ -19,17 +19,27 @@ function LogInPageComponent() {
                                         <div className="card-content">
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input id="username" type="text" className="validate" />
-                                                    <label for="username">Username</label>
+                                                    <input id="username" type="text" className="validate" name="username"
+
+                                                    onChange={props.handleInputChange}
+                                                    value={props.value}
+
+                                                    ></input>
+                                                    <label htmlFor="username">Username</label>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="input-field col s12">
-                                                    <input id="password" type="password" className="validate" />
-                                                    <label for="password">Password</label>
+                                                    <input id="password" type="password" className="validate" name="password"
+                                                    
+                                                    onChange={props.handleInputChange}
+                                                    value={props.value}
+
+                                                    ></input>
+                                                    <label htmlFor="password">Password</label>
                                                 </div>
                                             </div>
-                                            <a className="waves-effect waves-light btn green pulse" id="login">Log In</a>
+                                            <a className="waves-effect waves-light btn green pulse" id="login" onClick={props.handleFormSubmit}>Log In</a>
                                         </div>
                                     </div>
                                 </div>

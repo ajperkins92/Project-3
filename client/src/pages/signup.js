@@ -56,7 +56,7 @@ class SignUp extends React.Component {
                 </Nav>
                 <SignUpPage
                 handleInputChange={this.handleInputChange}
-                value={this.state.searchZIP}
+                
                 handleFormSubmit={this.handleFormSubmit}>
                 </SignUpPage>
             </div>

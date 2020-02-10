@@ -1,10 +1,25 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
 import LogInPageComponent from "../components/LogInPage/logInPage";
+import axios from "axios"
 
 class Login extends React.Component {
     state = {
-        loggedIn: true,
+        loggedIn: false,
+        username: "",
+        password: ""
+    }
+
+    login = (credentials) => {
+        console.log("logging in..")
+        axios.post("/login", credentials)
+        .then((response) => {
+            console.log(response);
+            this.setState({loggedIn: true});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     handleInputChange = event => {
@@ -19,7 +34,10 @@ class Login extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEventsByZIP(this.state.searchZIP);
+        let loginInput = {};
+        loginInput.username = this.state.username;
+        loginInput.password = this.state.password;
+        this.login(loginInput);
     };
 
     render() {
@@ -29,7 +47,11 @@ class Login extends React.Component {
                     loggedIn={this.state.loggedIn}
                     manageLogin={this.manageLogin}>
                 </Nav>
-                <LogInPageComponent />
+                <LogInPageComponent
+                handleInputChange={this.handleInputChange}
+                
+                handleFormSubmit={this.handleFormSubmit}>
+                </LogInPageComponent>
             </div>
         )
     }

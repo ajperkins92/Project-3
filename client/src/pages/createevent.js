@@ -64,7 +64,7 @@ class CreateEvent extends React.Component {
                 </Nav>
                 <CreateEventForm
                     handleInputChange={this.handleInputChange}
-                    value={this.state.value}
+                    
                     handleFormSubmit={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>

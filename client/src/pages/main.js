@@ -9,7 +9,7 @@ import Carousel from "../components/mainpage/carousel"
 class Main extends React.Component {
 
     state = {
-        loggedIn: true,
+        loggedIn: false,
         searchZIP: "",
         // we should probably limit this to like 5-10 elements
         eventResults: [
@@ -92,7 +92,7 @@ class Main extends React.Component {
                     <Statement></Statement>
                     <SearchBar
                         handleInputChange={this.handleInputChange}
-                        value={this.state.searchZIP}
+                        
                         handleFormSubmit={this.handleFormSubmit}>
                     </SearchBar>
                     <div className="row">
