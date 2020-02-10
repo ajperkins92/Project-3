@@ -1,15 +1,12 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
-
+import ViewEventPageComponent from "../components/ViewEventPage/viewEventPage";
 
 class ViewEvent extends React.Component {
 
     state = {
         loggedIn: true,
     }
-
-
-
 
     render() {
         return (
@@ -19,6 +16,7 @@ class ViewEvent extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 
+                <ViewEventPageComponent />
 
             </div>
         )
