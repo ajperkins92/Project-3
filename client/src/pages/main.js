@@ -5,49 +5,51 @@ import SearchBar from "../components/mainpage/searchbar"
 import CreateCard from "../components/mainpage/createcard"
 import OtherCards from "../components/mainpage/othercards"
 import Carousel from "../components/mainpage/carousel"
+import axios from "axios"
 
 class Main extends React.Component {
 
     state = {
-        loggedIn: true,
+        loggedIn: localStorage.getItem('loggedIn'),
         searchZIP: "",
         // we should probably limit this to like 5-10 elements
         eventResults: [
-            {
-                name: "Event #1",
-                image: "https://res.cloudinary.com/nrpadev/image/upload/c_fill,f_auto,q_70/2018-November-Feature-Seattle-Innovation-Lab-410.jpg",
-                id: "ID from Mongo."
-            },
-            {
-                name: "Event #2",
-                image: "https://www.washingtonpost.com/resizer/Va-uo43mkf0HpH9NiTqn_G_WDEU=/480x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/D6USWTUFUII6THLT4K5GXPY3TM.jpg",
-                id: "ID from Mongo.."
-            },
-            {
-                name: "Event #3",
-                image: "https://cms.capitoltechsolutions.com/ClientData/EffieYeaw/uploads/morning.jpg",
-                id: "ID from Mongo..."
-            },
+            // {
+            //     name: "Event #1",
+            //     image: "https://res.cloudinary.com/nrpadev/image/upload/c_fill,f_auto,q_70/2018-November-Feature-Seattle-Innovation-Lab-410.jpg",
+            //     id: "ID from Mongo."
+            // },
+            // {
+            //     name: "Event #2",
+            //     image: "https://www.washingtonpost.com/resizer/Va-uo43mkf0HpH9NiTqn_G_WDEU=/480x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/D6USWTUFUII6THLT4K5GXPY3TM.jpg",
+            //     id: "ID from Mongo.."
+            // },
+            // {
+            //     name: "Event #3",
+            //     image: "https://cms.capitoltechsolutions.com/ClientData/EffieYeaw/uploads/morning.jpg",
+            //     id: "ID from Mongo..."
+            // },
         ]
     }
 
-    //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
+    componentDidMount() {
+        this.getRandomEvents();
+    }
 
-    // componentDidMount() {
-    //     this.getRandomEvents();
-    // }
+    getRandomEvents = () => {
+        axios.get("/event")
+            .then((response) => {
+                console.log(response);
+                this.setState({ eventResults: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
-    //  **UNCOMMENT WHEN READY TO GRAB EVENTS FROM DB**
-
-    // getRandomEvents = () => {
-    //     axios.get("/event")
-    //         .then((response) => {
-    //             this.setState({ eventResults: response.data });
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
+    componentDidMount() {
+        this.getRandomEvents();
+    }
 
     searchEventsByZIP = (zip) => {
         console.log(`Under Construction, but zip being searched is ${zip}`);
@@ -71,13 +73,14 @@ class Main extends React.Component {
     };
 
     manageLogin = () => {
-        if (this.state.loggedIn) {
-            this.setState({loggedIn: false});
+        if (this.state.loggedIn === "true") {
+            // if you're logged in, log out in localstorage, as well as this page's state
+            localStorage.setItem('loggedIn', "false");
         }
         else {
-            // Add login axios route here?
-            // That way we can also set state to keep YOUR userID and use that for sending up to the backend
-            this.setState({loggedIn: true});
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
 
@@ -92,7 +95,7 @@ class Main extends React.Component {
                     <Statement></Statement>
                     <SearchBar
                         handleInputChange={this.handleInputChange}
-                        value={this.state.searchZIP}
+                        
                         handleFormSubmit={this.handleFormSubmit}>
                     </SearchBar>
                     <div className="row">
@@ -101,7 +104,10 @@ class Main extends React.Component {
                         <OtherCards
                         image={each.image}
                         eventName={each.name}
-                        eventID={each.id}>
+                        eventID={each.id}
+                        date={each.date}
+                        description={each.description}>
+                            
                         </OtherCards>
                     ))}
                     </div>

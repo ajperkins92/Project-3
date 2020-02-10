@@ -7,7 +7,7 @@ import axios from "axios";
 class CreateEvent extends React.Component {
 
     state = {
-        loggedIn: true,
+        loggedIn: localStorage.getItem('loggedIn'),
         eventName: "",
         address: "",
         date: "",
@@ -55,6 +55,18 @@ class CreateEvent extends React.Component {
         this.createEvent(eventDetails);
     };
 
+    manageLogin = () => {
+        if (this.state.loggedIn === "true") {
+            // if you're logged in, log out in localstorage, as well as this page's state
+            localStorage.setItem('loggedIn', "false");
+        }
+        else {
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
+        }
+    }
+
     render() {
         return (
             <div>
@@ -64,7 +76,7 @@ class CreateEvent extends React.Component {
                 </Nav>
                 <CreateEventForm
                     handleInputChange={this.handleInputChange}
-                    value={this.state.value}
+                    
                     handleFormSubmit={this.handleFormSubmit}>
                 </CreateEventForm>
             </div>
