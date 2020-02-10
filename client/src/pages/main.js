@@ -9,7 +9,7 @@ import Carousel from "../components/mainpage/carousel"
 class Main extends React.Component {
 
     state = {
-        loggedIn: false,
+        loggedIn: localStorage.getItem('loggedIn'),
         searchZIP: "",
         // we should probably limit this to like 5-10 elements
         eventResults: [
@@ -72,12 +72,14 @@ class Main extends React.Component {
 
     manageLogin = () => {
         if (this.state.loggedIn) {
+            // if you're logged in, log out
+            localStorage.setItem('loggedIn', false);
             this.setState({loggedIn: false});
         }
         else {
-            // Add login axios route here?
-            // That way we can also set state to keep YOUR userID and use that for sending up to the backend
-            this.setState({loggedIn: true});
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
 

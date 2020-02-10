@@ -6,7 +6,7 @@ import axios from "axios";
 class SignUp extends React.Component {
 
     state = {
-        loggedIn: true,
+        loggedIn: localStorage.getItem('loggedIn'),
         username: "",
         firstname: "",
         lastname: "",
@@ -46,6 +46,19 @@ class SignUp extends React.Component {
         newUser.image = this.state.image;
         this.signUp(newUser);
     };
+
+    manageLogin = () => {
+        if (this.state.loggedIn) {
+            // if you're logged in, log out
+            localStorage.setItem('loggedIn', false);
+            this.setState({loggedIn: false});
+        }
+        else {
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
+        }
+    }
 
     render() {
         return (

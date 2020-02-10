@@ -16,6 +16,7 @@ class Login extends React.Component {
         .then((response) => {
             console.log(response);
             this.setState({loggedIn: true});
+            localStorage.setItem('loggedIn', true);
         })
         .catch(function (error) {
             console.log(error);
@@ -39,6 +40,19 @@ class Login extends React.Component {
         loginInput.password = this.state.password;
         this.login(loginInput);
     };
+
+    manageLogin = () => {
+        if (this.state.loggedIn) {
+            // if you're logged in, log out
+            localStorage.setItem('loggedIn', false);
+            this.setState({loggedIn: false});
+        }
+        else {
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
+        }
+    }
 
     render() {
         return (

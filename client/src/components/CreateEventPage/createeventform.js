@@ -18,7 +18,7 @@ function CreateEventForm(props) {
                                         <input id="event_name" type="text" className="validate" name="eventName"
 
                                             onChange={props.handleInputChange}
-                                            value={props.value}></input>
+                                            ></input>
 
                                         <label htmlFor="event_name">Event Name</label>
                                     </div>
@@ -27,7 +27,7 @@ function CreateEventForm(props) {
                                         <input id="address" type="text" className="validate" name="address"
 
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
 
                                         ></input>
                                         <label htmlFor="address">Address</label>
@@ -37,7 +37,7 @@ function CreateEventForm(props) {
                                         <input id="date" type="date" className="validate" name="date"
 
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
 
                                         ></input>
                                         <label htmlFor="date">Date</label>
@@ -47,7 +47,7 @@ function CreateEventForm(props) {
                                         <input id="time" type="time" className="validate" name="time"
 
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
 
                                         ></input>
                                         <label htmlFor="time">Time</label>
@@ -57,7 +57,7 @@ function CreateEventForm(props) {
                                         <input id="description" type="text" className="validate" name="description"
 
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                         ></input>
                                         <label htmlFor="description">Description</label>
                                     </div>

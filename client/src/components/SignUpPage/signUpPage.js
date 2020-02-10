@@ -18,14 +18,14 @@ function SignUpPage(props) {
                                         <div className="input-field col s6">
                                             <input id="firstname" type="text" className="validate" name="firstname"
                                                 onChange={props.handleInputChange}
-                                                value={props.value}
+                                                
                                             ></input>
                                             <label htmlFor="firstname">First Name</label>
                                         </div>
                                         <div className="input-field col s6">
                                             <input id="lastname" type="text" className="validate" name="lastname"
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                             ></input>
                                             <label htmlFor="lastname">Last Name</label>
                                         </div>
@@ -34,7 +34,7 @@ function SignUpPage(props) {
                                         <div className="input-field col s6">
                                             <input id="email" type="email" className="validate" name="email"
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                             ></input>
                                             <label htmlFor="email">Email</label>
                                         </div>
@@ -44,7 +44,7 @@ function SignUpPage(props) {
                                         <div className="input-field col s12">
                                             <input id="username" type="text" className="validate" name="username"
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                             ></input>
                                             <label htmlFor="username">Username</label>
                                         </div>
@@ -53,14 +53,14 @@ function SignUpPage(props) {
                                         <div className="input-field col s6">
                                             <input id="password" type="password" className="validate" name="password"
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                             ></input>
                                             <label htmlFor="password">Password</label>
                                         </div>
                                         <div className="input-field col s6">
                                             <input id="confirmPW" type="password" className="validate" name="confirmPassword"
                                             onChange={props.handleInputChange}
-                                            value={props.value}
+                                            
                                             ></input>
                                             <label htmlFor="confirmPW">Confirm Password</label>
                                         </div>

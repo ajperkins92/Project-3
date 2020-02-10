@@ -5,7 +5,7 @@ import axios from "axios";
 
 class MyAccount extends React.Component {
     state = {
-        loggedIn: true,
+        loggedIn: localStorage.getItem('loggedIn'),
         userID: "",
 
         username: "",
@@ -98,6 +98,19 @@ class MyAccount extends React.Component {
         console.log(this.state.userID, changes)
         this.changeUserDetails(this.state.userID, changes);
     };
+
+    manageLogin = () => {
+        if (this.state.loggedIn) {
+            // if you're logged in, log out
+            localStorage.setItem('loggedIn', false);
+            this.setState({loggedIn: false});
+        }
+        else {
+            // Do nothing:  The reason is:
+            
+            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
+        }
+    }
 
     render() {
         return (

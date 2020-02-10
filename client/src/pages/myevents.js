@@ -6,7 +6,7 @@ import Nav from "../components/mainpage/nav"
 class MyEvents extends React.Component {
 
     state = {
-        loggedIn: true,
+        loggedIn: localStorage.getItem('loggedIn'),
     }
 
     render() {

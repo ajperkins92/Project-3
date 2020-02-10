@@ -22,7 +22,7 @@ function LogInPageComponent(props) {
                                                     <input id="username" type="text" className="validate" name="username"
 
                                                     onChange={props.handleInputChange}
-                                                    value={props.value}
+                                                    
 
                                                     ></input>
                                                     <label htmlFor="username">Username</label>
@@ -33,7 +33,7 @@ function LogInPageComponent(props) {
                                                     <input id="password" type="password" className="validate" name="password"
                                                     
                                                     onChange={props.handleInputChange}
-                                                    value={props.value}
+                                                    
 
                                                     ></input>
                                                     <label htmlFor="password">Password</label>
