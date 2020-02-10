@@ -15,8 +15,13 @@ class Login extends React.Component {
         axios.post("/login", credentials)
         .then((response) => {
             console.log(response);
-            this.setState({loggedIn: true});
             localStorage.setItem('loggedIn', true);
+
+            // this line of code below to be handled with authentication, need to set userID to the userID found in mongoDB based on credentials
+            // localStorage.setItem('userID', '5e40958807ed5f5d042f1701');
+            // this line of code above to be handled with authentication, need to set userID to the userID found in mongoDB based on credentials
+
+            this.setState({loggedIn: true});
         })
         .catch(function (error) {
             console.log(error);
@@ -43,6 +48,9 @@ class Login extends React.Component {
 
     bypassLogin = () => {
         localStorage.setItem('loggedIn', true)
+        // LINE BELOW IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
+        localStorage.setItem('userID', '5e40958807ed5f5d042f1701');
+        // LINE ABOVE IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
         this.setState({loggedIn: true});
         window.location.replace("/");
     }

@@ -60,9 +60,6 @@ class MyAccount extends React.Component {
     }
 
     componentDidMount() {
-        // LINE BELOW IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
-        localStorage.setItem('userID', '5e40958807ed5f5d042f1701');
-        // LINE ABOVE IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
 
         // found that callback was needed after setting State in order to use function to lookup user using state (async issue solved)
         this.setState({ userID: localStorage.getItem('userID') }, () => {
