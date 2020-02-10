@@ -49,6 +49,10 @@ class Main extends React.Component {
     //         });
     // }
 
+    componentDidMount() {
+        console.log(this.state.loggedIn);
+    }
+
     searchEventsByZIP = (zip) => {
         console.log(`Under Construction, but zip being searched is ${zip}`);
         console.log(`Need a new route that gets events by ZIP- may need to change schema to include ZIP, then write an algo for 
@@ -71,10 +75,9 @@ class Main extends React.Component {
     };
 
     manageLogin = () => {
-        if (this.state.loggedIn) {
-            // if you're logged in, log out
-            localStorage.setItem('loggedIn', false);
-            this.setState({loggedIn: false});
+        if (this.state.loggedIn === "true") {
+            // if you're logged in, log out in localstorage, as well as this page's state
+            localStorage.setItem('loggedIn', "false");
         }
         else {
             // Do nothing:  The reason is:

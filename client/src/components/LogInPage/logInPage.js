@@ -40,6 +40,8 @@ function LogInPageComponent(props) {
                                                 </div>
                                             </div>
                                             <a className="waves-effect waves-light btn green pulse" id="login" onClick={props.handleFormSubmit}>Log In</a>
+    <br></br><br></br>
+                                            <a class="waves-effect waves-light btn-small" onClick={props.bypassLogin}><i>DEV ONLY- LOGIN WITHOUT CREDENTIALS. USE UNTIL AUTH IS SETUP</i></a>
                                         </div>
                                     </div>
                                 </div>

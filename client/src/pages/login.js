@@ -41,11 +41,16 @@ class Login extends React.Component {
         this.login(loginInput);
     };
 
+    bypassLogin = () => {
+        localStorage.setItem('loggedIn', true)
+        this.setState({loggedIn: true});
+        window.location.replace("/");
+    }
+
     manageLogin = () => {
-        if (this.state.loggedIn) {
-            // if you're logged in, log out
-            localStorage.setItem('loggedIn', false);
-            this.setState({loggedIn: false});
+        if (this.state.loggedIn === "true") {
+            // if you're logged in, log out in localstorage, as well as this page's state
+            localStorage.setItem('loggedIn', "false");
         }
         else {
             // Do nothing:  The reason is:
@@ -63,7 +68,7 @@ class Login extends React.Component {
                 </Nav>
                 <LogInPageComponent
                 handleInputChange={this.handleInputChange}
-                
+                bypassLogin={this.bypassLogin}
                 handleFormSubmit={this.handleFormSubmit}>
                 </LogInPageComponent>
             </div>
