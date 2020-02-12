@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import "./othercards.css"
 
@@ -15,7 +16,8 @@ function OtherCards(props) {
                         className="material-icons right">{props.date}</i></span>
                         {/* href pointing to a dynamic route (on react Router, need to specify a catch all like /event/*, so that
                             whatever the id is, the /event page is still rendered, but the param does not affect the page, just the props ) */}
-                    <p><a href={`/event/${props.eventID}`}>See More about {props.eventName}!</a></p>
+                    <p><Link to={`html/event/${props.eventID}`}>See More about {props.eventName}!</Link></p>
+                   
                 </div>
                 <div className="card-reveal">
                     <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>

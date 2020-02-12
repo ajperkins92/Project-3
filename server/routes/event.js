@@ -53,6 +53,8 @@ router.get("/event/:id", function (req, res) {
         console.log(response.timeToEvent)
         // the response should now have timeToEvent, which we can display as how long until this event
         res.json(response);
+        // res.redirect("/event/" + id);
+        // res.send(response, {redirect_path: "/event/" + id})
     });
 })
 

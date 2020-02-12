@@ -1,12 +1,12 @@
 import React from "react";
 import "./viewEvent.css";
 
-function ViewEventComponent() {
+function ViewEventComponent(props) {
     return (
         <div className="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card-panel">
+            <div className="row">
+                <div className="col s12">
+                    <div className="card-panel">
                         <div className="row subContainer">
                             <form className="col s12">
                                 <div className="row">
@@ -17,7 +17,7 @@ function ViewEventComponent() {
                                         </div>
                                         <br />
                                         <div className="card-content">
-                                            <div class="collection">
+                                            <div className="collection">
                                                 <a href="#!" className="collection-item">Event Name : <span className="eventname">Clean up the town</span></a>
                                                 <a href="#!" className="collection-item">Google Map Image<img className="eventimage"
                                                     src={"https://raw.github.com/ajperkins92/Project-3/master/client/public/images/samplemap.jpg"} style={{ width: "100%" }} /></a>

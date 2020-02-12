@@ -7,8 +7,14 @@ import MyAccount from "./pages/myaccount"
 import SignUp from "./pages/signup"
 import Login from "./pages/login";
 import PageNotFound from "./pages/pagenotfound";
+import ViewEvent from "./pages/viewevent";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+ 
+} from 'react-router-dom';
 
 function App() {
   return (
@@ -23,7 +29,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/myevents" component={MyEvents} />
             <Route exact path="/myaccount" component={MyAccount} />
-            {/* <Route exact path="/event/:id" component={Event} /> */}
+            <Route path="/view/event/:id" component={ViewEvent}/> 
             <Route component={PageNotFound} />
           </Switch>
         </div>

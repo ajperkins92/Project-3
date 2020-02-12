@@ -39,8 +39,10 @@ class Main extends React.Component {
     getRandomEvents = () => {
         axios.get("/event")
             .then((response) => {
-                console.log(response);
+                // console.log(`event id is ${JSON.stringify(response.data[0]._id)}`);
                 this.setState({ eventResults: response.data });
+                console.log(this.state.eventResults);
+                
             })
             .catch(function (error) {
                 console.log(error);
@@ -101,10 +103,11 @@ class Main extends React.Component {
                     <div className="row">
                     <CreateCard></CreateCard>
                     {this.state.eventResults.map( (each) => (
+                        
                         <OtherCards
                         image={each.image}
                         eventName={each.name}
-                        eventID={each.id}
+                        eventID={each._id}
                         date={each.date}
                         description={each.description}>
                             
