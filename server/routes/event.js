@@ -35,6 +35,9 @@ router.get("/event", function (req, res) {
         // response is an array, so I'm slicing off the last 5 items (slice takes a start and end, here' we are just finding the 
         // "start", which is to be the array length minus 5.  
         // and with the slice method, if there is no end given, it defaults "end" to be the end of the array")
+        
+        console.log(response);
+        console.log("showing events");
         if (response.length > 5) {
             let lastFive = response.slice(Math.max(response.length - 5, 1));
             res.json(lastFive);
@@ -81,6 +84,7 @@ router.post("/event", function (req, res) {
             db.Events.create(newEvent)
             .then((dbEvent) => {
                 console.log(dbEvent)
+                console.log("Event created!");
                 return db.Users.findByIdAndUpdate(
                     newEvent.organizer,
                     { $push: { events: dbEvent._id } },
