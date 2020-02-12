@@ -5,10 +5,7 @@ const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 const session = require("express-session");
 const passport = require("./config/passport");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-// Connects to remote Mongo DB
-mongoose.connect(MONGODB_URI);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
