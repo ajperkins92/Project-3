@@ -71,6 +71,7 @@ router.post("/event", function (req, res) {
     // event organizer must be an mongodb id
     newEvent.organizer = req.body.organizer;
     newEvent.image = req.body.image;
+    console.log(newEvent.organizer);
 
     // takes the organizer's username and changes it to its objectId 
     db.Users.findOne({ username: newEvent.organizer })
