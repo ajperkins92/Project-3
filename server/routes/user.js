@@ -20,7 +20,7 @@ router.post("/user", function (req, res) {
     newUser.email = req.body.email;
     newUser.image = req.body.image;
 
-
+    // checks to see if a username or email already exists, if not creates new user
     db.Users.findOne({ username: newUser.username }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
@@ -102,7 +102,17 @@ router.post(
         };
         res.send(userInfo);
     }
-)
+);
+
+// post route to log out
+router.post('/logout', (req, res) => {
+    if (req.user) {
+        req.logout()
+        res.send({ msg: 'logging out' })
+    } else {
+        res.send({ msg: 'no user to log out' })
+    }
+})
 
 
 module.exports = router
