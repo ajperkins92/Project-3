@@ -1,7 +1,6 @@
-const path = require("path");
 const router = require("express").Router();
 const db = require("../model");
-const passport = require("../config/passport");
+const passport = require("../passport");
 
 // get route for all users
 router.get("/user", function (req, res) {
@@ -60,17 +59,42 @@ router.get("/user/:id/myevents", (req, res) => {
         .catch(err => res.json(err))
 });
 
-router.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })
-);
+// router.post('/login',
+//     passport.authenticate('local', function(req, res){
+//         console.log("login success")
+//         res.redirect("/")
+//     })
+// );
 
 // router.post("/login", passport.authenticate("local"), function (req, res) {
 //     res.json("User Authenticated");
 // });
+
+// router.post('/login', (req, res, next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/event',
+//         failureRedirect: '/login',
+//         failureFlash: true
+//     })(req, res, next);
+// });
+
+router.post(
+    '/login',
+    function (req, res, next) {
+        console.log('routes/user.js, login, req.body: ');
+        console.log(req.body)
+        next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('logged in', req.user);
+        var userInfo = {
+            username: req.user.username
+        };
+        res.send(userInfo);
+    }
+)
+
 
 module.exports = router
 
