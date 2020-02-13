@@ -8,6 +8,7 @@ class CreateEvent extends React.Component {
 
     state = {
         loggedIn: localStorage.getItem('loggedIn'),
+        userID: localStorage.getItem('userID'),
         eventName: "",
         address: "",
         date: "",
@@ -20,6 +21,7 @@ class CreateEvent extends React.Component {
         axios.post("/event", newEvent)
             .then((response) => {
                 console.log(response);
+                window.location.replace("/");
             })
             .catch(function (error) {
                 console.log(error);
@@ -48,13 +50,8 @@ class CreateEvent extends React.Component {
         eventDetails.date = this.state.date;
         eventDetails.time = this.state.time;
         eventDetails.description = this.state.description;
-        // FOR TESTING ONLY
-        // eventDetails.organizer = "ajperkins92";
-        // FOR TESTING ONLY
-        
-        // used by Kensen 
 
-        eventDetails.organizer = "kensen"
+        eventDetails.organizer = "kensen";
 
         this.createEvent(eventDetails);
     };

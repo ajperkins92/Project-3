@@ -1,7 +1,7 @@
 import React from "react";
-import "./ViewMyEventsHeader.css";
+import "./viewMyEventsHeader.css";
 
-function ViewMyEventsHeader(props) {
+function EventsHeader(props) {
     return (
         
         <div>
@@ -19,4 +19,4 @@ function ViewMyEventsHeader(props) {
     );
 }
 
-export default ViewMyEventsHeader;
+export default EventsHeader;

@@ -23,7 +23,7 @@ class ViewEventAsIs extends React.Component {
                     time: response.data.fromDB.time,
                     image: response.data.fromDB.image,
                     description: response.data.fromDB.description,
-                    organizer: response.data.fromDB.organizer,
+                    organizer: response.data.fromDB.organizerId,
                     attendees: response.data.fromDB.attendees,
                     timeTo: response.data.time,
                 });

@@ -88,7 +88,7 @@ router.post("/event", function (req, res) {
                 console.log(dbEvent)
                 console.log("Event created!");
                 return db.Users.findByIdAndUpdate(
-                    newEvent.organizer,
+                    newEvent.organizerId,
                     { $push: { events: dbEvent._id } },
                     { new: true }
                 )
