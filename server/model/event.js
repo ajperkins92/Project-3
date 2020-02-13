@@ -36,8 +36,13 @@ var EventSchema = new Schema({
         required: false,
         default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
     },
-
+    
     organizer: {
+        type: String,
+        required: true
+    },
+
+    organizerId: {
         type: Schema.Types.ObjectId,
         ref: "Users",
         required: true,

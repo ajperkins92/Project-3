@@ -1,7 +1,6 @@
-const path = require("path");
 const router = require("express").Router();
 const db = require("../model");
-const passport = require("../config/passport");
+const passport = require("../passport");
 
 // get route for all users
 router.get("/user", function (req, res) {
@@ -21,9 +20,35 @@ router.post("/user", function (req, res) {
     newUser.email = req.body.email;
     newUser.image = req.body.image;
 
-    db.Users.create(newUser)
-        .then((response) => res.json(response))
-        .catch(err => res.status(422).json(err));
+    // checks to see if a username or email already exists, if not creates new user
+    db.Users.findOne({ username: newUser.username }, (err, user) => {
+        if (err) {
+            console.log('User.js post error: ', err)
+        } else if (user) {
+            res.json({
+                error: `Sorry, already a user with the username: ${newUser.username}`
+            });
+        } else if (user) {
+            res.json({
+                error: `Sorry, already a user with the username: ${req.body.username}`
+            });
+        }
+        else {
+            db.Users.findOne({ email: newUser.email }, (err, user) => {
+                if (err) {
+                    console.log('User.js post error: ', err)
+                } else if (user) {
+                    res.json({
+                        error: `Sorry, already a user with the email: ${newUser.email}`
+                    })
+                } else {
+                    db.Users.create(newUser)
+                        .then((response) => res.json(response))
+                        .catch(err => res.status(422).json(err));
+                }
+            });
+        }
+    });
 });
 
 // get route for a specific user by id
@@ -60,17 +85,35 @@ router.get("/user/:id/myevents", (req, res) => {
         .catch(err => res.json(err))
 });
 
-router.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })
+// post route to create a new login session
+router.post(
+    '/login',
+    function (req, res, next) {
+        console.log('routes/user.js, login, req.body: ');
+        console.log(req.body)
+        next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('logged in', req.user);
+        var userInfo = {
+            id: req.user._id,
+            username: req.user.username
+        };
+        res.send(userInfo);
+    }
 );
 
-// router.post("/login", passport.authenticate("local"), function (req, res) {
-//     res.json("User Authenticated");
-// });
+// post route to log out
+router.post('/logout', (req, res) => {
+    if (req.user) {
+        req.logout()
+        res.send({ msg: 'logging out' })
+    } else {
+        res.send({ msg: 'no user to log out' })
+    }
+})
+
 
 module.exports = router
 

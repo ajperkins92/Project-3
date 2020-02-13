@@ -76,11 +76,11 @@ router.post("/event", function (req, res) {
     newEvent.image = req.body.image;
     console.log(newEvent.organizer);
 
-    // takes the organizer's username and changes it to its objectId 
+    // takes the organizer's username and finds its objectId 
     db.Users.findOne({ username: newEvent.organizer })
-        .then(response => newEvent.organizer = response._id)
+        .then(response => newEvent.organizerId = response._id)
         .then(response => {
-            // creates the new event and pushes its id to the organiziing user
+            // creates the new event and pushes its id to the organizing user
             db.Events.create(newEvent)
             .then((dbEvent) => {
                 console.log(dbEvent)
