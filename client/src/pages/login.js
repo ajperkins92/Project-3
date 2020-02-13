@@ -49,8 +49,13 @@ class Login extends React.Component {
     bypassLogin = () => {
         localStorage.setItem('loggedIn', true)
         // LINE BELOW IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
-        localStorage.setItem('userID', '5e436e80f7733e256c080ebd');
+        // localStorage.setItem('userID', '5e436e80f7733e256c080ebd');
         // LINE ABOVE IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
+
+        // used by Kensen
+
+        localStorage.setItem('userID', '5e40ba4146ece80cd40f746a');
+
         this.setState({loggedIn: true});
         window.location.replace("/");
     }

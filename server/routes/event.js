@@ -29,6 +29,8 @@ let emailer = (recipient, subject, message) => {
     });
 }
 
+
+
 // home page route showing the last 5 events (as the last 5 events to be entered into the db)
 router.get("/event", function (req, res) {
     db.Events.find({}).then((response) => {
@@ -52,12 +54,12 @@ router.get("/event", function (req, res) {
 router.get("/event/:id", function (req, res) {
     let id = req.params.id
     db.Events.findById(id).then((response) => {
-        response.timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
-        console.log(response.timeToEvent)
+        let timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
         // the response should now have timeToEvent, which we can display as how long until this event
-        res.json(response);
+        res.json({fromDB: response, time: timeToEvent});
     });
 })
+
 
 // creating a new event
 router.post("/event", function (req, res) {
@@ -86,7 +88,7 @@ router.post("/event", function (req, res) {
                 console.log(dbEvent)
                 console.log("Event created!");
                 return db.Users.findByIdAndUpdate(
-                    newEvent.organizer,
+                    newEvent.organizerId,
                     { $push: { events: dbEvent._id } },
                     { new: true }
                 )
@@ -175,6 +177,7 @@ router.put("/signup/:id", function (req, res) {
     let id = req.params.id;
     // ** NEED TO SEND USERID FOR THIS ROUTE
     // User ID needs to be supplied from client side
+    console.log(`id for event is ${id}, userID is ${req.body.userID}`)
     db.Events.findByIdAndUpdate(id,
         {
             $addToSet: { attendees: req.body.userID }

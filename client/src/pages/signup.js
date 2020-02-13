@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from "../components/mainpage/nav";
 import SignUpPage from "../components/SignUpPage/signUpPage";
 import axios from "axios";
+import Modal from "../components/SignUpPage/modal"
 
 class SignUp extends React.Component {
 
@@ -23,8 +24,9 @@ class SignUp extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+
     }
-   
+
     handleInputChange = event => {
         const name = event.target.name;
         const value = event.target.value;
@@ -54,7 +56,7 @@ class SignUp extends React.Component {
         }
         else {
             // Do nothing:  The reason is:
-            
+
             // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
@@ -67,9 +69,9 @@ class SignUp extends React.Component {
                     manageLogin={this.manageLogin}>
                 </Nav>
                 <SignUpPage
-                handleInputChange={this.handleInputChange}
-                
-                handleFormSubmit={this.handleFormSubmit}>
+                    handleInputChange={this.handleInputChange}
+
+                    handleFormSubmit={this.handleFormSubmit}>
                 </SignUpPage>
             </div>
         )

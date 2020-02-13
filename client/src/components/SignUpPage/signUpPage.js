@@ -87,6 +87,7 @@ function SignUpPage(props) {
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

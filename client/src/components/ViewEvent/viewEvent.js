@@ -1,12 +1,12 @@
 import React from "react";
 import "./viewEvent.css";
 
-function ViewEventComponent() {
+function ViewEventComponent(props) {
     return (
         <div className="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card-panel">
+            <div className="row">
+                <div className="col s12">
+                    <div className="card-panel">
                         <div className="row subContainer">
                             <form className="col s12">
                                 <div className="row">
@@ -17,18 +17,19 @@ function ViewEventComponent() {
                                         </div>
                                         <br />
                                         <div className="card-content">
-                                            <div class="collection">
-                                                <a href="#!" className="collection-item">Event Name : <span className="eventname">Clean up the town</span></a>
-                                                <a href="#!" className="collection-item">Google Map Image<img className="eventimage"
+                                            <div className="collection">
+                                                <a className="collection-item">Event Name : <span className="eventname">{props.name}</span></a>
+                                                <a className="collection-item">Google Map Image<img className="eventimage"
                                                     src={"https://raw.github.com/ajperkins92/Project-3/master/client/public/images/samplemap.jpg"} style={{ width: "100%" }} /></a>
-                                                <a href="#!" className="collection-item">Address : <span className="eventaddress">12345 12345th Ave, Seattle, WA 99999</span></a>
-                                                <a href="#!" className="collection-item">Date : <span className="eventdate">02 / 20 / 2020</span></a>
-                                                <a href="#!" className="collection-item">Time : <span className="eventtime">11 : 30 : AM</span></a>
-                                                <a href="#!" className="collection-item">Description : <span className="eventdescription">Attendees will come and clean the Street of Seattle</span></a>
-                                                <a href="#!" className="collection-item">Organizer : <span className="eventorganizer">John Doe</span></a>
-                                                <a href="#!" className="collection-item">Attendees : <span className="eventattendees">John Dow, Steve Doe, Tom Doe, Emily Doe</span></a>
+                                                <a className="collection-item">Address : <span className="eventaddress">{props.address}</span></a>
+                                                <a className="collection-item">Date : <span className="eventdate">{props.date}</span></a>
+                                                <a className="collection-item">Time : <span className="eventtime">{props.time}</span></a>
+                                                <a className="collection-item">Event is: <span className="eventtime">{props.timeTo}</span></a>
+                                                <a className="collection-item">Description : <span className="eventdescription">{props.description}</span></a>
+                                                <a className="collection-item">Organizer : <span className="eventorganizer">{props.organizer}</span></a>
+                                                <a className="collection-item">Attendees : <span className="eventattendees">{props.attendees}</span></a>
                                             </div>
-                                            <a className="waves-effect waves-light btn green pulse" id="attend">Attend</a>
+                                            <a className="waves-effect waves-light btn green pulse" id="attend" onClick={() => props.attend(props.userID, props.eventID)}>Attend</a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import "./ViewMyEventsHeader.css";
+import "./viewMyEventsHeader.css";
 
-function ViewMyEventsHeader(props) {
+function EventsHeader(props) {
     return (
-        // Arbitrary parent div
+        
         <div>
             <div class="row">
                 <div class="col s12 m6">
@@ -19,4 +19,4 @@ function ViewMyEventsHeader(props) {
     );
 }
 
-export default ViewMyEventsHeader;
+export default EventsHeader;
