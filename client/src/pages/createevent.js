@@ -49,8 +49,12 @@ class CreateEvent extends React.Component {
         eventDetails.time = this.state.time;
         eventDetails.description = this.state.description;
         // FOR TESTING ONLY
-        eventDetails.organizer = "ajperkins92";
+        // eventDetails.organizer = "ajperkins92";
         // FOR TESTING ONLY
+        
+        // used by Kensen 
+
+        eventDetails.organizer = "kensen"
 
         this.createEvent(eventDetails);
     };

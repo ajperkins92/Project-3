@@ -16,7 +16,7 @@ function OtherCards(props) {
                         className="material-icons right">{props.date}</i></span>
                         {/* href pointing to a dynamic route (on react Router, need to specify a catch all like /event/*, so that
                             whatever the id is, the /event page is still rendered, but the param does not affect the page, just the props ) */}
-                    <p><Link to={`html/event/${props.eventID}`}>See More about {props.eventName}!</Link></p>
+                    <p><Link to={`view/event/${props.eventID}`}>See More about {props.eventName}!</Link></p>
                    
                 </div>
                 <div className="card-reveal">
