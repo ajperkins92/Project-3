@@ -35,6 +35,9 @@ router.get("/event", function (req, res) {
         // response is an array, so I'm slicing off the last 5 items (slice takes a start and end, here' we are just finding the 
         // "start", which is to be the array length minus 5.  
         // and with the slice method, if there is no end given, it defaults "end" to be the end of the array")
+        
+        console.log(response);
+        console.log("showing events");
         if (response.length > 5) {
             let lastFive = response.slice(Math.max(response.length - 5, 1));
             res.json(lastFive);
@@ -73,15 +76,17 @@ router.post("/event", function (req, res) {
     // event organizer must be an mongodb id
     newEvent.organizer = req.body.organizer;
     newEvent.image = req.body.image;
+    console.log(newEvent.organizer);
 
-    // takes the organizer's username and changes it to its objectId 
+    // takes the organizer's username and finds its objectId 
     db.Users.findOne({ username: newEvent.organizer })
-        .then(response => newEvent.organizer = response._id)
+        .then(response => newEvent.organizerId = response._id)
         .then(response => {
-            // creates the new event and pushes its id to the organiziing user
+            // creates the new event and pushes its id to the organizing user
             db.Events.create(newEvent)
             .then((dbEvent) => {
                 console.log(dbEvent)
+                console.log("Event created!");
                 return db.Users.findByIdAndUpdate(
                     newEvent.organizer,
                     { $push: { events: dbEvent._id } },
