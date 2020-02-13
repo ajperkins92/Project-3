@@ -3,7 +3,7 @@ import "./ViewMyEventsHeader.css";
 
 function ViewMyEventsHeader(props) {
     return (
-        // Arbitrary parent div
+        
         <div>
             <div class="row">
                 <div class="col s12 m6">
