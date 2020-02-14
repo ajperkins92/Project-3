@@ -10,7 +10,8 @@ class ViewEventAsIs extends React.Component {
         loggedIn: localStorage.getItem('loggedIn'),
         eventToDisplay: "",
         attendees: [],
-        userID: localStorage.getItem('userID')
+        userID: localStorage.getItem('userID'),
+        administrator: false,
     }
 
     getEventData = (eventID) => {
@@ -36,7 +37,9 @@ class ViewEventAsIs extends React.Component {
 
     componentDidMount() {
         this.setState({ eventToDisplay: this.props.location.pathname.substr(12) }, () => {
-            this.getEventData(this.state.eventToDisplay);
+            this.getEventData(this.state.eventToDisplay, () => {
+                
+            });
         });
     }
 
