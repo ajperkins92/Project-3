@@ -79,8 +79,11 @@ class Main extends React.Component {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
             
-            localStorage.setItem('loggedIn', "false");
             window.location.replace("/");
+            localStorage.setItem('username', "");
+            localStorage.setItem('loggedIn', "false");
+            localStorage.setItem('userID', "");
+            this.setState({username: "", loggedIn: "false", userID: ""});
         }
         else {
             // Do nothing:  The reason is:

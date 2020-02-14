@@ -99,11 +99,16 @@ class MyAccount extends React.Component {
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
+            
+            window.location.replace("/");
+            localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
+            localStorage.setItem('userID', "");
+            this.setState({username: "", loggedIn: "false", userID: ""});
         }
         else {
             // Do nothing:  The reason is:
-            
+            window.location.replace("/loginpage");
             // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
@@ -113,7 +118,8 @@ class MyAccount extends React.Component {
             <div>
                 <Nav
                     loggedIn={this.state.loggedIn}
-                    manageLogin={this.manageLogin}>
+                    manageLogin={this.manageLogin}
+                    href={this.state.href}>
                 </Nav>
                 <MyAccountComponent
                     firstname={this.state.firstname}
