@@ -12,15 +12,11 @@ const PORT = process.env.PORT || 3001;
 // Connect to the Mongo DB
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/volunteam";
-<<<<<<< HEAD:server/server.js
-mongoose.connect(MONGODB_URI);
-=======
 mongoose.connect(
   MONGODB_URI,
   { useNewUrlParser: true },
   console.log("Connected to MongoDB!")
 );
->>>>>>> d3c1175a036624a05072991a613695d4205fe77b:server.js
 
 // Define middleware here
 app.use(morgan("dev"));
