@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ajperkins92/Project-3#readme",
   "dependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0"
   }
 }

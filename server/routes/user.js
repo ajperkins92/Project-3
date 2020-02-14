@@ -2,6 +2,29 @@ const router = require("express").Router();
 const db = require("../model");
 const passport = require("../passport");
 
+//  using multer and cloudinary to store user uploaded images
+const cloudinary = require("cloudinary");
+const multer = require("multer");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+const dotenv = require('dotenv');
+dotenv.config()
+
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
+
+const parser = multer({ storage: storage });
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "demo",
+    allowedFormats: ["jpg", "png"],
+    transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+
+
 // get route for all users
 router.get("/user", function (req, res) {
     db.Users.find({})
@@ -9,16 +32,21 @@ router.get("/user", function (req, res) {
 });
 
 // post route to create a new user
-router.post("/user", function (req, res) {
+router.post("/user", parser.single("image"), (req, res) => {
     console.log("api POST request received");
-    let newUser = {};
+    console.log(req.file)
+    const newUser = {};
+
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
 
     newUser.username = req.body.username;
     newUser.firstname = req.body.firstname;
     newUser.lastname = req.body.lastname;
     newUser.password = req.body.password;
     newUser.email = req.body.email;
-    newUser.image = req.body.image;
+    newUser.image = image.url;
 
     // checks to see if a username or email already exists, if not creates new user
     db.Users.findOne({ username: newUser.username }, (err, user) => {
