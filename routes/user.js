@@ -24,6 +24,19 @@ const storage = cloudinaryStorage({
 });
 const parser = multer({ storage: storage });
 
+router.post('/upload', parser.single("image"), (req, res) => {
+    const username = "tyler"
+    console.log(req.file) // to see what is returned to you
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
+    db.Users.findOneAndUpdate(
+        {username: username},
+        {image: image.url},
+        {new: true})
+      .then(dbUser => res.json(dbUser))
+      .catch(err => console.log(err));
+  });
 
 // get route for all users
 router.get("/user", function (req, res) {
