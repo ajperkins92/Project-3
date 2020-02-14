@@ -16,13 +16,13 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 });
 
-const parser = multer({ storage: storage });
 const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "demo",
     allowedFormats: ["jpg", "png"],
     transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
+const parser = multer({ storage: storage });
 
 
 // get route for all users
