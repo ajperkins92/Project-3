@@ -73,7 +73,6 @@ router.post("/event", function (req, res) {
     // ** NEED TO MAKE SURE TIME IS ENTERED AS "14:00"
     newEvent.time = req.body.time;
     newEvent.description = req.body.description
-    // event organizer must be an mongodb id
     newEvent.organizer = req.body.organizer;
     newEvent.image = req.body.image;
     console.log(newEvent.organizer);
