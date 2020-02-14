@@ -3,7 +3,6 @@ import Nav from "../components/mainpage/nav"
 import CreateEventForm from "../components/CreateEventPage/createeventform"
 import axios from "axios";
 
-
 class CreateEvent extends React.Component {
 
     state = {
