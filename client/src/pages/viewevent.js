@@ -48,7 +48,7 @@ class ViewEventAsIs extends React.Component {
             .then((response) => {
                 console.log(response);
                 // this.forceUpdate() not working like I expect... just doing page refresh
-                window.location.reload();
+                window.location.replace("/");
             })
             .catch(function (error) {
                 console.log(error);
