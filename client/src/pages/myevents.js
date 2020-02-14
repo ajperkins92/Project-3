@@ -15,7 +15,9 @@ class MyEvents extends React.Component {
     }
 
     componentDidMount() {
-        this.getYourEvents(this.state.userID)
+        console.log(this.state.loggedIn);
+        console.log(this.state.userID);
+        this.getYourEvents(this.state.userID);
     }
 
     getYourEvents = (userID) => {

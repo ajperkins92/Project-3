@@ -12,16 +12,19 @@ class Login extends React.Component {
 
     login = (credentials) => {
         console.log("logging in..")
+        console.log(`credentials are ${JSON.stringify(credentials)}`)
         axios.post("/login", credentials)
         .then((response) => {
-            console.log(response);
-            localStorage.setItem('loggedIn', true);
+            console.log(response.data.id);
 
-            // this line of code below to be handled with authentication, need to set userID to the userID found in mongoDB based on credentials
-            // localStorage.setItem('userID', '5e40958807ed5f5d042f1701');
-            // this line of code above to be handled with authentication, need to set userID to the userID found in mongoDB based on credentials
+            localStorage.setItem('userID', response.data.id);
+            localStorage.setItem('username', response.data.username);
 
-            this.setState({loggedIn: true});
+            this.setState({loggedIn: true}, () => {
+                localStorage.setItem('loggedIn', true)
+                window.location.replace("/")
+            });
+        
         })
         .catch(function (error) {
             console.log(error);
@@ -81,6 +84,7 @@ class Login extends React.Component {
                 </Nav>
                 <LogInPageComponent
                 handleInputChange={this.handleInputChange}
+                login={this.login}
                 bypassLogin={this.bypassLogin}
                 handleFormSubmit={this.handleFormSubmit}>
                 </LogInPageComponent>
