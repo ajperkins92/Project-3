@@ -1,32 +1,8 @@
 const router = require("express").Router();
 const db = require("../model");
 const passport = require("../passport");
-
-//  using multer and cloudinary to store user uploaded images
+const parser = require("../cloudinary/cloudinary");
 const cloudinary = require("cloudinary");
-const multer = require("multer");
-const cloudinaryStorage = require("multer-storage-cloudinary");
-const dotenv = require('dotenv');
-dotenv.config()
-
-// load in cloudinary environment variables
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
-});
-
-// configure the cloudinary storage, only accepts jpg and png files
-const storage = cloudinaryStorage({
-    cloudinary: cloudinary,
-    folder: "VolunTeam",
-    allowedFormats: ["jpg", "png"],
-    transformation: [{ width: 500, height: 500, crop: "limit" }]
-});
-
-// sets multers upload to the cloudinary storage
-const parser = multer({ storage: storage });
-
 
 // get route for all users
 router.get("/user", function (req, res) {
@@ -37,19 +13,23 @@ router.get("/user", function (req, res) {
 // post route to create a new user
 router.post("/user", parser.single("image"), (req, res) => {
     console.log("api POST request received");
-    console.log(req.file)
+    console.log(req.file);
     const newUser = {};
+    let image = {};
 
-    const image = {};
-    image.url = req.file.url;
-    image.id = req.file.public_id;
+    if (req.file) {
+        image.url = req.file.url;
+        image.id = req.file.public_id;
+    } else {
+        image = req.body.image
+    }
 
     newUser.username = req.body.username;
     newUser.firstname = req.body.firstname;
     newUser.lastname = req.body.lastname;
     newUser.password = req.body.password;
     newUser.email = req.body.email;
-    newUser.image = image.url;
+    newUser.image = image;
 
     // checks to see if a username or email already exists, if not creates new user
     db.Users.findOne({ username: newUser.username }, (err, user) => {
@@ -91,21 +71,44 @@ router.get("/user/:id", (req, res) => {
 });
 
 // put route to update user information
-router.put("/user/:id", (req, res) => {
-    db.Users.findByIdAndUpdate(req.params.id,
-        {
-            // users not allowed to change their username
-            // so update all fields except username
-            $set: {
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                email: req.body.email,
-                password: req.body.password,
-                image: req.body.image
+router.put("/user/:id", parser.single("image"), (req, res) => {
+    db.Users.findById(req.params.id)
+        .then(user => {
+            // stores current user image id to use for deletion
+            const id = user.image.id;
+            let image = {};
+
+            // if the user is uploading a new image, set the image object properties to the new image
+            if (req.file) {
+                console.log(req.file);
+                image.url = req.file.url;
+                image.id = req.file.public_id;
+                // takes the old stored image id and deletes it from cloudinary storage
+                if (id) {
+                    cloudinary.v2.uploader.destroy(id, (err, res) => {
+                        console.log(err);
+                        console.log("This is the response:" + res)
+                    });
+                }
+                // if user is not uploading a new image then set new image object to the current image object
+            } else {
+                image = user.image;
+                console.log(image);
             }
+            db.Users.findByIdAndUpdate(user._id, {
+                // users not allowed to change their username
+                // so update all fields except username
+                $set: {
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    email: req.body.email,
+                    password: req.body.password,
+                    image: image
+                }
+            }, { new: true })
+                .then(updatedUser => res.json(updatedUser))
         })
-        .then(updatedUser => res.json(updatedUser))
-        .catch(err => res.json(err))
+        .catch(err => res.json(err));
 });
 
 // get route to get all events a user is attending or organizing
@@ -117,13 +120,11 @@ router.get("/user/:id/myevents", (req, res) => {
 });
 
 // post route to create a new login session
-router.post(
-    '/login',
-    function (req, res, next) {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
-        next()
-    },
+router.post('/login', (req, res, next) => {
+    console.log('routes/user.js, login, req.body: ');
+    console.log(req.body)
+    next()
+},
     passport.authenticate('local'),
     (req, res) => {
         console.log('logged in', req.user);

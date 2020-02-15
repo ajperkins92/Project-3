@@ -23,4 +23,5 @@ const storage = cloudinaryStorage({
 // sets multers upload to the cloudinary storage
 const parser = multer({ storage: storage });
 
+// export the configured parser
 module.exports = parser;
