@@ -23,7 +23,7 @@ function MyAccountComponent(props) {
                                         <li><b>First Name:</b> {props.firstname}</li>
                                         <li><b>Last Name:</b> {props.lastname}</li>
                                         <li><b>Email:</b> {props.email}</li>
-                                        <li>Password (In production we probably should not show this): {props.password}</li>
+                                        
                                     </ul>
                                 </div>
                                     <div className="row">

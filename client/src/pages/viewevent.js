@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav";
 import ViewEventComponent from "../components/ViewEvent/viewEvent";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from 'axios';
 
 class ViewEventAsIs extends React.Component {
@@ -12,6 +12,7 @@ class ViewEventAsIs extends React.Component {
         attendees: [],
         userID: localStorage.getItem('userID'),
         administrator: false,
+        editing: false,
     }
 
     getEventData = (eventID) => {
@@ -27,8 +28,16 @@ class ViewEventAsIs extends React.Component {
                     organizer: response.data.fromDB.organizerId,
                     attendees: response.data.fromDB.attendees,
                     timeTo: response.data.time,
+                }, () => {
+                    if (this.state.organizer === this.state.userID) {
+                        this.setState({ administrator: true }, () => {
+                            console.log(`Adminstrator?  ${this.state.administrator}`);
+                        });
+                    }
+                    else {
+                        console.log("Not an adminstrator");
+                    }
                 });
-                console.log(this.state);
             })
             .catch(function (error) {
                 console.log(error);
@@ -37,14 +46,35 @@ class ViewEventAsIs extends React.Component {
 
     componentDidMount() {
         this.setState({ eventToDisplay: this.props.location.pathname.substr(12) }, () => {
-            this.getEventData(this.state.eventToDisplay, () => {
-                
-            });
+            this.getEventData(this.state.eventToDisplay);
         });
     }
 
+    edit = (userID, eventID) => {
+        this.setState({ editing: true }, () => {
+            console.log(`editing is now ${this.state.editing}`)
+        })
+    }
+
+    cancel = () => {
+        this.setState({ editing: false }, () => {
+            console.log(`editing is now ${this.state.editing}`)
+        })
+    }
+
+    delete = (eventID) => {
+        axios.delete(`/event/${eventID}`)
+            .then((response) => {
+                console.log(response);
+                window.location.replace("/myevents");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     attend = (userID, eventID) => {
-        axios.put(`/signup/${eventID}`, {userID: userID})
+        axios.put(`/signup/${eventID}`, { userID: userID })
             .then((response) => {
                 console.log(response);
                 // this.forceUpdate() not working like I expect... just doing page refresh
@@ -53,18 +83,63 @@ class ViewEventAsIs extends React.Component {
             })
             .catch(function (error) {
                 console.log(error);
-            }); 
+            });
     }
+
+    changeEventDetails = (eventID, changes) => {
+        axios.put(`/event/${eventID}`, changes)
+            .then((response) => {
+                console.log(`response.data is ${JSON.stringify(response.data)}`);
+                this.setState({
+                    name: response.data.name,
+                    address: response.data.address,
+                    date: response.data.date,
+                    time: response.data.time,
+                    // NOT DOING IMAGE YET
+                    description: response.data.description,
+                }, () => window.location.reload());
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    handleInputChange = event => {
+
+        const name = event.target.name;
+
+        // for multiple fields, value will be the field you want, because it's using target 
+        let value = event.target.value;
+
+        console.log(`thing being changed is ${name}`)
+        console.log(`and it's being changed to ${value}`)
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        let changes = {}
+        changes.name = this.state.newname;
+        changes.description = this.state.newdescription;
+        changes.date = this.state.newdate;
+        changes.time = this.state.newtime;
+        changes.address = this.state.newaddress;
+        // NOT HANDLING IMAGE YET
+        console.log(changes)
+        this.changeEventDetails(this.state.eventToDisplay, changes);
+    };
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
-            
+
             window.location.replace("/");
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
-            this.setState({username: "", loggedIn: "false", userID: ""});
+            this.setState({ username: "", loggedIn: "false", userID: "" });
 
         }
         else {
@@ -96,6 +171,13 @@ class ViewEventAsIs extends React.Component {
                     userID={this.state.userID}
                     eventID={this.state.eventToDisplay}
                     attend={this.attend}
+                    admin={this.state.administrator}
+                    edit={this.edit}
+                    cancel={this.cancel}
+                    editing={this.state.editing}
+                    delete={this.delete}
+                    handleInputChange={this.handleInputChange}
+                    handleFormSubmit={this.handleFormSubmit}
                 />
             </div>
         )

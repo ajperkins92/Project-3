@@ -131,20 +131,21 @@ router.put("/event/:id", function (req, res) {
                 // then do array operations to give the emailer the string it needs, with CSV for emails
                 // ** 2/3/2020 NEED TO TEST THAT emailsList.toString is a valid input ,but honestly it should be
 
-                let emailBot = (input) => {
+                // let emailBot = (input) => {
 
-                    let emailList = [];
-                    for (i = 0; i < input.length; i++) {
-                        db.Users.findById(input.attendees[i]).select("email").then((response) => {
-                            emailList.push(response);
-                        })
-                    }
-                    emailer(emailList.toString, "Test!",
-                        `Your event has been changed!  Here are the details \n
-                            `, () => {
-                    });
-                }
-                emailBot(response);
+                //     let emailList = [];
+                //     for (i = 0; i < input.length; i++) {
+                //         db.Users.findById(input.attendees[i]).select("email").then((response) => {
+                //             emailList.push(response);
+                //         })
+                //     }
+                //     emailer(emailList.toString, "Test!",
+                //         `Your event has been changed!  Here are the details \n
+                //             `, () => {
+                //     });
+                // }
+                // emailBot(response);
+                
                 // emailer("volunteamsters@gmail.com", "Test!",
                 //     `Your event has been changed!  Here are the details \n
                 // Your event's attendees are now ${response}`, () => {

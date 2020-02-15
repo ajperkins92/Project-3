@@ -6,6 +6,7 @@ import CreateCard from "../components/mainpage/createcard"
 import OtherCards from "../components/mainpage/othercards"
 import Carousel from "../components/mainpage/carousel"
 import axios from "axios"
+import { Link, withRouter } from "react-router-dom";
 
 class Main extends React.Component {
 
@@ -84,6 +85,7 @@ class Main extends React.Component {
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
+
         }
         else {
             // Do nothing:  The reason is:
