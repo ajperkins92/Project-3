@@ -13,7 +13,7 @@ function ViewEventComponent(props) {
                                     <div className="col s12">
                                         <span className="card-title" style={{ fontSize: "3rem" }}>View Event</span>
                                         <br></br>
-                                        <span className="card-title" style={{ fontSize: "1rem", color: "green" }}><i>*Note:  You are the organizer for this event!  Editing this event's details can be done below.</i></span>
+                                        <span className="card-title" style={{ fontSize: "1rem", color: "green" }}><i>{(props.admin === true) ? "*Note:  You are the organizer for this event!  Editing this event's details can be done below." : ""}</i></span>
                                         <br></br>
                                         <div className="card-image">
                                             <img src={"https://raw.github.com/ajperkins92/Project-3/master/client/public/images/seattlePark2.jpg"} style={{ width: "100%" }} />
@@ -71,14 +71,14 @@ function ViewEventComponent(props) {
                                                     />
                                                     <label htmlFor="description">New Description</label> */}
 
-                                                    
-                                                        <textarea id="description" class="materialize-textarea"
-                                                        
+
+                                                    <textarea id="description" class="materialize-textarea"
+
                                                         name="newdescription"
                                                         onChange={props.handleInputChange}
-                                                        ></textarea>
-                                                        <label htmlFor="description">New Description</label>
-                                                    
+                                                    ></textarea>
+                                                    <label htmlFor="description">New Description</label>
+
 
 
                                                     <a className="collection-item">Organizer : <span className="eventorganizer">{props.organizer}</span></a>
@@ -102,24 +102,40 @@ function ViewEventComponent(props) {
                                             }
 
 
+
                                             <a className="waves-effect waves-light btn green pulse" id="attend" onClick={() => props.attend(props.userID, props.eventID)}>Attend</a>
                                             <br></br><br></br>
 
 
 
-                                            {(props.editing === true) ?
+                                            {
+                                                // Are you an admin?  
+                                                (props.admin === true) ?
 
-                                                <div>
-                                                    <a className="waves-effect waves-light btn cyan " id="attend" onClick={props.handleFormSubmit}>Submit</a>
-                                                    <a className="waves-effect waves-light btn red " id="attend" onClick={() => props.delete(props.eventID)}>Delete Event</a>
-                                                    <br></br><br></br>
-                                                    <a className="waves-effect waves-light btn amber " id="attend" onClick={() => props.cancel()}>Cancel Editing</a>
+                                                    // Yes, I am an admin
 
-                                                </div>
-                                                :
-                                                <div>
-                                                    <a className="waves-effect waves-light btn cyan pulse" id="attend" onClick={() => props.edit()}>Edit Event</a>
-                                                </div>
+                                                    // If so, are you editing?  
+                                                    (props.editing === true) ?
+
+                                                        // Yes, I am editing
+                                                        <div>
+                                                            <a className="waves-effect waves-light btn cyan " id="attend" onClick={props.handleFormSubmit}>Submit</a>
+                                                            <a className="waves-effect waves-light btn red " id="attend" onClick={() => props.delete(props.eventID)}>Delete Event</a>
+                                                            <br></br><br></br>
+                                                            <a className="waves-effect waves-light btn amber " id="attend" onClick={() => props.cancel()}>Cancel Editing</a>
+
+                                                        </div>
+                                                        // No, I am not editing
+                                                        :
+
+                                                        <div>
+                                                            <a className="waves-effect waves-light btn cyan pulse" id="attend" onClick={() => props.edit()}>Edit Event</a>
+                                                        </div>
+
+                                                    // No, I am not an admin
+                                                    :
+
+                                                    ""
                                             }
 
                                         </div>

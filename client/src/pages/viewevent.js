@@ -32,10 +32,12 @@ class ViewEventAsIs extends React.Component {
                     if (this.state.organizer === this.state.userID) {
                         this.setState({ administrator: true }, () => {
                             console.log(`Adminstrator?  ${this.state.administrator}`);
+                            console.log(`Editing?  ${this.state.editing}`);
                         });
                     }
                     else {
                         console.log("Not an adminstrator");
+                        console.log(`Editing?  ${this.state.editing}`);
                     }
                 });
             })
