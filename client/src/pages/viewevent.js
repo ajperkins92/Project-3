@@ -13,6 +13,7 @@ class ViewEventAsIs extends React.Component {
         userID: localStorage.getItem('userID'),
         administrator: false,
         editing: false,
+        workaround: true,
         
     }
 
@@ -77,7 +78,7 @@ class ViewEventAsIs extends React.Component {
         axios.delete(`/event/${eventID}`)
             .then((response) => {
                 console.log(response);
-                window.location.replace("/myevents");
+                // window.location.replace("/myevents");
             })
             .catch(function (error) {
                 console.log(error);
@@ -90,7 +91,8 @@ class ViewEventAsIs extends React.Component {
                 console.log(response);
                 // this.forceUpdate() not working like I expect... just doing page refresh
                 // window.location.replace(`/view/event/${this.props.location.pathname.substr(12)}`);
-                window.location.reload();
+                // window.location.reload();
+                this.getEventData(this.state.eventToDisplay);
             })
             .catch(function (error) {
                 console.log(error);
@@ -108,7 +110,9 @@ class ViewEventAsIs extends React.Component {
                     time: response.data.time,
                     // NOT DOING IMAGE YET
                     description: response.data.description,
-                }, () => window.location.reload());
+                });
+                // , () => window.location.reload());
+                this.getEventData(this.state.eventToDisplay);
             })
             .catch(function (error) {
                 console.log(error);
