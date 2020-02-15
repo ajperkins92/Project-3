@@ -1,3 +1,7 @@
 .hidden {
     display: none;
 }
+
+.brand-logo { 
+    align-items: left !important;
+}
