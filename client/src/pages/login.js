@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from "../components/mainpage/nav"
 import LogInPageComponent from "../components/LogInPage/logInPage";
 import axios from "axios"
+import { Link, withRouter } from "react-router-dom";
 
 class Login extends React.Component {
     state = {
@@ -49,19 +50,19 @@ class Login extends React.Component {
         this.login(loginInput);
     };
 
-    bypassLogin = () => {
-        localStorage.setItem('loggedIn', true)
-        // LINE BELOW IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
-        // localStorage.setItem('userID', '5e436e80f7733e256c080ebd');
-        // LINE ABOVE IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
+    // bypassLogin = () => {
+    //     localStorage.setItem('loggedIn', true)
+    //     // LINE BELOW IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
+    //     // localStorage.setItem('userID', '5e436e80f7733e256c080ebd');
+    //     // LINE ABOVE IS ONLY FOR TEST PURPOSES- userID SHOULD BE (SET IN LOCALSTORAGE, OR WHEREVER ELSE) BEFORE THIS PAGE)
 
-        // used by Kensen
+    //     // used by Kensen
 
-        localStorage.setItem('userID', '5e40ba4146ece80cd40f746a');
+    //     localStorage.setItem('userID', '5e40ba4146ece80cd40f746a');
 
-        this.setState({loggedIn: true});
-        window.location.replace("/");
-    }
+    //     this.setState({loggedIn: true});
+    //     window.location.replace("/");
+    // }
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
@@ -72,6 +73,7 @@ class Login extends React.Component {
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
+
         }
         else {
             // Do nothing:  The reason is:
