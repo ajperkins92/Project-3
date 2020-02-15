@@ -13,11 +13,19 @@ class ViewEventAsIs extends React.Component {
         userID: localStorage.getItem('userID'),
         administrator: false,
         editing: false,
+        
     }
 
     getEventData = (eventID) => {
         axios.get(`/event/${eventID}`)
             .then((response) => {
+
+                let attendeesArray = [];
+
+                for (let i = 0; i < response.data.fromDB.attendees.length; i++) {
+                    attendeesArray.push(response.data.fromDB.attendees[i].username);
+                }
+
                 this.setState({
                     name: response.data.fromDB.name,
                     address: response.data.fromDB.address,
@@ -26,7 +34,8 @@ class ViewEventAsIs extends React.Component {
                     image: response.data.fromDB.image,
                     description: response.data.fromDB.description,
                     organizer: response.data.fromDB.organizerId,
-                    attendees: response.data.fromDB.attendees,
+                    organizername: response.data.fromDB.organizer,
+                    attendees: attendeesArray,
                     timeTo: response.data.time,
                 }, () => {
                     if (this.state.organizer === this.state.userID) {
@@ -167,6 +176,7 @@ class ViewEventAsIs extends React.Component {
                     image={this.state.image}
                     description={this.state.description}
                     organizer={this.state.organizer}
+                    organizername={this.state.organizername}
                     // Expecting an array for attendees- join will make them into strings.  
                     attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.join()}
                     timeTo={this.state.timeTo}
@@ -180,6 +190,7 @@ class ViewEventAsIs extends React.Component {
                     delete={this.delete}
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
+                    
                 />
             </div>
         )

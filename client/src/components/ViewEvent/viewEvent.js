@@ -96,7 +96,7 @@ function ViewEventComponent(props) {
                                                     <a className="collection-item">Time : <span className="eventtime">{props.time}</span></a>
                                                     <a className="collection-item">Event is: <span className="eventtime">{props.timeTo}</span></a>
                                                     <a className="collection-item">Description : <span className="eventdescription">{props.description}</span></a>
-                                                    <a className="collection-item">Organizer : <span className="eventorganizer">{props.organizer}</span></a>
+                                                    <a className="collection-item">Organizer : <span className="eventorganizer">{props.organizername}</span></a>
                                                     <a className="collection-item">Attendees : <span className="eventattendees">{props.attendees}</span></a>
                                                 </div>
                                             }
@@ -105,8 +105,6 @@ function ViewEventComponent(props) {
 
                                             <a className="waves-effect waves-light btn green pulse" id="attend" onClick={() => props.attend(props.userID, props.eventID)}>Attend</a>
                                             <br></br><br></br>
-
-
 
                                             {
                                                 // Are you an admin?  
