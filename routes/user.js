@@ -86,7 +86,7 @@ router.put("/user/:id", parser.single("image"), (req, res) => {
                 // takes the old stored image id and deletes it from cloudinary storage
                 if (id) {
                     cloudinary.v2.uploader.destroy(id, (err, res) => {
-                        console.log(err);
+                        if(err) console.log(err);
                         console.log("This is the response:" + res)
                     });
                 }

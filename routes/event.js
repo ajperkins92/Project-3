@@ -1,8 +1,9 @@
-const path = require("path");
 const router = require("express").Router();
 const db = require("../model/index");
 const Moment = require("moment");
 var nodemailer = require('nodemailer');
+const parser = require("../cloudinary/cloudinary");
+const cloudinary = require("cloudinary");
 
 let emailer = (recipient, subject, message) => {
     var transporter = nodemailer.createTransport({
@@ -37,7 +38,7 @@ router.get("/event", function (req, res) {
         // response is an array, so I'm slicing off the last 5 items (slice takes a start and end, here' we are just finding the 
         // "start", which is to be the array length minus 5.  
         // and with the slice method, if there is no end given, it defaults "end" to be the end of the array")
-        
+
         console.log(response);
         console.log("showing events");
         if (response.length > 5) {
@@ -56,17 +57,25 @@ router.get("/event/:id", function (req, res) {
     db.Events.findById(id)
         .populate("attendees")
         .then((response) => {
-        let timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
-        // the response should now have timeToEvent, which we can display as how long until this event
-        res.json({fromDB: response, time: timeToEvent});
-    });
+            let timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
+            // the response should now have timeToEvent, which we can display as how long until this event
+            res.json({ fromDB: response, time: timeToEvent });
+        });
 })
 
 
 // creating a new event
-router.post("/event", function (req, res) {
+router.post("/event", parser.single("image"), function (req, res) {
     console.log("event POST request received");
     let newEvent = {};
+    let image = {};
+
+    if (req.file) {
+        image.url = req.file.url;
+        image.id = req.file.public_id;
+    } else {
+        image = req.body.image
+    }
 
     newEvent.name = req.body.name;
     newEvent.address = req.body.address;
@@ -76,8 +85,7 @@ router.post("/event", function (req, res) {
     newEvent.time = req.body.time;
     newEvent.description = req.body.description
     newEvent.organizer = req.body.organizer;
-    newEvent.image = req.body.image;
-    console.log(newEvent.organizer);
+    newEvent.image = image;
 
     // takes the organizer's username and finds its objectId 
     db.Users.findOne({ username: newEvent.organizer })
@@ -85,17 +93,16 @@ router.post("/event", function (req, res) {
         .then(response => {
             // creates the new event and pushes its id to the organizing user
             db.Events.create(newEvent)
-            .then((dbEvent) => {
-                console.log(dbEvent)
-                console.log("Event created!");
-                return db.Users.findByIdAndUpdate(
-                    newEvent.organizerId,
-                    { $push: { events: dbEvent._id } },
-                    { new: true }
-                )
-            })
-            .then(response => res.json(response))
-            .catch(err => res.status(422).json(err))
+                .then((dbEvent) => {
+                    console.log("Event created!");
+                    return db.Users.findByIdAndUpdate(
+                        newEvent.organizerId,
+                        { $push: { events: dbEvent._id } },
+                        { new: true }
+                    )
+                })
+                .then(response => res.json(response))
+                .catch(err => res.status(422).json(err))
         })
         .catch(err => console.log(err))
 
