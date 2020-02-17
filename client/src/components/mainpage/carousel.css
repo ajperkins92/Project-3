@@ -1,0 +1,4 @@
+.carousel .carousel-slider {
+    z-index: 99;
+    opacity: .5;
+}

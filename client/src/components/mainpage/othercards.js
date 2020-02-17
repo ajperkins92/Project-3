@@ -12,15 +12,14 @@ function OtherCards(props) {
                     <img className="activator" src={props.image}></img>
                 </div>
                 <div className="card-content">
-                    <span className="card-title activator grey-text text-darken-4">{props.eventName}<i
-                        className="material-icons right">{props.date}</i></span>
+                    <span className="card-title activator grey-text text-darken-4">{props.eventName}{props.date}</span>
                         {/* href pointing to a dynamic route (on react Router, need to specify a catch all like /event/*, so that
                             whatever the id is, the /event page is still rendered, but the param does not affect the page, just the props ) */}
-                    <p><Link to={`view/event/${props.eventID}`}>More Info{props.eventName}!</Link></p>
+                    <p><Link to={`view/event/${props.eventID}`}>{props.eventName}!</Link></p>
                    
                 </div>
                 <div className="card-reveal">
-                    <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">Close</i></span>
+                    <span className="card-title grey-text text-darken-4">Card Title</span>
                     <p>Description:<br></br>{props.description}</p>
                 </div>
             </div>

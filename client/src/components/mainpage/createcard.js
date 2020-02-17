@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./createcard.css" 
 
 function CreateCard(props) {
   return (
@@ -13,7 +14,8 @@ function CreateCard(props) {
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">
-            Create Event<i className="material-icons right">More info!</i>
+            Create Event<i className="material-icons right">add_circle_outline
+</i>
           </span>
           <p>
             <Link to="/createevent">Create Event</Link>
@@ -21,7 +23,7 @@ function CreateCard(props) {
         </div>
         <div className="card-reveal">
           <span className="card-title grey-text text-darken-4">
-            Create Event<i className="material-icons right">Close</i>
+            Create Event
           </span>
           <p>
             If you have an idea for a volunteer event in your local community,

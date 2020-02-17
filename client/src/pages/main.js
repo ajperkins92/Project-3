@@ -122,8 +122,8 @@ class Main extends React.Component {
                     ))}
                     </div>
                 </div>
-                <Statement></Statement>
                 <Carousel></Carousel>
+                <Statement></Statement>
             </div>
         )
     }
