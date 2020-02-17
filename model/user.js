@@ -34,9 +34,15 @@ var UsersSchema = new Schema({
     },
 
     image: {
-        type: String,
-        required: false,
-        default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+        url: {
+            type: String,
+            required: false,
+            default: "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+        },
+        id: {
+            type: String,
+            required: false
+        }
     },
 
     events: [{
