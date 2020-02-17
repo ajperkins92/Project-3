@@ -13,11 +13,20 @@ class ViewEventAsIs extends React.Component {
         userID: localStorage.getItem('userID'),
         administrator: false,
         editing: false,
+        workaround: true,
+        
     }
 
     getEventData = (eventID) => {
         axios.get(`/event/${eventID}`)
             .then((response) => {
+
+                let attendeesArray = [];
+
+                for (let i = 0; i < response.data.fromDB.attendees.length; i++) {
+                    attendeesArray.push(response.data.fromDB.attendees[i].username);
+                }
+
                 this.setState({
                     name: response.data.fromDB.name,
                     address: response.data.fromDB.address,
@@ -26,16 +35,19 @@ class ViewEventAsIs extends React.Component {
                     image: response.data.fromDB.image,
                     description: response.data.fromDB.description,
                     organizer: response.data.fromDB.organizerId,
-                    attendees: response.data.fromDB.attendees,
+                    organizername: response.data.fromDB.organizer,
+                    attendees: attendeesArray,
                     timeTo: response.data.time,
                 }, () => {
                     if (this.state.organizer === this.state.userID) {
                         this.setState({ administrator: true }, () => {
                             console.log(`Adminstrator?  ${this.state.administrator}`);
+                            console.log(`Editing?  ${this.state.editing}`);
                         });
                     }
                     else {
                         console.log("Not an adminstrator");
+                        console.log(`Editing?  ${this.state.editing}`);
                     }
                 });
             })
@@ -66,7 +78,7 @@ class ViewEventAsIs extends React.Component {
         axios.delete(`/event/${eventID}`)
             .then((response) => {
                 console.log(response);
-                window.location.replace("/myevents");
+                // window.location.replace("/myevents");
             })
             .catch(function (error) {
                 console.log(error);
@@ -79,7 +91,8 @@ class ViewEventAsIs extends React.Component {
                 console.log(response);
                 // this.forceUpdate() not working like I expect... just doing page refresh
                 // window.location.replace(`/view/event/${this.props.location.pathname.substr(12)}`);
-                window.location.reload();
+                // window.location.reload();
+                this.getEventData(this.state.eventToDisplay);
             })
             .catch(function (error) {
                 console.log(error);
@@ -97,7 +110,9 @@ class ViewEventAsIs extends React.Component {
                     time: response.data.time,
                     // NOT DOING IMAGE YET
                     description: response.data.description,
-                }, () => window.location.reload());
+                });
+                // , () => window.location.reload());
+                this.getEventData(this.state.eventToDisplay);
             })
             .catch(function (error) {
                 console.log(error);
@@ -134,20 +149,37 @@ class ViewEventAsIs extends React.Component {
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
-
-            window.location.replace("/");
+            
+            
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
-            this.setState({ username: "", loggedIn: "false", userID: "" });
-
+            this.setState({username: "", loggedIn: "false", userID: ""});
+            
         }
         else {
             // Do nothing:  The reason is:
-            window.location.replace("/loginpage");
             // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
+
+    // manageLogin = () => {
+    //     if (this.state.loggedIn === "true") {
+    //         // if you're logged in, log out in localstorage, as well as this page's state
+
+    //         window.location.replace("/");
+    //         localStorage.setItem('username', "");
+    //         localStorage.setItem('loggedIn', "false");
+    //         localStorage.setItem('userID', "");
+    //         this.setState({ username: "", loggedIn: "false", userID: "" });
+
+    //     }
+    //     else {
+    //         // Do nothing:  The reason is:
+    //         window.location.replace("/loginpage");
+    //         // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
+    //     }
+    // }
 
     render() {
         return (
@@ -165,6 +197,7 @@ class ViewEventAsIs extends React.Component {
                     image={this.state.image}
                     description={this.state.description}
                     organizer={this.state.organizer}
+                    organizername={this.state.organizername}
                     // Expecting an array for attendees- join will make them into strings.  
                     attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.join()}
                     timeTo={this.state.timeTo}
@@ -178,6 +211,7 @@ class ViewEventAsIs extends React.Component {
                     delete={this.delete}
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
+                    
                 />
             </div>
         )
