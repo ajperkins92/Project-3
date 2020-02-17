@@ -16,7 +16,7 @@ function CreateCard(props) {
             Create Event<i className="material-icons right">More info!</i>
           </span>
           <p>
-            <Link to="/createevent">Create an Event</Link>
+            <Link to="/createevent">Create Event</Link>
           </p>
         </div>
         <div className="card-reveal">
