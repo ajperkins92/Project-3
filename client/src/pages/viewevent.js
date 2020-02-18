@@ -14,7 +14,7 @@ class ViewEventAsIs extends React.Component {
         administrator: false,
         editing: false,
         workaround: true,
-        
+        userimage: localStorage.getItem('userImage'),
     }
 
     getEventData = (eventID) => {
@@ -24,7 +24,10 @@ class ViewEventAsIs extends React.Component {
                 let attendeesArray = [];
 
                 for (let i = 0; i < response.data.fromDB.attendees.length; i++) {
-                    attendeesArray.push(response.data.fromDB.attendees[i].username);
+                    let userInfoPacket = {};
+                    userInfoPacket.username = response.data.fromDB.attendees[i].username;
+                    userInfoPacket.image = response.data.fromDB.attendees[i].image.url;
+                    attendeesArray.push(userInfoPacket);
                 }
 
                 this.setState({
@@ -32,13 +35,14 @@ class ViewEventAsIs extends React.Component {
                     address: response.data.fromDB.address,
                     date: response.data.fromDB.date,
                     time: response.data.fromDB.time,
-                    image: response.data.fromDB.image,
+                    image: response.data.fromDB.image.url,
                     description: response.data.fromDB.description,
                     organizer: response.data.fromDB.organizerId,
                     organizername: response.data.fromDB.organizer,
                     attendees: attendeesArray,
                     timeTo: response.data.time,
                 }, () => {
+                    console.log(`attendees array ${this.state.attendees}`)
                     if (this.state.organizer === this.state.userID) {
                         this.setState({ administrator: true }, () => {
                             console.log(`Adminstrator?  ${this.state.administrator}`);
@@ -108,7 +112,7 @@ class ViewEventAsIs extends React.Component {
                     address: response.data.address,
                     date: response.data.date,
                     time: response.data.time,
-                    // NOT DOING IMAGE YET
+                    image: response.data.image.url,
                     description: response.data.description,
                 });
                 // , () => window.location.reload());
@@ -117,6 +121,10 @@ class ViewEventAsIs extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    setImage = event => {
+        this.setState({image: event.target.files[0]})
     }
 
     handleInputChange = event => {
@@ -141,21 +149,31 @@ class ViewEventAsIs extends React.Component {
         changes.date = this.state.newdate;
         changes.time = this.state.newtime;
         changes.address = this.state.newaddress;
-        // NOT HANDLING IMAGE YET
-        console.log(changes)
-        this.changeEventDetails(this.state.eventToDisplay, changes);
+
+        let formData = new FormData();
+        formData.append("name", this.state.newname);
+        formData.append("address", this.state.newaddress);
+        formData.append("date", this.state.newdate);
+        formData.append("time", this.state.newtime);
+        formData.append("description", this.state.newdescription);
+        formData.append("image", this.state.image);
+
+        console.log(`image sending to backend is ${this.state.image}`)
+
+        this.changeEventDetails(this.state.eventToDisplay, formData);
     };
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
-            
-            
+
+
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
-            this.setState({username: "", loggedIn: "false", userID: ""});
-            
+            localStorage.setItem('userImage', "");
+            this.setState({ username: "", loggedIn: "false", userID: "" });
+
         }
         else {
             // Do nothing:  The reason is:
@@ -198,8 +216,15 @@ class ViewEventAsIs extends React.Component {
                     description={this.state.description}
                     organizer={this.state.organizer}
                     organizername={this.state.organizername}
-                    // Expecting an array for attendees- join will make them into strings.  
-                    attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.join()}
+
+                    attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.map(
+                        (each) =>
+                            <div style={{ verticalalign: "middle" }}>
+                                {each.username + " "}
+                                <img src={each.image} alt="2013 Toyota Tacoma" className="attendeeImg" style={{ height: "50px", width: "50px" }}></img>
+                            </div>
+                    )
+                    }
                     timeTo={this.state.timeTo}
                     userID={this.state.userID}
                     eventID={this.state.eventToDisplay}
@@ -211,7 +236,8 @@ class ViewEventAsIs extends React.Component {
                     delete={this.delete}
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
-                    
+                    setImage={this.setImage}
+
                 />
             </div>
         )

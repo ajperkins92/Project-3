@@ -63,6 +63,19 @@ function CreateEventForm(props) {
                                                 ></input>
                                                 <label htmlFor="description">Description</label>
                                             </div>
+                                            <div className="row fileInput">
+                                                <div className="col s12">
+                                                    <form action="#">
+                                                        <div className="file-field input-field">
+                                                            <div className="badge blue">
+                                                                <span id="upload">Upload Event Picture</span>
+                                                                <input type="file" name="image" onChange={props.setImage} ></input>
+                                                            </div>
+                                                            <input className="file-path validate" type="text"></input>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                             <a className="waves-effect waves-light btn purple pulse" id="createEvent" onClick={props.handleFormSubmit}>Create Event</a>
                                         </div>
                                     </div>

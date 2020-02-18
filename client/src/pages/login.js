@@ -16,10 +16,12 @@ class Login extends React.Component {
         console.log(`credentials are ${JSON.stringify(credentials)}`)
         axios.post("/login", credentials)
         .then((response) => {
-            console.log(response.data.id);
+            console.log(response.data);
+            
 
             localStorage.setItem('userID', response.data.id);
             localStorage.setItem('username', response.data.username);
+            localStorage.setItem('userImage', response.data.image);
 
             this.setState({loggedIn: true}, () => {
                 localStorage.setItem('loggedIn', true)
@@ -72,6 +74,7 @@ class Login extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }

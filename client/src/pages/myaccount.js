@@ -21,6 +21,7 @@ class MyAccount extends React.Component {
         newpassword: "",
         newemail: "",
         newimage: "",
+
     }
 
     // this will GET details that are already saved in DB
@@ -33,7 +34,7 @@ class MyAccount extends React.Component {
                     firstname: response.data[0].firstname,
                     lastname: response.data[0].lastname,
                     email: response.data[0].email,
-                    image: response.data[0].image
+                    image: localStorage.getItem('userImage')
                 });
                 console.log(this.state);
             })
@@ -46,12 +47,17 @@ class MyAccount extends React.Component {
     changeUserDetails = (userIDFromState, changesToUser) => {
         axios.put(`/user/${userIDFromState}`, changesToUser)
             .then((response) => {
+                console.log(response);
                 this.setState({
                     // username: response.data.username,
                     firstname: response.data.firstname,
                     lastname: response.data.lastname,
                     email: response.data.email,
-                    image: response.data.image
+                    image: response.data.image.url
+                }, () => {
+                    localStorage.setItem('userImage', response.data.image.url ,() => {
+                        this.getUserDetails(this.state.userID)
+                    })
                 });
             })
             .catch(function (error) {
@@ -67,6 +73,10 @@ class MyAccount extends React.Component {
         }
         )
 
+    }
+
+    setImage = event => {
+        this.setState({ newimage: event.target.files[0] })
     }
 
     handleInputChange = event => {
@@ -85,27 +95,35 @@ class MyAccount extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        let changes = {}
-        changes.firstname = this.state.newfirstname;
-        changes.lastname = this.state.newlastname;
-        // changes.username = this.state.newusername;
-        changes.password = this.state.newpassword;
-        changes.email = this.state.newemail;
-        changes.image = this.state.newimage;
-        console.log(this.state.userID, changes)
-        this.changeUserDetails(this.state.userID, changes);
+        // let changes = {}
+        // changes.firstname = this.state.newfirstname;
+        // changes.lastname = this.state.newlastname;
+        // // changes.username = this.state.newusername;
+        // changes.password = this.state.newpassword;
+        // changes.email = this.state.newemail;
+        // changes.image = this.state.newimage;
+
+        let formData = new FormData();
+        formData.append("firstname", this.state.newfirstname);
+        formData.append("lastname", this.state.newlastname);
+        formData.append("password", this.state.newpassword);
+        formData.append("email", this.state.newemail);
+        formData.append("image", this.state.newimage);
+
+        this.changeUserDetails(this.state.userID, formData);
     };
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
             // if you're logged in, log out in localstorage, as well as this page's state
-            
-            
+
+
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
-            this.setState({username: "", loggedIn: "false", userID: ""});
-            
+            localStorage.setItem('userImage', "");
+            this.setState({ username: "", loggedIn: "false", userID: "" });
+
         }
         else {
             // Do nothing:  The reason is:
@@ -127,10 +145,12 @@ class MyAccount extends React.Component {
                     username={this.state.username}
                     email={this.state.email}
                     image={this.state.image}
-                
+
                     handleInputChange={this.handleInputChange}
-                    
+
                     handleFormSubmit={this.handleFormSubmit}
+
+                    setImage={this.setImage}
                 />
             </div>
         )

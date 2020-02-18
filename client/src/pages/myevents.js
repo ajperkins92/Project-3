@@ -11,7 +11,8 @@ class MyEvents extends React.Component {
         userID: localStorage.getItem('userID'),
         registeredEvents: [],
         organizedEvents: [],
-        eventsYouMadeAndSignedUpFor: []
+        eventsYouMadeAndSignedUpFor: [],
+        userimage: localStorage.getItem('userImage'),
     }
 
     componentDidMount() {
@@ -76,6 +77,7 @@ class MyEvents extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }
@@ -98,7 +100,7 @@ class MyEvents extends React.Component {
                 {this.state.registeredEvents.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}
@@ -113,7 +115,7 @@ class MyEvents extends React.Component {
                 {this.state.organizedEvents.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}
@@ -127,7 +129,7 @@ class MyEvents extends React.Component {
                 {this.state.eventsYouMadeAndSignedUpFor.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}

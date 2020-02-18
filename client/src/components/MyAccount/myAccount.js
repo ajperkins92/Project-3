@@ -88,7 +88,7 @@ function MyAccountComponent(props) {
                                                     <div className="file-field input-field">
                                                         <div className="badge blue">
                                                             <span id="upload">Upload Profile Picture</span>
-                                                            <input type="file" />
+                                                            <input type="file" onChange={props.setImage}/>
                                                         </div>
                                                         <input className="file-path validate" type="text" />
                                                     </div>

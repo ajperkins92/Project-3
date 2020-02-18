@@ -1,6 +1,6 @@
 import React from "react";
 import "./viewEvent.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function ViewEventComponent(props) {
   return (
@@ -30,7 +30,8 @@ function ViewEventComponent(props) {
                     <div className="card-image">
                       <img
                         src={
-                          "https://raw.github.com/ajperkins92/Project-3/master/client/public/images/seattlePark2.jpg"
+                          (props.image) ? props.image :
+                            "https://raw.github.com/ajperkins92/Project-3/master/client/public/images/seattlePark2.jpg"
                         }
                         style={{ width: "100%" }}
                       />
@@ -108,6 +109,28 @@ function ViewEventComponent(props) {
                           <a className="collection-item">
                             Change Event Description from{" "}
                             <b>{props.description}</b> to:{" "}
+                            <input
+                            id="description"
+                            type="text"
+                            className="validate"
+                            name="newdescription"
+                            onChange={props.handleInputChange}
+                          />
+                          <label htmlFor="description"></label>
+                          </a>
+                          <a className="collection-item">
+                            Change Event Image{" "}
+                            <div className="col s12">
+                              <form action="#">
+                                <div className="file-field input-field">
+                                  <div className="badge blue">
+                                    <span id="upload">Upload New Event Picture</span>
+                                    <input type="file" name="image" onChange={props.setImage} ></input>
+                                  </div>
+                                  <input className="file-path validate" type="text"></input>
+                                </div>
+                              </form>
+                            </div>
                           </a>
 
                           {/* <input id="description" type="description" className="validate"
@@ -132,9 +155,9 @@ function ViewEventComponent(props) {
                           </a>
                           <a className="collection-item">
                             Attendees :{" "}
-                            <span className="eventattendees">
+                            <ul>
                               {props.attendees}
-                            </span>
+                            </ul>
                           </a>
                         </div>
                       ) : (
@@ -216,17 +239,17 @@ function ViewEventComponent(props) {
                             </a>
                           </div>
                         )}
-                      
-                        <a
-                          className="waves-effect waves-light btn green pulse"
-                          id="attend"
-                          onClick={() =>
-                            props.attend(props.userID, props.eventID)
-                          }
-                        >
-                          Attend
+
+                      <a
+                        className="waves-effect waves-light btn green pulse"
+                        id="attend"
+                        onClick={() =>
+                          props.attend(props.userID, props.eventID)
+                        }
+                      >
+                        Attend
                       </a>
-                     
+
 
                       <br></br>
                       <br></br>
@@ -246,15 +269,15 @@ function ViewEventComponent(props) {
                               >
                                 Submit
                             </a>
-                            <Link to={"/myevents"}>
-                              <a
-                                className="waves-effect waves-light btn red "
-                                id="attend"
-                                onClick={() => props.delete(props.eventID)}
-                              >
-                                Delete Event
+                              <Link to={"/myevents"}>
+                                <a
+                                  className="waves-effect waves-light btn red "
+                                  id="attend"
+                                  onClick={() => props.delete(props.eventID)}
+                                >
+                                  Delete Event
                             </a>
-                            </Link>
+                              </Link>
                               <br></br>
                               <br></br>
                               <a
@@ -268,7 +291,7 @@ function ViewEventComponent(props) {
                           ) : (
                               // No, I am not editing
                               <div>
-                                
+
                                 <a
                                   className="waves-effect waves-light btn cyan pulse"
                                   id="attend"
@@ -276,7 +299,7 @@ function ViewEventComponent(props) {
                                 >
                                   Edit Event
                             </a>
-                            
+
                               </div>
                             )
                         ) : (
