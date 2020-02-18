@@ -101,7 +101,6 @@ class Main extends React.Component {
                     manageLogin={this.manageLogin}
                     href={this.state.href}>
                 </Nav>
-                <Carousel>
                 <div className="container">
                     {/* <SearchBar
                         handleInputChange={this.handleInputChange}
@@ -123,7 +122,7 @@ class Main extends React.Component {
                     ))}
                     </div>
                 </div>
-               </Carousel>
+                <Carousel></Carousel>
                 <Statement></Statement>
             </div>
         )
