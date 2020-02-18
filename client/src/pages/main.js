@@ -89,12 +89,11 @@ class Main extends React.Component {
                     href={this.state.href}>
                 </Nav>
                 <div className="container">
-                    <Statement></Statement>
-                    <SearchBar
+                    {/* <SearchBar
                         handleInputChange={this.handleInputChange}
                         
                         handleFormSubmit={this.handleFormSubmit}>
-                    </SearchBar>
+                    </SearchBar> */}
                     <div className="row">
                     <CreateCard></CreateCard>
                     {this.state.eventResults.map( (each) => (
@@ -111,6 +110,7 @@ class Main extends React.Component {
                     </div>
                 </div>
                 <Carousel></Carousel>
+                <Statement></Statement>
             </div>
         )
     }

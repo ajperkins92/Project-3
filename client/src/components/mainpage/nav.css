@@ -1,3 +1,11 @@
-.hidden {
-    display: none;
+
+.brand-logo { 
+    align-items: left !important;
+    font-family: 'Odibee Sans', cursive;
+
 }
+
+.nav-wrapper {
+    background: #026670;
+}
+

@@ -7,7 +7,7 @@ function Nav(props) {
 
     return (
         <nav>
-            <div className="nav-wrapper indigo">
+            <div className="nav-wrapper">
                 <a href="/" className="brand-logo left">VolunTeam!</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {/* Logging out sets state to Logged Out, and also directs you to home page */}
