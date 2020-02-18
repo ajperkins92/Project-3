@@ -58,13 +58,13 @@ class SignUp extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        let newUser = {}
-        newUser.username = this.state.username;
-        newUser.firstname = this.state.firstname;
-        newUser.lastname = this.state.lastname;
-        newUser.password = this.state.password;
-        newUser.email = this.state.email;
-        newUser.image = this.state.image;
+        // let newUser = {}
+        // newUser.username = this.state.username;
+        // newUser.firstname = this.state.firstname;
+        // newUser.lastname = this.state.lastname;
+        // newUser.password = this.state.password;
+        // newUser.email = this.state.email;
+        // newUser.image = this.state.image;
         this.signUp();
         // this.signUp(newUser);
     };
