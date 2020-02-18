@@ -17,9 +17,18 @@ class CreateEvent extends React.Component {
         description: "",
     }
 
-    createEvent = (newEvent) => {
-        console.log(JSON.stringify(newEvent));
-        axios.post("/event", newEvent)
+    createEvent = () => {
+
+        let formData = new FormData();
+        formData.append("name", this.state.eventName);
+        formData.append("address", this.state.address);
+        formData.append("date", this.state.date);
+        formData.append("time", this.state.time);
+        formData.append("description", this.state.description);
+        formData.append("organizer", this.state.username);
+        formData.append("image", this.state.image);
+
+        axios.post("/event", formData)
             .then((response) => {
                 console.log(response);
                 window.location.replace("/");
@@ -27,6 +36,10 @@ class CreateEvent extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    setImage = event => {
+        this.setState({image: event.target.files[0]})
     }
 
     handleInputChange = event => {
@@ -45,16 +58,15 @@ class CreateEvent extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        let eventDetails = {}
-        eventDetails.name = this.state.eventName;
-        eventDetails.address = this.state.address;
-        eventDetails.date = this.state.date;
-        eventDetails.time = this.state.time;
-        eventDetails.description = this.state.description;
+        // let eventDetails = {}
+        // eventDetails.name = this.state.eventName;
+        // eventDetails.address = this.state.address;
+        // eventDetails.date = this.state.date;
+        // eventDetails.time = this.state.time;
+        // eventDetails.description = this.state.description;
+        // eventDetails.organizer = this.state.username;
 
-        eventDetails.organizer = this.state.username;
-
-        this.createEvent(eventDetails);
+        this.createEvent();
     };
 
     manageLogin = () => {
@@ -86,7 +98,8 @@ class CreateEvent extends React.Component {
                 <CreateEventForm
                     handleInputChange={this.handleInputChange}
                     
-                    handleFormSubmit={this.handleFormSubmit}>
+                    handleFormSubmit={this.handleFormSubmit}
+                    setImage={this.setImage}>
                 </CreateEventForm>
             </div>
         )

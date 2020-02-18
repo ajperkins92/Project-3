@@ -100,7 +100,7 @@ class MyEvents extends React.Component {
                 {this.state.registeredEvents.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}
@@ -115,7 +115,7 @@ class MyEvents extends React.Component {
                 {this.state.organizedEvents.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}
@@ -129,7 +129,7 @@ class MyEvents extends React.Component {
                 {this.state.eventsYouMadeAndSignedUpFor.map( (each) => (
                         
                         <OtherCards
-                        image={each.image}
+                        image={each.image.url}
                         eventName={each.name}
                         eventID={each._id}
                         date={each.date}
