@@ -130,7 +130,8 @@ router.post('/login', (req, res, next) => {
         console.log('logged in', req.user);
         var userInfo = {
             id: req.user._id,
-            username: req.user.username
+            username: req.user.username,
+            image: req.user.image.url
         };
         res.send(userInfo);
     }

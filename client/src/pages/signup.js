@@ -16,8 +16,17 @@ class SignUp extends React.Component {
         image: "",
     }
 
-    signUp = (newUserDetails) => {
-        axios.post("/user", newUserDetails)
+    signUp = () => {
+        // image uploads to multer need FormData - can't just send an object with items from state
+        let formData = new FormData();
+        formData.append("username", this.state.username);
+        formData.append("firstname", this.state.firstname);
+        formData.append("lastname", this.state.lastname);
+        formData.append("password", this.state.password);
+        formData.append("email", this.state.email);
+        formData.append("image", this.state.image);
+
+        axios.post("/user", formData)
             .then((response) => {
                 console.log(response);
                 window.location.replace("/");
@@ -26,6 +35,15 @@ class SignUp extends React.Component {
                 console.log(error);
             });
 
+    }
+
+    // fileInput = () => {
+    //     React.createRef();
+    //     console.log("file input fired")
+    // }
+
+    setImage = event => {
+        this.setState({image: event.target.files[0]})
     }
 
     handleInputChange = event => {
@@ -47,7 +65,8 @@ class SignUp extends React.Component {
         newUser.password = this.state.password;
         newUser.email = this.state.email;
         newUser.image = this.state.image;
-        this.signUp(newUser);
+        this.signUp();
+        // this.signUp(newUser);
     };
 
     manageLogin = () => {
@@ -58,6 +77,7 @@ class SignUp extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }
@@ -78,7 +98,8 @@ class SignUp extends React.Component {
                 <SignUpPage
                     handleInputChange={this.handleInputChange}
 
-                    handleFormSubmit={this.handleFormSubmit}>
+                    handleFormSubmit={this.handleFormSubmit}
+                    setImage={this.setImage}>
                 </SignUpPage>
             </div>
         )

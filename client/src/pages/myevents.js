@@ -11,7 +11,8 @@ class MyEvents extends React.Component {
         userID: localStorage.getItem('userID'),
         registeredEvents: [],
         organizedEvents: [],
-        eventsYouMadeAndSignedUpFor: []
+        eventsYouMadeAndSignedUpFor: [],
+        userimage: localStorage.getItem('userImage'),
     }
 
     componentDidMount() {
@@ -76,6 +77,7 @@ class MyEvents extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }

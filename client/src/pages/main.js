@@ -32,6 +32,7 @@ class Main extends React.Component {
             // },
         ],
         href: "/",
+        userimage: localStorage.getItem('userImage'),
     }
 
     componentDidMount() {
@@ -84,6 +85,7 @@ class Main extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }

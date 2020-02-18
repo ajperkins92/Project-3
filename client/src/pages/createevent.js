@@ -9,6 +9,7 @@ class CreateEvent extends React.Component {
         loggedIn: localStorage.getItem('loggedIn'),
         userID: localStorage.getItem('userID'),
         username: localStorage.getItem('username'),
+        userimage: localStorage.getItem('userImage'),
         eventName: "",
         address: "",
         date: "",
@@ -64,6 +65,7 @@ class CreateEvent extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }

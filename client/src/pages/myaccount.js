@@ -21,6 +21,8 @@ class MyAccount extends React.Component {
         newpassword: "",
         newemail: "",
         newimage: "",
+
+        userimage: localStorage.getItem('userImage'),
     }
 
     // this will GET details that are already saved in DB
@@ -33,7 +35,7 @@ class MyAccount extends React.Component {
                     firstname: response.data[0].firstname,
                     lastname: response.data[0].lastname,
                     email: response.data[0].email,
-                    image: response.data[0].image
+                    image: localStorage.getItem('userImage')
                 });
                 console.log(this.state);
             })
@@ -51,8 +53,8 @@ class MyAccount extends React.Component {
                     firstname: response.data.firstname,
                     lastname: response.data.lastname,
                     email: response.data.email,
-                    image: response.data.image
-                });
+                    image: response.data.image.url
+                }, () => localStorage.setItem('userImage', response.data.image.url));
             })
             .catch(function (error) {
                 console.log(error);
@@ -104,6 +106,7 @@ class MyAccount extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }
@@ -126,7 +129,7 @@ class MyAccount extends React.Component {
                     lastname={this.state.lastname}
                     username={this.state.username}
                     email={this.state.email}
-                    image={this.state.image}
+                    image={this.state.userimage}
                 
                     handleInputChange={this.handleInputChange}
                     

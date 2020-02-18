@@ -14,7 +14,7 @@ class ViewEventAsIs extends React.Component {
         administrator: false,
         editing: false,
         workaround: true,
-        
+        userimage: localStorage.getItem('userImage'),
     }
 
     getEventData = (eventID) => {
@@ -154,6 +154,7 @@ class ViewEventAsIs extends React.Component {
             localStorage.setItem('username', "");
             localStorage.setItem('loggedIn', "false");
             localStorage.setItem('userID', "");
+            localStorage.setItem('userImage', "");
             this.setState({username: "", loggedIn: "false", userID: ""});
             
         }
