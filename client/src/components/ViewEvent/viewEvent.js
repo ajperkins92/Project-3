@@ -163,7 +163,7 @@ function ViewEventComponent(props) {
                       ) : (
                           <div className="collection">
                             <a className="collection-item">
-                              Event Name :{" "}
+                              <b>Event Name :</b>{" "}
                               <span className="eventname">{props.name}</span>
                             </a>
                             <a className="collection-item">
@@ -180,37 +180,37 @@ function ViewEventComponent(props) {
                               
                             </a>
                             <a className="collection-item">
-                              Address :{" "}
+                              <b>Address :</b>{" "}
                               <span className="eventaddress">
                                 {props.address}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Date :{" "}
+                              <b>Date :</b>{" "}
                               <span className="eventdate">{props.date}</span>
                             </a>
                             <a className="collection-item">
-                              Time :{" "}
+                              <b>Time :</b>{" "}
                               <span className="eventtime">{props.time}</span>
                             </a>
                             <a className="collection-item">
-                              Event is:{" "}
+                              <b>Event is:</b>{" "}
                               <span className="eventtime">{props.timeTo}</span>
                             </a>
                             <a className="collection-item">
-                              Description :{" "}
+                              <b>Description :</b>{" "}
                               <span className="eventdescription">
                                 {props.description}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Organizer :{" "}
+                              <b>Organizer :</b>{" "}
                               <span className="eventorganizer">
                                 {props.organizername}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Attendees :{" "}
+                              <b>Attendees :</b>{" "}
                               <span className="eventattendees">
                                 {props.attendees}
                               </span>

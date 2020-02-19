@@ -18,7 +18,7 @@ function CreateCard(props) {
 </i>
           </span>
           <p>
-            <Link to="/createevent">Create Event</Link>
+            <Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}>Create Event</Link>
           </p>
         </div>
         <div className="card-reveal">
@@ -27,7 +27,7 @@ function CreateCard(props) {
           </span>
           <p>
             If you have an idea for a volunteer event in your local community,
-            click<Link to="/createevent"> here </Link>
+            click<Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}> here </Link>
             to be directed to a page where you can input your event information!
             You will show up as the event organizer when you click on that
             event's information, and can edit the event after it's created!

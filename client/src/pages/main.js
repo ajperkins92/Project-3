@@ -95,7 +95,8 @@ class Main extends React.Component {
                         handleFormSubmit={this.handleFormSubmit}>
                     </SearchBar> */}
                     <div className="row">
-                    <CreateCard></CreateCard>
+                    <CreateCard
+                    loggedIn={this.state.loggedIn}></CreateCard>
                     {this.state.eventResults.map( (each) => (
                         
                         <OtherCards
