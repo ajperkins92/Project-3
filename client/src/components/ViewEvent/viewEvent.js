@@ -154,7 +154,7 @@ function ViewEventComponent(props) {
                             </span>
                           </a>
                           <a className="collection-item">
-                            Attendees :{" "}
+                            Attendees :{" "} <br />
                             <ul>
                               {props.attendees}
                             </ul>
@@ -210,7 +210,7 @@ function ViewEventComponent(props) {
                               </span>
                             </a>
                             <a className="collection-item">
-                              Attendees :{" "}
+                              Attendees :{" "} <br />
                               <span className="eventattendees">
                                 {props.attendees}
                               </span>
