@@ -168,15 +168,14 @@ router.put("/signup/:id", function (req, res) {
 
 
 router.get("/search", (req, res) => {
-    const query = req.query.search;
+    const query = req.query.q;
     console.log("Query is " + query);
     db.Events.find({ $text: { $search: query } })
         .then(events => {
-            if (events.length === 0) {
-                res.json("No events were found. Try another search.");
-
-            } else {
+            if (events.length > 0) {
                 res.json(events);
+            } else {
+                res.json("No events were found. Try another search.");
             }
 
         })
