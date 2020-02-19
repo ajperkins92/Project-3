@@ -33,10 +33,12 @@ function CreateEventForm(props) {
                                                     onChange={props.handleInputChange}
 
 
-                                                ></input> */}
+                                                ></input> */} 
 
                                                 {/* <label htmlFor="address">Address</label> */}
-                                                <Autocomplete/>
+                                                <Autocomplete
+                                            
+                                                />
                                             </div>
 
                                             <div className="input-field col s12">
