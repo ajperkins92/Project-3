@@ -61,6 +61,8 @@ var EventSchema = new Schema({
 
 });
 
+EventSchema.index({name: "text", description: "text", address: "text"});
+
 // This creates our model from the above schema, using mongoose's model method
 //  this article is a Collection called "Books", defined by BookSchema
 var Events = mongoose.model("Events", EventSchema);
