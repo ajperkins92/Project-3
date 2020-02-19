@@ -28,7 +28,7 @@ class CreateEvent extends React.Component {
         formData.append("organizer", this.state.username);
         formData.append("image", this.state.image);
 
-        console.log(`Address in createEventPage state is ${this.state.address}`);
+        console.log(`Address in createEventPage state is ${localStorage.getItem('eventAddress')}`);
 
         axios.post("/event", formData)
             .then((response) => {

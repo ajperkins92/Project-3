@@ -1,18 +1,17 @@
 import React from "react";
-import "./signUpPage.css";
+import Modal from 'react-awesome-modal';
 
-function Modal(props) {
+function OurModal(props) {
     return (
-        <div id="modal1" className="modal">
-            <div className="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
+        <Modal visible={props.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => props.close()}>
+            <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: props.color }}>{props.messageheader}</h2>
+                <p>{props.message}</p>
+                <a href="javascript:void(0);" onClick={() => props.close()}>Close</a>
             </div>
-            <div className="modal-footer">
-                <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-        </div>
-    )
+        </Modal>
+    );
 }
 
-export default Modal;
+export default OurModal;
+
