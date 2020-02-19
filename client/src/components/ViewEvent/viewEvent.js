@@ -110,13 +110,13 @@ function ViewEventComponent(props) {
                             Change Event Description from{" "}
                             <b>{props.description}</b> to:{" "}
                             <input
-                            id="description"
-                            type="text"
-                            className="validate"
-                            name="newdescription"
-                            onChange={props.handleInputChange}
-                          />
-                          <label htmlFor="description"></label>
+                              id="description"
+                              type="text"
+                              className="validate"
+                              name="newdescription"
+                              onChange={props.handleInputChange}
+                            />
+                            <label htmlFor="description"></label>
                           </a>
                           <a className="collection-item">
                             Change Event Image{" "}
@@ -167,14 +167,17 @@ function ViewEventComponent(props) {
                               <span className="eventname">{props.name}</span>
                             </a>
                             <a className="collection-item">
-                              Google Map Image
-                            <img
-                                className="eventimage"
-                                src={
-                                  "https://raw.github.com/ajperkins92/Project-3/master/client/public/images/samplemap.jpg"
-                                }
-                                style={{ width: "100%" }}
-                              />
+                              <div>
+                                <p>Google Map Image</p>
+                              <iframe
+                               style={{border:"0", width: "600", height: "450", frameborder: "0", border: "0px",
+                               position: "relative",
+                               width: "100%",
+                               minHeight: "30rem", maxHeight: "40rem"}}
+                                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBaLU-7p4spFKf611ZrMTTZoQUCC2KMgbg&q=${props.address}`} >
+                              </iframe>
+                              </div>
+                              
                             </a>
                             <a className="collection-item">
                               Address :{" "}

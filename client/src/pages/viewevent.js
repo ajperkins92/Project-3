@@ -143,12 +143,6 @@ class ViewEventAsIs extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        let changes = {}
-        changes.name = this.state.newname;
-        changes.description = this.state.newdescription;
-        changes.date = this.state.newdate;
-        changes.time = this.state.newtime;
-        changes.address = this.state.newaddress;
 
         let formData = new FormData();
         formData.append("name", this.state.newname);

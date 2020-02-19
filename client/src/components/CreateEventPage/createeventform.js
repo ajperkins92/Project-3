@@ -26,17 +26,18 @@ function CreateEventForm(props) {
                                                 <label htmlFor="event_name">Event Name</label>
                                             </div>
 
-
                                             <div className="input-field col s12">
                                                 {/* <input id="address" type="text" className="validate" name="address"
 
                                                     onChange={props.handleInputChange}
 
 
-                                                ></input> */}
+                                                ></input> */} 
 
                                                 {/* <label htmlFor="address">Address</label> */}
-                                                <Autocomplete/>
+                                                <Autocomplete
+                                            
+                                                />
                                             </div>
 
                                             <div className="input-field col s12">

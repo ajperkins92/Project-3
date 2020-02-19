@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from "../components/mainpage/nav";
 import SignUpPage from "../components/SignUpPage/signUpPage";
 import axios from "axios";
-import Modal from "../components/SignUpPage/modal"
+import OurModal from "../components/SignUpPage/modal";
 
 class SignUp extends React.Component {
 
@@ -101,6 +101,14 @@ class SignUp extends React.Component {
                     handleFormSubmit={this.handleFormSubmit}
                     setImage={this.setImage}>
                 </SignUpPage>
+                <OurModal
+                visible={this.state.visible}
+                open={this.openModal}
+                close={this.closeModal}
+                messageheader="Success!"
+                message={`You've created an account, ${this.state.username}!  Please Login.`}
+                color="limegreen">
+                </OurModal>
             </div>
         )
     }

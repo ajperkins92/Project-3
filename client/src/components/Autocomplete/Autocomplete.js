@@ -4,7 +4,7 @@ import PlacesAutocomplete, {
     getLatLng
 } from "react-places-autocomplete";
 
-function Autocomplete() {
+function Autocomplete(props) {
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
         lat: null,
@@ -16,7 +16,9 @@ function Autocomplete() {
         const latLng = await getLatLng(results[0]);
         setAddress(value);
         setCoordinates(latLng);
-        console.log(latLng)
+        console.log(latLng);
+        console.log(`Address in Autocomplete is ${value}`)
+        localStorage.setItem("eventAddress", value);
     };
 
     return (
@@ -29,7 +31,7 @@ function Autocomplete() {
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
 
-                        <input {...getInputProps({ placeholder: "Type address" })} />
+                        <input name="address" {...getInputProps({ placeholder: "Type address" })} />
 
                         <div>
                             {loading ? <div>...loading</div> : null}
