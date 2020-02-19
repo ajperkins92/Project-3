@@ -1,3 +1,6 @@
+.hiddenForNav {
+    display: none;
+} 
 
 .brand-logo { 
     align-items: left !important;
@@ -7,8 +10,4 @@
 
 .nav-wrapper {
     background: #026670;
-}
-
-.hidden {
-    display: none;
 }
