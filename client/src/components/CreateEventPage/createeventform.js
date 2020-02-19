@@ -1,4 +1,5 @@
 import React from "react";
+import Autocomplete from "../Autocomplete/Autocomplete"
 //import "./createeventform.css";
 
 function CreateEventForm(props) {
@@ -25,14 +26,17 @@ function CreateEventForm(props) {
                                                 <label htmlFor="event_name">Event Name</label>
                                             </div>
 
+
                                             <div className="input-field col s12">
-                                                <input id="address" type="text" className="validate" name="address"
+                                                {/* <input id="address" type="text" className="validate" name="address"
 
                                                     onChange={props.handleInputChange}
 
 
-                                                ></input>
-                                                <label htmlFor="address">Address</label>
+                                                ></input> */}
+
+                                                {/* <label htmlFor="address">Address</label> */}
+                                                <Autocomplete/>
                                             </div>
 
                                             <div className="input-field col s12">
