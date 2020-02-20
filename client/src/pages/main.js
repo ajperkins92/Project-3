@@ -8,7 +8,7 @@ import Carousel from "../components/mainpage/carousel"
 import axios from "axios"
 import OurModal from "../components/SignUpPage/modal"
 import { Link, withRouter } from "react-router-dom";
-import "../components/mainpage/main.css"
+import "./main.css"
 
 class Main extends React.Component {
 
