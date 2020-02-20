@@ -4,7 +4,7 @@ function SearchBar(props) {
 
     return (
         <div className="row">
-            <div className="input-field col s6">
+            <div className="input-field col s6 center">
 
                 <input placeholder="Input a place, address, description, etc..." id="zipCodeSearch" type="text" className="validate" name="searchquery"
 

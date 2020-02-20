@@ -5,7 +5,7 @@
 .brand-logo { 
     align-items: left !important;
     font-family: 'Odibee Sans', cursive;
-
+    margin-left: 20px;
 }
 
 .nav-wrapper {
