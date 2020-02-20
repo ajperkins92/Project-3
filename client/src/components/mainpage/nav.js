@@ -6,6 +6,7 @@ import "./nav.css";
 function Nav(props) {
 
     return (
+        <div class="navbar-fixed">
         <nav>
             <div className="nav-wrapper">
                 <a href="/" className="brand-logo left">VolunTeam!</a>
@@ -37,6 +38,7 @@ function Nav(props) {
                 </ul>
             </div>
         </nav>
+        </div>
     )
 }
 

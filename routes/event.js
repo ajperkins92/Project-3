@@ -5,33 +5,6 @@ var nodemailer = require('nodemailer');
 const parser = require("../cloudinary/cloudinary");
 const cloudinary = require("cloudinary");
 
-let emailer = (recipient, subject, message) => {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'volunteamsters@gmail.com',
-            pass: ''
-        }
-    });
-
-    var mailOptions = {
-        from: 'volunteamsters@gmail.com',
-        to: recipient,
-        subject: subject,
-        text: message
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
-}
-
-
-
 // home page route showing the last 5 events (as the last 5 events to be entered into the db)
 router.get("/event", function (req, res) {
     db.Events.find({}).then((response) => {
@@ -49,7 +22,7 @@ router.get("/event", function (req, res) {
             res.json(response);
         }
     });
-})
+});
 
 // route for getting event information to display on event page
 router.get("/event/:id", function (req, res) {
@@ -61,7 +34,7 @@ router.get("/event/:id", function (req, res) {
             // the response should now have timeToEvent, which we can display as how long until this event
             res.json({ fromDB: response, time: timeToEvent });
         });
-})
+});
 
 
 // creating a new event
@@ -74,7 +47,7 @@ router.post("/event", parser.single("image"), function (req, res) {
         image.url = req.file.url;
         image.id = req.file.public_id;
     } else {
-        image = req.body.image
+        image = req.body.image;
     }
 
     newEvent.name = req.body.name;
@@ -94,7 +67,7 @@ router.post("/event", parser.single("image"), function (req, res) {
             // creates the new event and pushes its id to the organizing user
             db.Events.create(newEvent)
                 .then((dbEvent) => {
-                    res.json(dbEvent)
+                    res.json(dbEvent);
                     return db.Users.findByIdAndUpdate(
                         newEvent.organizerId,
                         { $push: { events: dbEvent._id } },
@@ -148,39 +121,6 @@ router.put("/event/:id", parser.single("image"), function (req, res) {
                 }, { new: true })
                 .then(updatedEvent => {
                     res.json(updatedEvent)
-                    // db.Events.findById(updatedEvent._id)
-                    //     .populate("attendees")
-                    //     .then(response => {
-                    //         console.log("this should show all attendees")
-                    //         console.log(response);
-                    //         // expect an array, this should contain an array with user's ID.  THEN NEED ANOTHER QUERY TO FIND EMAIL
-                    //         // then initiate for loop on all registered attendees based on response.length
-
-                    //         // when ready to use, input is an array of emails, need to push the emails from these, so do a query
-                    //         // on every attendee's email via their userID, once got email, push that to an array
-                    //         // then do array operations to give the emailer the string it needs, with CSV for emails
-                    //         // ** 2/3/2020 NEED TO TEST THAT emailsList.toString is a valid input ,but honestly it should be
-
-                    //         let emailBot = (input) => {
-
-                    //             let emailList = [];
-                    //             for (i = 0; i < input.length; i++) {
-                    //                 db.Users.findById(input.attendees[i]).select("email").then((response) => {
-                    //                     emailList.push(response);
-                    //                 })
-                    //             }
-                    //             emailer(emailList.toString, "Test!",
-                    //                 `Your event has been changed!  Here are the details \n
-                    //                 `, () => {
-                    //             });
-                    //         }
-                    //         emailBot(response);
-                    //         // emailer("volunteamsters@gmail.com", "Test!",
-                    //         //     `Your event has been changed!  Here are the details \n
-                    //         // Your event's attendees are now ${response}`, () => {
-                    //         // });
-                    //     })
-
                 })
         })
         .catch(err => res.json(err));
@@ -195,16 +135,16 @@ router.delete("/event/:id", parser.single("image"), function (req, res) {
         .then(event => {
             cloudinary.v2.uploader.destroy(event.image.id, (err, res) => {
                 if (err) console.log(err);
-                console.log("This is the response:" + res)
+                console.log("This is the response:" + res);
             });
             db.Users.findByIdAndUpdate(req.body.userID,
                 { $pullAll: { events: [id] } })
                 .then(response => {
-                    res.json(`${id} has been deleted`)
+                    res.json(`${id} has been deleted`);
                 })
         })
         .catch(err => res.status(422).json(err));
-})
+});
 
 
 // adding a user to an existing event via Attendees array field in Mongodb
@@ -226,5 +166,20 @@ router.put("/signup/:id", function (req, res) {
         }).catch(err => res.status(422).json(err));
 });
 
+
+router.get("/search", (req, res) => {
+    const query = req.query.q;
+    console.log("Query is " + query);
+    db.Events.find({ $text: { $search: query } })
+        .then(events => {
+            if (events.length > 0) {
+                res.json(events);
+            } else {
+                res.json("No events were found. Try another search.");
+            }
+
+        })
+        .catch(err => res.status(422).json(err));
+});
 
 module.exports = router
