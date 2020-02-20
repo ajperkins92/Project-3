@@ -1,5 +1,6 @@
-
-
+.eventattendees {
+  display: inline-flex;
+}
 
 /* Sharing Button CSS */
 .resp-sharing-button__link,

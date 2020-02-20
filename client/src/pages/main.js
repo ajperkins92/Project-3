@@ -6,6 +6,7 @@ import CreateCard from "../components/mainpage/createcard"
 import OtherCards from "../components/mainpage/othercards"
 import Carousel from "../components/mainpage/carousel"
 import axios from "axios"
+import OurModal from "../components/SignUpPage/modal"
 import { Link, withRouter } from "react-router-dom";
 
 class Main extends React.Component {
@@ -18,6 +19,9 @@ class Main extends React.Component {
         ],
         href: "/",
         userimage: localStorage.getItem('userImage'),
+        searchquery: "",
+        noresults: false,
+        visible: false,
     }
 
     componentDidMount() {
@@ -30,7 +34,6 @@ class Main extends React.Component {
                 // console.log(`event id is ${JSON.stringify(response.data[0]._id)}`);
                 this.setState({ eventResults: response.data });
                 console.log(this.state.eventResults);
-                
             })
             .catch(function (error) {
                 console.log(error);
@@ -41,10 +44,21 @@ class Main extends React.Component {
         this.getRandomEvents();
     }
 
-    searchEventsByZIP = (zip) => {
-        console.log(`Under Construction, but zip being searched is ${zip}`);
-        console.log(`Need a new route that gets events by ZIP- may need to change schema to include ZIP, then write an algo for 
-        determining which ZIP's are closest to yours`);
+    searchEvents = (query) => {
+        axios.get(`/search/?q=${query}`)
+            .then((response) => {
+                if (typeof response.data === "string") {
+                    this.openModal();
+                    this.getRandomEvents();
+                }
+                else {
+                    this.setState({ eventResults: response.data });
+                    console.log(this.state.eventResults);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     handleInputChange = event => {
@@ -59,8 +73,20 @@ class Main extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchEventsByZIP(this.state.searchZIP);
+        this.searchEvents(this.state.searchquery);
     };
+
+    openModal = () => {
+        this.setState({
+            visible : true
+        });
+    }
+ 
+    closeModal = () => {
+        this.setState({
+            visible : false
+        });
+    }
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
@@ -80,6 +106,8 @@ class Main extends React.Component {
         }
     }
 
+//(this.state.noresults) === true ? "" : 
+
     render() {
         return (
             <div>
@@ -89,13 +117,14 @@ class Main extends React.Component {
                     href={this.state.href}>
                 </Nav>
                 <div className="container">
-                    {/* <SearchBar
+                    <SearchBar
                         handleInputChange={this.handleInputChange}
                         
                         handleFormSubmit={this.handleFormSubmit}>
-                    </SearchBar> */}
+                    </SearchBar>
                     <div className="row">
-                    <CreateCard></CreateCard>
+                    <CreateCard
+                    loggedIn={this.state.loggedIn}></CreateCard>
                     {this.state.eventResults.map( (each) => (
                         
                         <OtherCards
@@ -111,6 +140,15 @@ class Main extends React.Component {
                 </div>
                 <Carousel></Carousel>
                 <Statement></Statement>
+                <OurModal
+                visible={this.state.visible}
+                open={this.openModal}
+                close={this.closeModal}
+                messageheader={"No Results..."}
+                message={"Please try searching for other events."}
+                color={"orangered"}>
+
+                </OurModal>
             </div>
         )
     }

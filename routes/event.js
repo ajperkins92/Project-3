@@ -173,7 +173,13 @@ router.get("/search", (req, res) => {
     db.Events.find({ $text: { $search: query } })
         .then(events => {
             if (events.length > 0) {
-                res.json(events);
+                if (events.length > 5) {
+                    let lastFive = events.slice(Math.max(events.length - 5, 1));
+                    res.json(lastFive);
+                }
+                else {
+                    res.json(events);
+                }
             } else {
                 res.json("No events were found. Try another search.");
             }
