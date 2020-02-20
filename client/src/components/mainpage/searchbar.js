@@ -6,14 +6,14 @@ function SearchBar(props) {
         <div className="row">
             <div className="input-field col s6">
 
-                <input placeholder="ZIP Code" id="zipCodeSearch" type="text" className="validate" name="searchZIP"
+                <input placeholder="Input a place, address, description, etc..." id="zipCodeSearch" type="text" className="validate" name="searchquery"
 
                 onChange={props.handleInputChange}
                 value={props.value}
 
                 ></input>
 
-                <label htmlFor="zipCodeSearch">Search For Events In Your Area!</label>
+                <label htmlFor="zipCodeSearch">Search For Events!</label>
 
                 <button className="btn waves-effect waves-light" type="submit" name="action"
 
