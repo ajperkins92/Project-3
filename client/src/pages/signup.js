@@ -14,6 +14,8 @@ class SignUp extends React.Component {
         password: "",
         email: "",
         image: "",
+        visible: false,
+        success: false,
     }
 
     signUp = () => {
@@ -29,12 +31,18 @@ class SignUp extends React.Component {
         axios.post("/user", formData)
             .then((response) => {
                 console.log(response);
-                window.location.replace("/");
+                if (response.data.error) {
+                    this.setState({failureMessage: response.data.error}, () => this.openModal());
+                }
+                else {
+                    this.setState({success: true}, () => this.openModal());
+                }
+                
             })
             .catch(function (error) {
+                console.log(`backend error is`)
                 console.log(error);
             });
-
     }
 
     // fileInput = () => {
@@ -55,6 +63,18 @@ class SignUp extends React.Component {
             [name]: value
         });
     };
+
+    openModal = () => {
+        this.setState({
+            visible : true
+        });
+    }
+ 
+    closeModal = () => {
+        this.setState({
+            visible : false
+        });
+    }
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -97,7 +117,6 @@ class SignUp extends React.Component {
                 </Nav>
                 <SignUpPage
                     handleInputChange={this.handleInputChange}
-
                     handleFormSubmit={this.handleFormSubmit}
                     setImage={this.setImage}>
                 </SignUpPage>
@@ -105,9 +124,9 @@ class SignUp extends React.Component {
                 visible={this.state.visible}
                 open={this.openModal}
                 close={this.closeModal}
-                messageheader="Success!"
-                message={`You've created an account, ${this.state.username}!  Please Login.`}
-                color="limegreen">
+                messageheader={(this.state.success === true) ? "Success!" : "Account Creation Failure"}
+                message={(this.state.success === true) ? `Please login at the top of the page.` : this.state.failureMessage}
+                color={(this.state.success === true) ? "limegreen" : "orangered"}>
                 </OurModal>
             </div>
         )
