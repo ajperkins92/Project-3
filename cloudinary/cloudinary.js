@@ -17,7 +17,7 @@ const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "VolunTeam",
     allowedFormats: ["jpg", "png"],
-    transformation: [{ width: 500, height: 500, crop: "limit" }]
+    transformation: [{ width: 1000, height: 500, crop: "limit" }]
 });
 
 // sets multers upload to the cloudinary storage
