@@ -6,7 +6,7 @@ import "./othercards.css"
 function OtherCards(props) {
 
     return (
-        <div className="col">
+        <div className="col" >
             <div className="card">
                 <div className="card-image waves-effect waves-block waves-light">
                     <img className="activator" src={props.image}></img>
@@ -25,6 +25,7 @@ function OtherCards(props) {
                 </div>
             </div>
         </div>
+    
     )
 }
 
