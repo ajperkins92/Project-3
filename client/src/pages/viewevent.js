@@ -210,9 +210,9 @@ class ViewEventAsIs extends React.Component {
 
                     attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.map(
                         (each) =>
-                            <div style={{ verticalalign: "middle" }}>
-                                {each.username + " "}
-                                <img src={each.image} alt="2013 Toyota Tacoma" className="attendeeImg" style={{ height: "50px", width: "50px" }}></img>
+                            <div className="attendeeDiv" style={{ verticalalign: "middle", padding: "5px"}}>
+                                <div style={{paddingBottom: "2px"}}>{each.username + " "}</div>
+                                <img src={each.image} alt="2013 Toyota Tacoma" className="attendeeImg" style={{ height: "50px", width: "50px", objectFit: "cover" }}></img>
                             </div>
                     )
                     }
