@@ -4,7 +4,7 @@ import "./createcard.css"
 
 function CreateCard(props) {
   return (
-    <div className="col">
+    <div className="col col s12 m6 l4 xl3">
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light">
           <img
