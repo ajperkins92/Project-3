@@ -9,7 +9,8 @@ function CreateCard(props) {
         <div className="card-image waves-effect waves-block waves-light">
           <img
             className="activator"
-            src="https://image.flaticon.com/icons/svg/892/892926.svg"
+            // src="https://image.flaticon.com/icons/svg/892/892926.svg"
+            src="https://media.giphy.com/media/xUA7b4arnbo3THfzi0/giphy.gif"
           ></img>
         </div>
         <div className="card-content">
