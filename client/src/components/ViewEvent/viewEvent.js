@@ -1,5 +1,6 @@
 import React from "react";
 import "./viewEvent.css";
+import Autocomplete from "../Autocomplete/Autocomplete"
 import { Link } from "react-router-dom"
 
 function ViewEventComponent(props) {
@@ -67,15 +68,8 @@ function ViewEventComponent(props) {
                             Change Event Address from <b>{props.address}</b> to:
                           </a>
 
-                          <input
-                            id="address"
-                            type="text"
-                            className="validate"
-                            name="newaddress"
-                            onChange={props.handleInputChange}
-                          />
-                          <label htmlFor="address">New Address</label>
-
+                          <Autocomplete></Autocomplete>
+                          
                           <a className="collection-item">
                             Change Event Date from <b>{props.date}</b> to:
                           </a>
