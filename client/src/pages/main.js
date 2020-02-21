@@ -116,7 +116,7 @@ class Main extends React.Component {
                     manageLogin={this.manageLogin}
                     href={this.state.href}>
                 </Nav>
-                <div className="container">
+                <div className="container-main">
                     <SearchBar
                         handleInputChange={this.handleInputChange}
                         
