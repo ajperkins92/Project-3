@@ -34,7 +34,7 @@ function ViewEventComponent(props) {
                           (props.image) ? props.image :
                             "https://raw.github.com/ajperkins92/Project-3/master/client/public/images/seattlePark2.jpg"
                         }
-                        style={{ width: "100%" }}
+                        style={{ maxWidth: "100%" }}
                       />
                     </div>
                     <br />

@@ -1,9 +1,12 @@
 .card-image {
     position: relative;
+}
+
+.image-container {
     height: 200px;
 }
 
-.card-image img {
+.image-container img {
     height: 100%;
 }
 
