@@ -20,6 +20,13 @@ class ViewEventAsIs extends React.Component {
     getEventData = (eventID) => {
         axios.get(`/event/${eventID}`)
             .then((response) => {
+                
+                // BLOCK #1 FOR DEFAULT VALUE INPUT
+                localStorage.setItem("eventName", response.data.fromDB.name);
+                localStorage.setItem("eventAddress", response.data.fromDB.address);
+                localStorage.setItem("eventDate", response.data.fromDB.date);
+                localStorage.setItem("eventTime", response.data.fromDB.time);
+                localStorage.setItem("eventDescription", response.data.fromDB.description);
 
                 let attendeesArray = [];
 
@@ -47,6 +54,8 @@ class ViewEventAsIs extends React.Component {
                         this.setState({ administrator: true }, () => {
                             console.log(`Adminstrator?  ${this.state.administrator}`);
                             console.log(`Editing?  ${this.state.editing}`);
+                            // setting up localstorage "Snapshot" of what's currently here 
+                            
                         });
                     }
                     else {
@@ -115,7 +124,12 @@ class ViewEventAsIs extends React.Component {
                     image: response.data.image.url,
                     description: response.data.description,
                 });
-                // , () => window.location.reload());
+                // BLOCK #2 FOR DEFAULT VALUE INPUT
+                localStorage.removeItem("eventName");
+                localStorage.removeItem("eventAddress");
+                localStorage.removeItem("eventDate");
+                localStorage.removeItem("eventTime");
+                localStorage.removeItem("eventDescription");
                 this.getEventData(this.state.eventToDisplay);
             })
             .catch(function (error) {
@@ -124,7 +138,7 @@ class ViewEventAsIs extends React.Component {
     }
 
     setImage = event => {
-        this.setState({image: event.target.files[0]})
+        this.setState({ uploadedimage: event.target.files[0] })
     }
 
     handleInputChange = event => {
@@ -143,18 +157,19 @@ class ViewEventAsIs extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
         let formData = new FormData();
-        formData.append("name", this.state.newname);
-        formData.append("address", this.state.newaddress);
-        formData.append("date", this.state.newdate);
-        formData.append("time", this.state.newtime);
-        formData.append("description", this.state.newdescription);
-        formData.append("image", this.state.image);
+        // BLOCK #3 FOR DEFAULT VALUE INPUT
+        formData.append("name", (this.state.newname === undefined) ? localStorage.getItem("eventName") : this.state.newname);
+        formData.append("address", (this.state.newaddress === undefined) ? localStorage.getItem("eventAddress") : this.state.newaddress);
+        formData.append("date", (this.state.newdate === undefined) ? localStorage.getItem("eventDate") : this.state.newdate);
+        formData.append("time", (this.state.newtime === undefined) ? localStorage.getItem("eventTime") : this.state.newtime);
+        formData.append("description", (this.state.newdescription === undefined) ? localStorage.getItem("eventDescription") : this.state.newdescription);
+        formData.append("image", this.state.uploadedimage);
 
         console.log(`image sending to backend is ${this.state.image}`)
 
         this.changeEventDetails(this.state.eventToDisplay, formData);
+
     };
 
     manageLogin = () => {
@@ -174,24 +189,6 @@ class ViewEventAsIs extends React.Component {
             // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
-
-    // manageLogin = () => {
-    //     if (this.state.loggedIn === "true") {
-    //         // if you're logged in, log out in localstorage, as well as this page's state
-
-    //         window.location.replace("/");
-    //         localStorage.setItem('username', "");
-    //         localStorage.setItem('loggedIn', "false");
-    //         localStorage.setItem('userID', "");
-    //         this.setState({ username: "", loggedIn: "false", userID: "" });
-
-    //     }
-    //     else {
-    //         // Do nothing:  The reason is:
-    //         window.location.replace("/loginpage");
-    //         // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
-    //     }
-    // }
 
     render() {
         return (
@@ -213,9 +210,9 @@ class ViewEventAsIs extends React.Component {
 
                     attendees={(this.state.attendees.length === 0) ? "No Attendees Yet!" : this.state.attendees.map(
                         (each) =>
-                            <div style={{ verticalalign: "middle" }}>
-                                {each.username + " "}
-                                <img src={each.image} alt="2013 Toyota Tacoma" className="attendeeImg" style={{ height: "50px", width: "50px" }}></img>
+                            <div className="attendeeDiv" style={{ verticalalign: "middle", padding: "5px"}}>
+                                <div style={{paddingBottom: "2px"}}>{each.username + " "}</div>
+                                <img src={each.image} alt="2013 Toyota Tacoma" className="attendeeImg" style={{ height: "50px", width: "50px", objectFit: "cover" }}></img>
                             </div>
                     )
                     }

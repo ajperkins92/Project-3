@@ -4,12 +4,13 @@ import "./createcard.css"
 
 function CreateCard(props) {
   return (
-    <div className="col">
+    <div className="col col s12 m6 l4 xl3">
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light">
           <img
             className="activator"
-            src="https://image.flaticon.com/icons/svg/892/892926.svg"
+            // src="https://image.flaticon.com/icons/svg/892/892926.svg"
+            src="https://media.giphy.com/media/xUA7b4arnbo3THfzi0/giphy.gif"
           ></img>
         </div>
         <div className="card-content">
@@ -18,7 +19,7 @@ function CreateCard(props) {
 </i>
           </span>
           <p>
-            <Link to="/createevent">Create Event</Link>
+            <Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}>Create Event</Link>
           </p>
         </div>
         <div className="card-reveal">
@@ -27,7 +28,7 @@ function CreateCard(props) {
           </span>
           <p>
             If you have an idea for a volunteer event in your local community,
-            click<Link to="/createevent"> here </Link>
+            click<Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}> here </Link>
             to be directed to a page where you can input your event information!
             You will show up as the event organizer when you click on that
             event's information, and can edit the event after it's created!

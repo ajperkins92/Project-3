@@ -1,5 +1,10 @@
 .card-image {
     position: relative;
+    height: 200px;
+}
+
+.card-image img {
+    height: 100%;
 }
 
 .card {

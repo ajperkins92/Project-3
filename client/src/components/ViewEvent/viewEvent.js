@@ -1,5 +1,6 @@
 import React from "react";
 import "./viewEvent.css";
+import Autocomplete from "../Autocomplete/Autocomplete"
 import { Link } from "react-router-dom"
 
 function ViewEventComponent(props) {
@@ -55,27 +56,20 @@ function ViewEventComponent(props) {
 
                           <a className="collection-item">
                             Google Map Image
-                            <img
-                              className="eventimage"
-                              src={
-                                "https://raw.github.com/ajperkins92/Project-3/master/client/public/images/samplemap.jpg"
-                              }
-                              style={{ width: "100%" }}
-                            />
+                            <iframe
+                               style={{border:"0", width: "600", height: "450", frameborder: "0", border: "0px",
+                               position: "relative",
+                               width: "100%",
+                               minHeight: "30rem", maxHeight: "40rem"}}
+                                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBaLU-7p4spFKf611ZrMTTZoQUCC2KMgbg&q=${props.address}`} >
+                              </iframe>
                           </a>
                           <a className="collection-item">
                             Change Event Address from <b>{props.address}</b> to:
                           </a>
 
-                          <input
-                            id="address"
-                            type="text"
-                            className="validate"
-                            name="newaddress"
-                            onChange={props.handleInputChange}
-                          />
-                          <label htmlFor="address">New Address</label>
-
+                          <Autocomplete></Autocomplete>
+                          
                           <a className="collection-item">
                             Change Event Date from <b>{props.date}</b> to:
                           </a>
@@ -163,7 +157,7 @@ function ViewEventComponent(props) {
                       ) : (
                           <div className="collection">
                             <a className="collection-item">
-                              Event Name :{" "}
+                              <b>Event Name :</b>{" "}
                               <span className="eventname">{props.name}</span>
                             </a>
                             <a className="collection-item">
@@ -180,37 +174,37 @@ function ViewEventComponent(props) {
                               
                             </a>
                             <a className="collection-item">
-                              Address :{" "}
+                              <b>Address :</b>{" "}
                               <span className="eventaddress">
                                 {props.address}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Date :{" "}
+                              <b>Date :</b>{" "}
                               <span className="eventdate">{props.date}</span>
                             </a>
                             <a className="collection-item">
-                              Time :{" "}
+                              <b>Time :</b>{" "}
                               <span className="eventtime">{props.time}</span>
                             </a>
                             <a className="collection-item">
-                              Event is:{" "}
+                              <b>Event is:</b>{" "}
                               <span className="eventtime">{props.timeTo}</span>
                             </a>
                             <a className="collection-item">
-                              Description :{" "}
+                              <b>Description :</b>{" "}
                               <span className="eventdescription">
                                 {props.description}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Organizer :{" "}
+                              <b>Organizer :</b>{" "}
                               <span className="eventorganizer">
                                 {props.organizername}
                               </span>
                             </a>
                             <a className="collection-item">
-                              Attendees :{" "} <br />
+                              <b>Attendees :</b>{" "} <br />
                               <span className="eventattendees">
                                 {props.attendees}
                               </span>

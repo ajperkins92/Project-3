@@ -14,10 +14,7 @@ function MyAccountComponent(props) {
                                     <div className="col s12">
                                         <span className="card-title" style={{ fontSize: "3rem" }}>My Account</span>
                                         <div className="card-image">
-                                            {props.image ?
-                                                < img src={props.image} style={{ width: "200px" }} alt={"profile Image"} /> :
-                                                < img src={ProfileSample} style={{ width: "200px" }} alt={"profile Image"} />
-                                            }
+                                                < img src={props.image} style={{ width: "200px" }} alt={"profile Image"} /> 
                                         </div>
                                         <div className="card-content">
                                             {props.username ?
@@ -26,9 +23,9 @@ function MyAccountComponent(props) {
                                             }
                                             <p>Your current Account Details are populated below.  You can input new values to update your account.</p>
                                             <div class="collection">
-                                                <a className="collection-item"><span class=""></span>First Name : {props.firstname}</a>
-                                                <a className="collection-item"><span class=""></span>Last Name : {props.lastname}</a>
-                                                <a className="collection-item"><span class=""></span>Email : {props.email}</a>
+                                                <a className="collection-item"><span class=""></span><b>First Name :</b> {props.firstname}</a>
+                                                <a className="collection-item"><span class=""></span><b>Last Name :</b> {props.lastname}</a>
+                                                <a className="collection-item"><span class=""></span><b>Email :</b> {props.email}</a>
                                             </div>
 
                                             {/* <div className="row">
