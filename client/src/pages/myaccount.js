@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from "../components/mainpage/nav"
 import MyAccountComponent from "../components/MyAccount/myAccount";
+import OurModal from "../components/SignUpPage/modal"
 import axios from "axios";
 
 class MyAccount extends React.Component {
@@ -22,6 +23,8 @@ class MyAccount extends React.Component {
         newemail: "",
         newimage: "",
 
+        visible: false,
+        
     }
 
     // this will GET details that are already saved in DB
@@ -29,6 +32,7 @@ class MyAccount extends React.Component {
         axios.get(`/user/${userIDFromState}`)
             .then((response) => {
                 // data was returned as response.data, which is an array.  
+
                 this.setState({
                     username: response.data[0].username,
                     firstname: response.data[0].firstname,
@@ -53,9 +57,11 @@ class MyAccount extends React.Component {
                     firstname: response.data.firstname,
                     lastname: response.data.lastname,
                     email: response.data.email,
-                    image: response.data.image.url
+                    image: response.data.image.url,
+                    missingdetails: false
                 }, () => {
-                    localStorage.setItem('userImage', response.data.image.url ,() => {
+
+                    localStorage.setItem('userImage', response.data.image.url, () => {
                         this.getUserDetails(this.state.userID)
                     })
                 });
@@ -72,7 +78,18 @@ class MyAccount extends React.Component {
             this.getUserDetails(this.state.userID);
         }
         )
+    }
 
+    openModal = () => {
+        this.setState({
+            visible : true
+        });
+    }
+ 
+    closeModal = () => {
+        this.setState({
+            visible : false
+        });
     }
 
     setImage = event => {
@@ -95,22 +112,52 @@ class MyAccount extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        // let changes = {}
-        // changes.firstname = this.state.newfirstname;
-        // changes.lastname = this.state.newlastname;
-        // // changes.username = this.state.newusername;
-        // changes.password = this.state.newpassword;
-        // changes.email = this.state.newemail;
-        // changes.image = this.state.newimage;
 
-        let formData = new FormData();
-        formData.append("firstname", this.state.newfirstname);
-        formData.append("lastname", this.state.newlastname);
-        formData.append("password", this.state.newpassword);
-        formData.append("email", this.state.newemail);
-        formData.append("image", this.state.newimage);
+        let arrayWithNewData = [
+            this.state.newfirstname,
+            this.state.newlastname,
+            this.state.newpassword,
+            this.state.newemail,
+        ];
 
-        this.changeUserDetails(this.state.userID, formData);
+        let missingData = false;
+
+        console.log(`array is ${arrayWithNewData}`)
+
+        console.log(`index 0 ${!arrayWithNewData[0] }`)
+        console.log(`index 1 ${!arrayWithNewData[1] }`)
+        console.log(`index 2 ${!arrayWithNewData[2] }`)
+        console.log(`index 3 ${!arrayWithNewData[3] }`)
+
+
+        for (let i = 0; i < arrayWithNewData.length; i++) {
+            if (missingData === true) {
+                console.log(`Missing field- Leaving (2nd)`);
+                break;
+            }
+            else {
+                if (!arrayWithNewData[i]) {
+                    missingData = true;
+                    console.log(`Missing field- (1st)`);
+                }
+            }
+        }
+
+        if (missingData=== true) {
+            this.openModal();
+        }
+        else {
+            console.log(`all is good- going to PUT`);
+
+            let formData = new FormData();
+            formData.append("firstname", this.state.newfirstname);
+            formData.append("lastname", this.state.newlastname);
+            formData.append("password", this.state.newpassword);
+            formData.append("email", this.state.newemail);
+            formData.append("image", this.state.newimage);
+    
+            this.changeUserDetails(this.state.userID, formData);
+        }
     };
 
     manageLogin = () => {
@@ -152,6 +199,15 @@ class MyAccount extends React.Component {
 
                     setImage={this.setImage}
                 />
+                <OurModal
+                visible={this.state.visible}
+                open={this.openModal}
+                close={this.closeModal}
+                messageheader="One or more input fields is missing."
+                message="Please complete all fields, then try again."
+                color="orangered">
+                </OurModal>
+                
             </div>
         )
     }
