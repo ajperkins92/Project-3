@@ -1,4 +1,4 @@
-.input-field {
+.search-input-field {
     background-color: whitesmoke;
     border-radius: 10px;
     border: 1px solid black;
@@ -7,6 +7,6 @@
     height: 100px;
 }
 
-.btn {
+.search-submit {
     background-color: #026670    ;
 }
