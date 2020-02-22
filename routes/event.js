@@ -15,7 +15,7 @@ router.get("/event", function (req, res) {
         console.log(response);
         console.log("showing events");
         if (response.length > 5) {
-            let lastFive = response.slice(Math.max(response.length - 5, 1));
+            let lastFive = response.slice(Math.max(response.length - 7, 1));
             res.json(lastFive);
         }
         else {
@@ -174,7 +174,7 @@ router.get("/search", (req, res) => {
         .then(events => {
             if (events.length > 0) {
                 if (events.length > 5) {
-                    let lastFive = events.slice(Math.max(events.length - 5, 1));
+                    let lastFive = events.slice(Math.max(events.length - 7, 1));
                     res.json(lastFive);
                 }
                 else {
