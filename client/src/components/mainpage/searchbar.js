@@ -1,10 +1,19 @@
 import React from 'react';
+import "../mainpage/searchbar.css"
 
 function SearchBar(props) {
 
     return (
         <div className="row">
-            <div className="input-field col s6">
+
+        <br></br>
+        <br></br>
+        <br></br>
+
+            {/* Col for spacing */}
+            <div className="col s4"></div>
+            {/* Actual searchbar col */}
+            <div className="input-field col s4">
 
                 <input placeholder="Input a place, address, description, etc..." id="zipCodeSearch" type="text" className="validate" name="searchquery"
 
@@ -22,6 +31,9 @@ function SearchBar(props) {
                 >Submit<i className="material-icons right"></i>
                 </button>
             </div>
+            {/* Col for spacing*/}
+            <div className="col s4"></div>
+            <br></br>
         </div>
     )
 }
