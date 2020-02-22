@@ -52,7 +52,7 @@ function ViewEventComponent(props) {
                             name="newname"
                             onChange={props.handleInputChange}
                           />
-                          <label htmlFor="eventname">New Event Name</label>
+                          {/* <label htmlFor="eventname">New Event Name</label> */}
 
                           <a className="collection-item">
                             Google Map Image
@@ -68,7 +68,8 @@ function ViewEventComponent(props) {
                             Change Event Address from <b>{props.address}</b> to:
                           </a>
 
-                          <Autocomplete></Autocomplete>
+                          <Autocomplete
+                          color={"lightgoldenrodyellow"}></Autocomplete>
                           
                           <a className="collection-item">
                             Change Event Date from <b>{props.date}</b> to:
@@ -96,10 +97,6 @@ function ViewEventComponent(props) {
                           />
                           <label htmlFor="time"></label>
 
-                          <a className="collection-item">
-                            Event is:{" "}
-                            <span className="eventtime">{props.timeTo}</span>
-                          </a>
                           <a className="collection-item">
                             Change Event Description from{" "}
                             <b>{props.description}</b> to:{" "}
@@ -139,7 +136,7 @@ function ViewEventComponent(props) {
                             name="newdescription"
                             onChange={props.handleInputChange}
                           ></textarea>
-                          <label htmlFor="description">New Description</label>
+                          {/* <label htmlFor="description">New Description</label> */}
 
                           <a className="collection-item">
                             Organizer :{" "}

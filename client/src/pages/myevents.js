@@ -121,7 +121,7 @@ class MyEvents extends React.Component {
                     href={this.state.href}>
                 </Nav>
                                     <div className="eventmessage">
-                                        <p>Events you are signed up for:</p>
+                                        <p className="myEventsText">Events you've signed up for:</p>
                                     </div>
                                     <div className="card_registered" style={{ marginLeft: `${51 - this.state.numcard1 * 10 + this.state.numcard1 * 1.5}%` }}>
                                         <div className="row">
@@ -139,7 +139,7 @@ class MyEvents extends React.Component {
                                     </div>
                                     <div><hr /></div>
                                     <div className="eventmessage">
-                                        <p>Events you've organized:</p>
+                                        <p className="myEventsText">Events you've organized:</p>
                                     </div>
                                     <div className="card_organized" style={{ marginLeft: `${51 - this.state.numcard2 * 10 + this.state.numcard2 * 1.5}%` }}>
                                         <div className="row">
@@ -157,7 +157,7 @@ class MyEvents extends React.Component {
                                     </div>
                                     <div><hr /></div>
                                     <div className="eventmessage">
-                                        <p>Events you've organized AND are attending:</p>
+                                        <p className="myEventsText">Events you've organized and are attending:</p>
                                     </div>
                                     <div className="card_signedup" style={{ marginLeft: `${51 - this.state.numcard3 * 10 + this.state.numcard3 * 1.5}%` }}>
                                         <div className="row">

@@ -8,6 +8,7 @@ function CreateCard(props) {
       <div className="create-card card">
         <div className="card-image waves-effect waves-block waves-light">
           <img
+            style={{height: "200px"}}
             className="activator"
             // src="https://image.flaticon.com/icons/svg/892/892926.svg"
             src="https://media.giphy.com/media/xUA7b4arnbo3THfzi0/giphy.gif"
@@ -15,11 +16,11 @@ function CreateCard(props) {
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">
-            Create Event<i className="material-icons right">add_circle_outline
+            <b>Create Event</b><i className="material-icons right">add_circle_outline
 </i>
           </span>
           <p>
-            <Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}>Create Event</Link>
+            <Link to={(props.loggedIn === "true") ? "/createevent" : "/loginpage"}>Click here to create an event!</Link>
           </p>
         </div>
         <div className="card-reveal">

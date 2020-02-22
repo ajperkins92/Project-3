@@ -22,7 +22,7 @@ function Autocomplete(props) {
     };
 
     return (
-        <div>
+        <div >
             <PlacesAutocomplete
                 value={address}
                 onChange={setAddress}
@@ -31,14 +31,14 @@ function Autocomplete(props) {
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
 
-                        <input name="address" {...getInputProps({ placeholder: "Type address" })} />
+                        <input name="address" style={{backgroundColor: props.color}} {...getInputProps({ placeholder: "Type address" })} />
 
-                        <div>
+                        <div >
                             {loading ? <div>...loading</div> : null}
 
                             {suggestions.map(suggestion => {
                                 const style = {
-                                    backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                                    backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                                 };
 
                                 return (

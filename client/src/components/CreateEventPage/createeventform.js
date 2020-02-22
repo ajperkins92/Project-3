@@ -41,7 +41,7 @@ function CreateEventForm(props) {
                                             </div>
 
                                             <div className="input-field col s12">
-                                                <input id="date" type="date" className="validate" name="date"
+                                                <input id="createdate" type="date" className="validate" name="date"
 
                                                     onChange={props.handleInputChange}
 
@@ -51,7 +51,7 @@ function CreateEventForm(props) {
                                             </div>
 
                                             <div className="input-field col s12">
-                                                <input id="time" type="time" className="validate" name="time"
+                                                <input id="createtime" type="time" className="validate" name="time"
 
                                                     onChange={props.handleInputChange}
 
@@ -61,7 +61,7 @@ function CreateEventForm(props) {
                                             </div>
 
                                             <div className="input-field col s12">
-                                                <input id="description" type="text" className="validate" name="description"
+                                                <input id="createdescription" type="text" className="validate" name="description"
 
                                                     onChange={props.handleInputChange}
 
