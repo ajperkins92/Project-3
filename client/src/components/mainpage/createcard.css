@@ -1,4 +1,18 @@
 .create-card {
     background-color: whitesmoke;
     border: 1px solid black;
+    width: 18rem;
+    height: 25rem;
+}
+
+.card-image {
+    position: relative;
+}
+
+.image-container {
+    height: 200px;
+}
+
+.image-container img {
+    height: 100%;
 }
