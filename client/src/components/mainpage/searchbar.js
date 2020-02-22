@@ -26,7 +26,7 @@ function SearchBar(props) {
 
                 onClick={props.handleFormSubmit}
 
-                >Submit<i className="material-icons right"></i>
+                >Search!<i className="material-icons right"></i>
                 </button>
             </div>
             {/* Col for spacing*/}
