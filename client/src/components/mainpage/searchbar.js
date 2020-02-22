@@ -11,18 +11,16 @@ function SearchBar(props) {
         <br></br>
 
             {/* Col for spacing */}
-            <div className="col s4"></div>
+            <div className="col s1 m2 l3 xl4"></div>
             {/* Actual searchbar col */}
-            <div className="input-field col s4">
+            <div className="input-field col s10 m8 l6 xl4">
 
-                <input placeholder="Input a place, address, description, etc..." id="zipCodeSearch" type="text" className="validate" name="searchquery"
+                <input placeholder="Search events (place, address, description, etc...)" id="zipCodeSearch" type="text" className="validate" name="searchquery"
 
                 onChange={props.handleInputChange}
                 value={props.value}
 
                 ></input>
-
-                <label htmlFor="zipCodeSearch">Search For Events!</label>
 
                 <button className="btn waves-effect waves-light" type="submit" name="action"
 
@@ -32,7 +30,7 @@ function SearchBar(props) {
                 </button>
             </div>
             {/* Col for spacing*/}
-            <div className="col s4"></div>
+            <div className="col s1 m2 l3 xl4"></div>
             <br></br>
         </div>
     )
