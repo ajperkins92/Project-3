@@ -8,7 +8,7 @@ function OtherCards(props) {
     return (
         <div className="col s12 m6 l4 xl3">
             <div className="card">
-                <div className="card-image waves-effect waves-block waves-light">
+                <div className="card-image waves-effect waves-block waves-light image-container">
                     <img className="activator" src={props.image}></img>
                 </div>
                 <div className="card-content">
