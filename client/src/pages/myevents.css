@@ -1,10 +1,21 @@
 .eventmessage {
     font-size: 2rem;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.835);
+    width:35%;
+    border-radius: 10px;
+    margin: 0 auto;
+    color: black
 }
 .card_organized {
     /* margin-left: 33%; */
 }
 .card_signedup {
     /* margin-left: 40%; */
+}
+
+.myEventsText {
+    /* background-color: white;
+    width:100%;
+    border-radius: 10px; */
 }

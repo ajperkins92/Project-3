@@ -53,3 +53,7 @@
 .resp-sharing-button--twitter:hover {
   background-color: #2795e9
 }
+
+#eventname, #date, #time, #description, #address {
+  background-color: lightgoldenrodyellow
+}
