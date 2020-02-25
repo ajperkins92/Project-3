@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Nav from "../components/mainpage/nav"
 import LogInPageComponent from "../components/LogInPage/logInPage";
 import OurModal from "../components/SignUpPage/modal";
@@ -14,26 +14,22 @@ class Login extends React.Component {
     }
 
     login = (credentials) => {
-        console.log("logging in..");
-        console.log(`credentials are ${JSON.stringify(credentials)}`);
         let that = this;
         axios.post("/login", credentials)
         .then((response) => {
-            console.log(response.data);
-        
-            localStorage.setItem('userID', response.data.id);
-            localStorage.setItem('username', response.data.username);
-            localStorage.setItem('userImage', response.data.image);
+
+            localStorage.setItem("userID", response.data.id);
+            localStorage.setItem("username", response.data.username);
+            localStorage.setItem("userImage", response.data.image);
 
             this.setState({loggedIn: true}, () => {
-                localStorage.setItem('loggedIn', true);
+                localStorage.setItem("loggedIn", true);
                 window.location.replace("/");
             });
         
         })
         .catch(function (error) {
             that.handleModal();
-            console.log(error);
         });
     }
 
@@ -44,8 +40,6 @@ class Login extends React.Component {
     handleInputChange = event => {
         const name = event.target.name;
         const value = event.target.value;
-        console.log(`thing being changed is ${name}`)
-        console.log(`and it's being changed to ${value}`)
         this.setState({
             [name]: value
         });
@@ -73,19 +67,11 @@ class Login extends React.Component {
 
     manageLogin = () => {
         if (this.state.loggedIn === "true") {
-            // if you're logged in, log out in localstorage, as well as this page's state
-            
-            
-            localStorage.setItem('username', "");
-            localStorage.setItem('loggedIn', "false");
-            localStorage.setItem('userID', "");
-            localStorage.setItem('userImage', "");
+            localStorage.setItem("username", "");
+            localStorage.setItem("loggedIn", "false");
+            localStorage.setItem("userID", "");
+            localStorage.setItem("userImage", "");
             this.setState({username: "", loggedIn: "false", userID: ""});
-            
-        }
-        else {
-            // Do nothing:  The reason is:
-            // If you're not logged in, let the anchor href take you to the login page, but don't manage any state with the current page
         }
     }
 

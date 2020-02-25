@@ -16,8 +16,6 @@ function Autocomplete(props) {
         const latLng = await getLatLng(results[0]);
         setAddress(value);
         setCoordinates(latLng);
-        console.log(latLng);
-        console.log(`Address in Autocomplete is ${value}`)
         localStorage.setItem("eventAddress", value);
     };
 

@@ -14,8 +14,6 @@ function OtherCards(props) {
                 <div className="card-content">
                     <span className="card-title activator grey-text text-darken-4"><b>{props.eventName}</b></span>
                     <span>{props.date}</span>
-                    {/* href pointing to a dynamic route (on react Router, need to specify a catch all like /event/*, so that
-                            whatever the id is, the /event page is still rendered, but the param does not affect the page, just the props ) */}
                     <p>See more about <Link to={`view/event/${props.eventID}`}>{props.eventName}!</Link></p>
 
                 </div>

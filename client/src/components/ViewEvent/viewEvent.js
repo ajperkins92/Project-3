@@ -52,7 +52,6 @@ function ViewEventComponent(props) {
                             name="newname"
                             onChange={props.handleInputChange}
                           />
-                          {/* <label htmlFor="eventname">New Event Name</label> */}
 
                           <a className="collection-item">
                             Google Map Image
@@ -124,19 +123,12 @@ function ViewEventComponent(props) {
                             </div>
                           </a>
 
-                          {/* <input id="description" type="description" className="validate"
-                                                        name="newdescription"
-                                                        onChange={props.handleInputChange}
-                                                    />
-                                                    <label htmlFor="description">New Description</label> */}
-
                           <textarea
                             id="description"
                             class="materialize-textarea"
                             name="newdescription"
                             onChange={props.handleInputChange}
                           ></textarea>
-                          {/* <label htmlFor="description">New Description</label> */}
 
                           <a className="collection-item">
                             Organizer :{" "}
@@ -206,9 +198,7 @@ function ViewEventComponent(props) {
                                 {props.attendees}
                               </span>
                             </a>
-
-                            {/* Social Media Sharing */}
-                            {/* <!-- Sharingbutton Twitter --> */}
+                            
                             <a
                               class="resp-sharing-button__link"
                               href="https://twitter.com/intent/tweet/?text=Super%20fast%20and%20easy%20Social%20Media%20Sharing%20Buttons.%20No%20JavaScript.%20No%20tracking.&amp;url=http%3A%2F%2Fsharingbuttons.io"

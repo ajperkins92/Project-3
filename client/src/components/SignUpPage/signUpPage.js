@@ -59,15 +59,6 @@ function SignUpPage(props) {
                                                     ></input>
                                                     <label htmlFor="password">Password</label>
                                                 </div>
-                                                {/* Coding this confirm password out until we get to later stages past MVP
-                                        
-                                        <div className="input-field col s6">
-                                            <input id="confirmPW" type="password" className="validate" name="confirmPassword"
-                                            onChange={props.handleInputChange}
-                                            
-                                            ></input>
-                                            <label htmlFor="confirmPW">Confirm Password</label>
-                                        </div> */}
                                             </div>
                                             <div className="row fileInput">
                                                 <div className="col s12">
