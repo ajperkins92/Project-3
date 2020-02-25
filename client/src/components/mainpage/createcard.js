@@ -10,7 +10,6 @@ function CreateCard(props) {
           <img
             style={{height: "200px"}}
             className="activator"
-            // src="https://image.flaticon.com/icons/svg/892/892926.svg"
             src="https://media.giphy.com/media/xUA7b4arnbo3THfzi0/giphy.gif"
           ></img>
         </div>

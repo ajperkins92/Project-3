@@ -28,15 +28,6 @@ function MyAccountComponent(props) {
                                                 <a className="collection-item"><span class=""></span><b>Email :</b> {props.email}</a>
                                             </div>
 
-                                            {/* <div className="row">
-                                                <ul>
-                                                    <li><b>First Name:</b> {props.firstname}</li>
-                                                    <li><b>Last Name:</b> {props.lastname}</li>
-                                                    <li><b>Email:</b> {props.email}</li>
-                                                    <li>Password (In production we probably should not show this): {props.password}</li>
-                                                </ul>
-                                            </div> */}
-
                                             <div className="row">
                                                 <div className="input-field col s6">
                                                     <input id="firstname" type="text" className="validate"
@@ -61,14 +52,6 @@ function MyAccountComponent(props) {
                                                     />
                                                     <label htmlFor="email">New Email</label>
                                                 </div>
-                                                {/* <div className="input-field col s6">
-                                            <input id="username" type="text" className="validate" 
-                                            name="newusername"
-
-                                            onChange={props.handleInputChange}
-                                            />
-                                            <label htmlFor="username">{props.username}</label>
-                                        </div> */}
                                                 <div className="input-field col s6">
                                                     <input id="newPassword" type="password" className="validate"
                                                         name="newpassword"
